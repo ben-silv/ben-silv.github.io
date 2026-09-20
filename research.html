@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- EDIT: page title and description -->
+<title>Research — Ben Silver</title>
+<meta name="description" content="Mass cytometry immunophenotyping at Mass General's Vaccine &amp; Immunotherapy Center, flexible bioelectronics at Sonkusale Research Labs, and research computing at Tufts.">
+<!-- /EDIT -->
+
+<link rel="canonical" href="https://ben-silv.github.io/research.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Research — Ben Silver">
+<meta property="og:description" content="CyTOF immunophenotyping at Mass General, plus flexible bioelectronics and research computing at Tufts.">
+<meta property="og:url" content="https://ben-silv.github.io/research.html">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="styles/main.css">
+
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('bs-theme');
+    if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+</head>
+
+<body data-page="research">
+<a class="skip-link" href="#content">Skip to content</a>
+
+<div class="shell">
+
+  <!-- SIDEBAR — keep in sync with the other four pages. -->
+  <aside class="sidebar">
+    <div class="sidebar__top">
+      <a class="sidebar__name" href="index.html">Ben Silver</a>
+      <span class="sidebar__toggle-mobile" data-theme-toggle></span>
+    </div>
+
+    <p class="sidebar__tagline">Computer science &amp; biology at Tufts. Mass cytometry at Mass General.</p>
+
+    <nav class="nav" aria-label="Main">
+      <a class="nav__link" data-nav="home"     href="index.html"><span class="nav__num">00</span>Home<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="research" href="research.html"><span class="nav__num">01</span>Research<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="projects" href="projects.html"><span class="nav__num">02</span>Projects<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="about"    href="about.html"><span class="nav__num">03</span>About<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="contact"  href="contact.html"><span class="nav__num">04</span>Contact<span class="nav__dot"></span></a>
+    </nav>
+
+    <div class="sidebar__foot">
+      <div class="sidebar__links">
+        <a href="mailto:silverbenh1@gmail.com">silverbenh1@gmail.com</a>
+        <a href="https://github.com/ben-silv">github.com/ben-silv</a>
+        <a href="https://www.linkedin.com/in/bhsilver">linkedin.com/in/bhsilver</a>
+        <a class="is-accent" href="resume.pdf">Résumé (PDF)</a>
+      </div>
+      <span data-theme-toggle></span>
+    </div>
+  </aside>
+
+  <main class="main" id="content">
+
+    <!-- EDIT: page header ============================================== -->
+    <header class="col">
+      <span class="page-label">01 — Research</span>
+      <h1 class="page-title">Immunophenotyping, one cell at a time.</h1>
+      <p class="prose" style="margin-top: 18px;">Mass cytometry measures fifty-plus protein markers on a single cell. Collecting the data is the easy part — the work is building a pipeline where the populations you call at the end still mean something biologically.</p>
+    </header>
+    <!-- /EDIT -->
+
+    <!-- EDIT: research position 1 ====================================== -->
+    <article class="row row--ruled" style="margin-top: 48px;">
+      <div class="col">
+        <h2 class="entry__title">Undergraduate Researcher, Vaccine &amp; Immunotherapy Center</h2>
+        <p class="entry__org">Massachusetts General Hospital, Boston</p>
+        <ul class="entry__list">
+          <li>Engineered a Python pipeline that profiles immune cell populations across vaccine stimulations, on datasets past a million events.</li>
+          <li>Wrote the preprocessing end to end: FCS parsing, arcsinh transformation, dimensionality reduction with PCA and UMAP.</li>
+          <li>Augmented the existing clustering with biological validation metrics, so population assignments hold up to immunological interpretation instead of just looking tidy.</li>
+        </ul>
+      </div>
+      <div class="notes">
+        <div class="note">
+          <span class="note__label">Dates</span>
+          <span class="note__value">July 2026 — present</span>
+        </div>
+        <div class="note">
+          <span class="note__label">With</span>
+          <span class="note__value">Richard Dzeng<br>Ethan Rabinowitz</span>
+        </div>
+        <div class="note">
+          <span class="note__label">Scale</span>
+          <span class="note__value">50+ parameters per cell<br>1M+ events per dataset</span>
+        </div>
+      </div>
+    </article>
+    <!-- /EDIT -->
+
+    <!-- EDIT: research position 2 ====================================== -->
+    <article class="row row--ruled">
+      <div class="col">
+        <h2 class="entry__title">Research Assistant, Sonkusale Research Labs</h2>
+        <p class="entry__org">Tufts University</p>
+        <p class="prose" style="margin-top: 16px;">Developed and validated fabrication protocols for flexible electrode arrays, with signal characterisation and benchtop testing to tune biosensor performance across physiological conditions — the wearable, point-of-care end of diagnostics.</p>
+      </div>
+      <div class="notes">
+        <div class="note">
+          <span class="note__label">Dates</span>
+          <span class="note__value">February — May 2026</span>
+        </div>
+        <div class="note">
+          <span class="note__label">Domain</span>
+          <span class="note__value">Flexible bioelectronics, wearable diagnostics</span>
+        </div>
+      </div>
+    </article>
+    <!-- /EDIT -->
+
+    <!-- EDIT: research position 3 ====================================== -->
+    <article class="row row--ruled">
+      <div class="col">
+        <h2 class="entry__title">Research Computing Student Specialist</h2>
+        <p class="entry__org">Tufts Technology Services</p>
+        <p class="prose" style="margin-top: 16px;">Built web automation for research storage management — quota monitoring and resource allocation. The other half of the same problem: research only moves as fast as its infrastructure.</p>
+      </div>
+      <div class="notes">
+        <div class="note">
+          <span class="note__label">Dates</span>
+          <span class="note__value">April 2025 — present</span>
+        </div>
+        <div class="note">
+          <span class="note__label">Reach</span>
+          <span class="note__value">500+ daily users</span>
+        </div>
+      </div>
+    </article>
+    <!-- /EDIT -->
+
+    <div class="mobile-foot">
+      <a href="mailto:silverbenh1@gmail.com">Email</a>
+      <a href="https://github.com/ben-silv">GitHub</a>
+      <a href="https://www.linkedin.com/in/bhsilver">LinkedIn</a>
+      <a href="resume.pdf">Résumé (PDF)</a>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin defer></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>

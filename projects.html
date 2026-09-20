@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- EDIT: page title and description -->
+<title>Projects — Ben Silver</title>
+<meta name="description" content="CraveCast, a craving forecaster for addiction recovery, and Epialert, allergen detection and epinephrine mapping for travellers with severe allergies.">
+<!-- /EDIT -->
+
+<link rel="canonical" href="https://ben-silv.github.io/projects.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Projects — Ben Silver">
+<meta property="og:description" content="CraveCast and Epialert — two health tools built for moments where the stakes are real.">
+<meta property="og:url" content="https://ben-silv.github.io/projects.html">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="styles/main.css">
+
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('bs-theme');
+    if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+</head>
+
+<body data-page="projects">
+<a class="skip-link" href="#content">Skip to content</a>
+
+<div class="shell">
+
+  <!-- SIDEBAR — keep in sync with the other four pages. -->
+  <aside class="sidebar">
+    <div class="sidebar__top">
+      <a class="sidebar__name" href="index.html">Ben Silver</a>
+      <span class="sidebar__toggle-mobile" data-theme-toggle></span>
+    </div>
+
+    <p class="sidebar__tagline">Computer science &amp; biology at Tufts. Mass cytometry at Mass General.</p>
+
+    <nav class="nav" aria-label="Main">
+      <a class="nav__link" data-nav="home"     href="index.html"><span class="nav__num">00</span>Home<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="research" href="research.html"><span class="nav__num">01</span>Research<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="projects" href="projects.html"><span class="nav__num">02</span>Projects<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="about"    href="about.html"><span class="nav__num">03</span>About<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="contact"  href="contact.html"><span class="nav__num">04</span>Contact<span class="nav__dot"></span></a>
+    </nav>
+
+    <div class="sidebar__foot">
+      <div class="sidebar__links">
+        <a href="mailto:silverbenh1@gmail.com">silverbenh1@gmail.com</a>
+        <a href="https://github.com/ben-silv">github.com/ben-silv</a>
+        <a href="https://www.linkedin.com/in/bhsilver">linkedin.com/in/bhsilver</a>
+        <a class="is-accent" href="resume.pdf">Résumé (PDF)</a>
+      </div>
+      <span data-theme-toggle></span>
+    </div>
+  </aside>
+
+  <main class="main" id="content">
+
+    <!-- EDIT: page header ============================================== -->
+    <header class="col">
+      <span class="page-label">02 — Projects</span>
+      <h1 class="page-title">Two apps for bad days.</h1>
+      <p class="prose" style="margin-top: 18px;">Both are health tools built for moments where the stakes are real and nobody has patience for a bad interface. One is live; the other taught me when to cut a feature.</p>
+    </header>
+    <!-- /EDIT -->
+
+    <!-- EDIT: project 1 — CraveCast ==================================== -->
+    <article class="row row--ruled" style="margin-top: 48px;">
+      <div class="col">
+        <h2 class="entry__title entry__title--project">CraveCast</h2>
+        <p class="prose" style="margin-top: 14px;">A craving forecaster for addiction recovery. It predicts when an urge is likely to hit, warns you before it lands, and turns every day you stay clean into something growing in a garden. Built on the peer-reviewed ADARP study plus personalised kernel-density modelling.</p>
+        <p class="prose" style="margin-top: 13px;">No sign-up, no tracking — a single-file HTML app that works fully offline, so nothing about someone's recovery ever leaves their browser. That constraint drove most of the architecture.</p>
+        <div class="entry__links">
+          <a class="link-underline" href="https://ben-silv.github.io/CraveCast/">
+            Open the app
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+          </a>
+          <a class="link-underline" href="https://github.com/ben-silv/CraveCast">Source on GitHub</a>
+        </div>
+      </div>
+      <div class="notes">
+        <div class="note">
+          <span class="note__label">Status</span>
+          <span class="note__value note__value--accent"><span class="dot" style="display:inline-block;margin-right:6px;"></span>Live · September 2026</span>
+        </div>
+        <div class="note">
+          <span class="note__label">Built with</span>
+          <span class="note__value">HTML, JavaScript<br>Python<br>Kernel density estimation<br>GitHub Pages</span>
+        </div>
+      </div>
+    </article>
+    <!-- /EDIT -->
+
+    <!-- EDIT: project 2 — Epialert ===================================== -->
+    <article class="row row--ruled">
+      <div class="col">
+        <h2 class="entry__title entry__title--project">Epialert</h2>
+        <p class="prose" style="margin-top: 14px;">Allergen detection for travellers with severe dietary restrictions. Photograph a dish, get allergen detection and a risk-level warning, then a live map of the pharmacies and hospitals nearby that actually stock epinephrine auto-injectors.</p>
+        <p class="prose" style="margin-top: 13px;">I cut the peer-response feed late in development. Letting users vouch for a restaurant sounded good until I worked through what crowd-sourced safety data means when the failure mode is anaphylaxis.</p>
+      </div>
+      <div class="notes">
+        <div class="note">
+          <span class="note__label">Status</span>
+          <span class="note__value">May 2026 · repository private</span>
+        </div>
+        <div class="note">
+          <span class="note__label">Built with</span>
+          <span class="note__value">Python, Flask<br>Claude Vision API<br>Google Maps API</span>
+        </div>
+      </div>
+    </article>
+    <!-- /EDIT -->
+
+    <div class="mobile-foot">
+      <a href="mailto:silverbenh1@gmail.com">Email</a>
+      <a href="https://github.com/ben-silv">GitHub</a>
+      <a href="https://www.linkedin.com/in/bhsilver">LinkedIn</a>
+      <a href="resume.pdf">Résumé (PDF)</a>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin defer></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>

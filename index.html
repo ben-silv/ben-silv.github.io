@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- EDIT: page title and description (shows in Google results and browser tabs) -->
+<title>Ben Silver — CyTOF mass cytometry research at Mass General</title>
+<meta name="description" content="Ben Silver is a computer science and biology student at Tufts, building the CyTOF mass cytometry pipeline at Mass General's Vaccine &amp; Immunotherapy Center.">
+<!-- /EDIT -->
+
+<link rel="canonical" href="https://ben-silv.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ben Silver — CyTOF mass cytometry research at Mass General">
+<meta property="og:description" content="Computer science and biology at Tufts. Immune profiling at Mass General's Vaccine &amp; Immunotherapy Center.">
+<meta property="og:url" content="https://ben-silv.github.io/">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="styles/main.css">
+
+<!-- Applies the saved theme before first paint, so there's no white flash. -->
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('bs-theme');
+    if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Benjamin Silver",
+  "alternateName": "Ben Silver",
+  "url": "https://ben-silv.github.io/",
+  "email": "mailto:silverbenh1@gmail.com",
+  "jobTitle": "Undergraduate Researcher",
+  "affiliation": [
+    { "@type": "Organization", "name": "Massachusetts General Hospital, Vaccine & Immunotherapy Center" },
+    { "@type": "CollegeOrUniversity", "name": "Tufts University" }
+  ],
+  "sameAs": [
+    "https://github.com/ben-silv",
+    "https://www.linkedin.com/in/bhsilver"
+  ]
+}
+</script>
+</head>
+
+<body data-page="home">
+<a class="skip-link" href="#content">Skip to content</a>
+
+<div class="shell">
+
+  <!-- ====================================================================
+       SIDEBAR — identical on all five pages.
+       If you change it here, change it in research.html, projects.html,
+       about.html and contact.html too.
+       ==================================================================== -->
+  <aside class="sidebar">
+    <div class="sidebar__top">
+      <a class="sidebar__name" href="index.html">Ben Silver</a>
+      <span class="sidebar__toggle-mobile" data-theme-toggle></span>
+    </div>
+
+    <!-- EDIT: sidebar tagline -->
+    <p class="sidebar__tagline">Computer science &amp; biology at Tufts. Mass cytometry at Mass General.</p>
+    <!-- /EDIT -->
+
+    <nav class="nav" aria-label="Main">
+      <a class="nav__link" data-nav="home"     href="index.html"><span class="nav__num">00</span>Home<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="research" href="research.html"><span class="nav__num">01</span>Research<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="projects" href="projects.html"><span class="nav__num">02</span>Projects<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="about"    href="about.html"><span class="nav__num">03</span>About<span class="nav__dot"></span></a>
+      <a class="nav__link" data-nav="contact"  href="contact.html"><span class="nav__num">04</span>Contact<span class="nav__dot"></span></a>
+    </nav>
+
+    <div class="sidebar__foot">
+      <!-- EDIT: sidebar contact links -->
+      <div class="sidebar__links">
+        <a href="mailto:silverbenh1@gmail.com">silverbenh1@gmail.com</a>
+        <a href="https://github.com/ben-silv">github.com/ben-silv</a>
+        <a href="https://www.linkedin.com/in/bhsilver">linkedin.com/in/bhsilver</a>
+        <a class="is-accent" href="resume.pdf">Résumé (PDF)</a>
+      </div>
+      <!-- /EDIT -->
+      <span data-theme-toggle></span>
+    </div>
+  </aside>
+
+  <main class="main" id="content">
+
+    <div class="row">
+      <div class="col">
+        <!-- EDIT: headline and intro ==================================== -->
+        <h1 class="page-title page-title--home">I make high-dimensional immune data legible.</h1>
+
+        <p class="lead">I build the CyTOF mass cytometry pipeline at Mass General's Vaccine &amp; Immunotherapy Center — fifty-plus protein markers, over a million cells per run, and the analysis that turns them into populations someone can actually reason about.</p>
+
+        <p class="prose">The other half of my week goes to research computing at Tufts, writing the tooling 500+ researchers lean on to keep their own work moving.</p>
+        <!-- /EDIT -->
+      </div>
+
+      <div class="notes">
+        <!-- EDIT: the "Now" note — worth updating every month or two ==== -->
+        <div class="note">
+          <span class="note__label"><span class="dot"></span>Now</span>
+          <span class="note__value">September 2026 — running panels at the VIC, and patching CraveCast between them.</span>
+        </div>
+        <!-- /EDIT -->
+
+        <!-- EDIT: at a glance -->
+        <div class="note">
+          <span class="note__label">At a glance</span>
+          <span class="note__value">
+            Tufts University<br>
+            BA Computer Science, biology focus<br>
+            Expected May 2028<br>
+            GPA 3.9 · Dean's List
+          </span>
+        </div>
+        <!-- /EDIT -->
+      </div>
+    </div>
+
+    <!-- EDIT: selected work list ======================================== -->
+    <section class="work" aria-labelledby="work-heading">
+      <h2 class="work__label" id="work-heading">Selected work</h2>
+
+      <a class="work__item" href="research.html">
+        <span class="work__num">01</span>
+        <span class="work__body">
+          <span class="work__name">CyTOF pipeline at Mass General</span>
+          <span class="work__desc">Immune profiling across vaccine stimulations — FCS parsing through FlowSOM clustering.</span>
+        </span>
+        <svg class="work__arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+
+      <a class="work__item" href="projects.html">
+        <span class="work__num">02</span>
+        <span class="work__body">
+          <span class="work__name">CraveCast <span class="work__tag">— live</span></span>
+          <span class="work__desc">A craving forecaster for addiction recovery. Offline, no sign-up, no tracking.</span>
+        </span>
+        <svg class="work__arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+
+      <a class="work__item" href="projects.html">
+        <span class="work__num">03</span>
+        <span class="work__body">
+          <span class="work__name">Epialert</span>
+          <span class="work__desc">Allergen detection and epinephrine mapping for travellers with severe allergies.</span>
+        </span>
+        <svg class="work__arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+    </section>
+    <!-- /EDIT -->
+
+    <!-- Shown only on narrow screens, where the sidebar links are hidden. -->
+    <div class="mobile-foot">
+      <a href="mailto:silverbenh1@gmail.com">Email</a>
+      <a href="https://github.com/ben-silv">GitHub</a>
+      <a href="https://www.linkedin.com/in/bhsilver">LinkedIn</a>
+      <a href="resume.pdf">Résumé (PDF)</a>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin defer></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>
