@@ -20,9 +20,13 @@ Search any file for `EDIT:` to jump between them.
 
 | What you want to change | File | Look for |
 |---|---|---|
+| **The internship pitch** (dates, fields, CTA) | `index.html` | `EDIT: internship availability` |
+| **"Seeking a Summer 2027 internship"** in the sidebar | all five pages | `EDIT: internship status line` |
+| The line above the headline (degree, school, class year) | `index.html` | `EDIT: headline and intro` |
 | Big headline on the front page | `index.html` | `EDIT: headline and intro` |
 | The "Now" note (update this monthly) | `index.html` | `EDIT: the "Now" note` |
 | GPA, degree, graduation date | `index.html` | `EDIT: at a glance` |
+| The internship fields listed in the margin | `index.html` | `EDIT: what I'm looking for` |
 | The three "Selected work" links | `index.html` | `EDIT: selected work list` |
 | Research intro paragraph | `research.html` | `EDIT: page header` |
 | MGH / VIC position | `research.html` | `EDIT: research position 1` |
@@ -34,7 +38,7 @@ Search any file for `EDIT:` to jump between them.
 | Degree, coursework, clubs | `about.html` | `EDIT: education` |
 | Hobbies | `about.html` | `EDIT: hobbies` |
 | Contact copy and email address | `contact.html` | `EDIT: contact copy and email` |
-| "Based in" / "Open to" | `contact.html` | `EDIT: contact margin notes` |
+| "Looking for" / "Areas" / "Based in" | `contact.html` | `EDIT: contact margin notes` |
 | Google search result text | every page | `EDIT: page title and description` |
 | Tagline under your name | every page | `EDIT: sidebar tagline` |
 | Email / GitHub / LinkedIn links | every page | `EDIT: sidebar contact links` |
@@ -100,6 +104,18 @@ everything else simple, and the sidebar rarely changes.
 Center`. It renders as a normal `&`.
 
 ---
+
+## When the internship search is over
+
+Three places mention it. Delete or reword all three:
+
+1. `index.html` — the whole `EDIT: internship availability` block (the green-bordered panel).
+2. All five pages — the `EDIT: internship status line` paragraph in the sidebar.
+3. `contact.html` — the opening paragraph and the "Looking for" margin note.
+
+Also update the `<title>` and `<meta name="description">` at the top of
+`index.html`, and the `"seeks"` entry in the JSON-LD block below them, so search
+results stop advertising it.
 
 ## Adding a sixth page
 

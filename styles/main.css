@@ -135,13 +135,18 @@ button:focus-visible {
 
 /* 4. SIDEBAR =============================================================== */
 
+/* Pinned to the viewport, not stretched to the document. If the sidebar were
+   allowed to stretch, its footer would land at the bottom of the whole page —
+   so on any page taller than the screen, the contact links would sit below the
+   fold and never be seen. */
 .sidebar {
   width: var(--sidebar-w);
   flex: 0 0 var(--sidebar-w);
   position: sticky;
   top: 0;
-  align-self: stretch;
-  min-height: 100vh;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
   padding: 44px 34px;
   border-right: 1px solid var(--line);
   display: flex;
@@ -416,6 +421,90 @@ body[data-page="contact"]  .nav__link[data-nav="contact"]  .nav__dot {
   flex: 0 0 5px;
 }
 
+/* 6b. INTERNSHIP / AVAILABILITY ============================================ */
+
+/* Small green line above the home headline, naming the degree and school. */
+.kicker {
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* The "seeking an internship" panel on the home page. */
+.availability {
+  margin-top: 30px;
+  padding: 22px 24px;
+  border: 1px solid var(--accent-line);
+  border-radius: 12px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.availability__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.availability__body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.availability__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: 0 0 7px;
+}
+
+/* Availability line in the sidebar, on every page. */
+.sidebar__status {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--accent);
+}
+.sidebar__status .dot { margin-top: 6px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 15px;
+  font-weight: 600;
+}
+.btn:hover { background: var(--accent-hi); color: var(--bg); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+}
+.btn--ghost:hover { background: var(--bg); color: var(--accent-hi); }
+
 /* 7. WORK INDEX (home page) ================================================ */
 
 .work { margin-top: 52px; }
@@ -549,8 +638,11 @@ body[data-page="contact"]  .nav__link[data-nav="contact"]  .nav__dot {
   .sidebar {
     width: 100%;
     flex: 0 0 auto;
+    height: auto;
     min-height: 0;
+    overflow: visible;
     position: static;
+    align-self: auto;
     padding: 18px 22px 0;
     border-right: 0;
     border-bottom: 1px solid var(--line);
