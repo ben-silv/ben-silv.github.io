@@ -173,7 +173,7 @@ def render_home(c):
         for e in h["education"])
     doors = "".join(
         f"""      <a class="door" href="{esc(d['href'])}">
-        <span class="door__label">{esc(d['label'])}</span>
+        <span class="door__label"><span class="door__word">{esc(d['label'])}</span></span>
         <span class="door__desc">{d['desc']}</span>
       </a>\n"""
         for d in h["doors"])
@@ -401,7 +401,7 @@ def render_404(c):
     n = c["notFound"]
     doors = "".join(
         f"""      <a class="door" href="{esc(d['href'])}">
-        <span class="door__label">{esc(d['label'])}</span>
+        <span class="door__label"><span class="door__word">{esc(d['label'])}</span></span>
       </a>\n"""
         for d in c["home"]["doors"])
     page = {"title": n["title"], "description": "Page not found."}

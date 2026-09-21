@@ -77,13 +77,36 @@ a:hover { color: var(--signal-deepen); }
 }
 
 .masthead__links { display: flex; align-items: center; gap: 28px; }
-.masthead__links a { font-size: 15px; color: var(--ink-muted); }
-.masthead__links a:hover { color: var(--ink); }
-.masthead__links a.is-primary {
-  color: var(--ink);
-  border-bottom: 2px solid var(--signal);
-  padding-bottom: 2px;
+
+/* One hover behaviour for the whole masthead: the rule wipes in from the left
+   and the text darkens. Nothing carries a rule at rest, so the underline only
+   ever means "you are pointing at this". */
+.masthead__links a {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  color: var(--ink-muted);
+  transition: color 0.18s ease;
 }
+.masthead__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 2px;
+  background: var(--accent-line, var(--signal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.masthead__links a:hover,
+.masthead__links a:focus-visible { color: var(--ink); }
+.masthead__links a:hover::after,
+.masthead__links a:focus-visible::after { transform: scaleX(1); }
+
+/* Resume still leads, by weight rather than by a permanent rule. */
+.masthead__links a.is-primary { color: var(--ink); font-weight: 500; }
 
 .main {
   flex-grow: 1;
@@ -152,8 +175,6 @@ a:hover { color: var(--signal-deepen); }
   padding: 19px 0;
   border-bottom: 1px solid var(--hairline);
 }
-.door:hover .door__label { color: var(--signal-deepen); }
-
 .door__label {
   width: 300px;
   flex-shrink: 0;
@@ -161,8 +182,31 @@ a:hover { color: var(--signal-deepen); }
   font-size: var(--size-entry);
   font-weight: 800;
   letter-spacing: -0.024em;
+}
+
+/* The rule has to be the width of the word, not the width of the column, so
+   the word gets its own box inside the label. */
+.door__word {
+  position: relative;
+  display: inline-block;
   transition: color 0.15s ease;
 }
+.door__word::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 3px;
+  background: var(--accent-line, var(--signal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.door:hover .door__word,
+.door:focus-visible .door__word { color: var(--signal-deepen); }
+.door:hover .door__word::after,
+.door:focus-visible .door__word::after { transform: scaleX(1); }
 
 .door__desc {
   flex-grow: 1;
@@ -403,8 +447,8 @@ a:hover { color: var(--signal-deepen); }
 /* --- hobbies -------------------------------------------------------------- */
 
 .hobbies { background: var(--pulse-ground); }
+.hobbies { --accent-line: var(--pulse); }
 .hobbies .masthead { border-bottom-color: var(--pulse-line); }
-.hobbies .masthead__links a.is-primary { border-bottom-color: var(--pulse); }
 .hobbies a:hover { color: var(--pulse-ink); }
 .hobbies .page-title { color: var(--pulse); font-size: 72px; line-height: 0.92; }
 
