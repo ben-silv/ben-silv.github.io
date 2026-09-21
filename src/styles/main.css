@@ -373,6 +373,15 @@ a:hover { color: var(--signal-deepen); }
   align-items: center;
   gap: 14px;
   box-shadow: 0 10px 30px rgba(11, 27, 43, 0.22);
+  transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.2s ease;
+}
+
+/* While the panel is open the button is not beside it — it became it. */
+:root[data-glance-state="open"] .door-button {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
 }
 .door-button:hover { background: var(--sheet-lift); }
 

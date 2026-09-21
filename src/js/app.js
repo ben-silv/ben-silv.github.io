@@ -87,8 +87,34 @@
     var sheet = React.useRef(null);
     var closeBtn = React.useRef(null);
 
+    /* The button is the hinge. Before the first paint, measure where it sits
+       what size it is next to the panel, and hand both to CSS — the panel then
+       starts as that exact rectangle, in that exact spot, and grows out of it,
+       wherever the button sits on this page and at this width. Measuring
+       has to happen before the opening animation is switched on, or the rect
+       comes back already scaled down. */
+    React.useLayoutEffect(function () {
+      var el = sheet.current;
+      if (!el) return;
+      var from = opener.getBoundingClientRect();
+      var to = el.getBoundingClientRect();
+      var sx = Math.max(0.04, from.width / to.width);
+      var sy = Math.max(0.04, from.height / to.height);
+      /* Scaling about a point leaves that point still. Put it here and the
+         shrunk panel lands exactly on the button rather than merely near it:
+         solve P + s(0 - P) = offset for P. */
+      el.style.setProperty('--door-x', (from.left - to.left) / (1 - sx) + 'px');
+      el.style.setProperty('--door-y', (from.top - to.top) / (1 - sy) + 'px');
+      el.style.setProperty('--door-sx', sx);
+      el.style.setProperty('--door-sy', sy);
+      el.setAttribute('data-door', 'open');
+    }, []);
+
     React.useEffect(function () {
       if (closeBtn.current) closeBtn.current.focus();
+
+      /* The corner button steps aside while the panel it turned into is open. */
+      document.documentElement.setAttribute('data-glance-state', 'open');
 
       function onKey(event) {
         if (event.key === 'Escape') {
@@ -116,6 +142,7 @@
       return function () {
         document.removeEventListener('keydown', onKey);
         document.body.style.overflow = previousOverflow;
+        document.documentElement.removeAttribute('data-glance-state');
       };
     }, []);
 
