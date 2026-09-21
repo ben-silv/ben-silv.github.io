@@ -22,6 +22,66 @@ FONTS = ("https://fonts.googleapis.com/css2?"
          "family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800"
          "&family=Instrument+Sans:wght@400;500;600&display=swap")
 
+# Inline, in the head, and deliberately not in src/js/app.js: this has to run
+# before the first paint or a visitor who chose dark gets a white flash on
+# every page load. It is also the whole toggle — no dependency on the CDN, so
+# the switch cannot be broken by a script that fails to arrive.
+THEME_SCRIPT = """<script>
+(function () {
+  var root = document.documentElement;
+  var stored = null;
+  try { stored = localStorage.getItem("theme"); } catch (e) {}
+  var theme = stored === "light" || stored === "dark" ? stored
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  var shift = null;
+
+  function apply(next, animate) {
+    theme = next;
+    if (animate) {
+      root.setAttribute("data-theme-shift", "");
+      window.clearTimeout(shift);
+      shift = window.setTimeout(function () {
+        root.removeAttribute("data-theme-shift");
+      }, 340);
+    }
+    root.setAttribute("data-theme", next);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", next === "dark" ? "#0E1A26" : "#FBFBFD");
+    var button = document.querySelector("[data-theme-toggle]");
+    if (button) {
+      button.setAttribute("aria-pressed", next === "dark" ? "true" : "false");
+      button.title = next === "dark" ? "Switch to light" : "Switch to dark";
+    }
+  }
+
+  apply(theme, false);
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var button = document.querySelector("[data-theme-toggle]");
+    if (!button) return;
+    button.hidden = false;
+    apply(theme, false);
+    button.addEventListener("click", function () {
+      var next = theme === "dark" ? "light" : "dark";
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      apply(next, true);
+    });
+  });
+})();
+</script>"""
+
+# Two paths, drawn at the size they are used. The sun keeps its rays as
+# strokes so it stays legible at 17px; the moon is a single filled crescent.
+SUN = ('<svg class="theme__sun" viewBox="0 0 24 24" fill="none" '
+       'stroke="currentColor" stroke-width="1.9" stroke-linecap="round" '
+       'aria-hidden="true"><circle cx="12" cy="12" r="4.3" fill="currentColor" '
+       'stroke="none"></circle><path d="M12 1.8v2.5M12 19.7v2.5M1.8 12h2.5'
+       'M19.7 12h2.5M4.8 4.8l1.8 1.8M17.4 17.4l1.8 1.8M19.2 4.8l-1.8 1.8'
+       'M6.6 17.4l-1.8 1.8"></path></svg>')
+MOON = ('<svg class="theme__moon" viewBox="0 0 24 24" fill="currentColor" '
+        'aria-hidden="true"><path d="M21 14.2A9.3 9.3 0 0 1 9.8 3a9.2 9.2 0 1 0 '
+        '11.2 11.2Z"></path></svg>')
+
 
 def esc(text):
     """Escape a string for use in an HTML attribute."""
@@ -44,6 +104,7 @@ def head(c, page, canonical, body_class=""):
 <meta property="og:description" content="{esc(page['description'])}">
 <meta property="og:url" content="{esc(canonical)}">
 <meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#FBFBFD">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +112,7 @@ def head(c, page, canonical, body_class=""):
 <link rel="stylesheet" href="src/styles/tokens.css">
 <link rel="stylesheet" href="src/styles/motion.css">
 <link rel="stylesheet" href="src/styles/main.css">
+{THEME_SCRIPT}
 </head>
 <body{(' class="' + body_class + '"') if body_class else ''}>
 <a class="skip" href="#content">Skip to content</a>
@@ -64,12 +126,18 @@ def masthead(c, active_home=False):
            ("<a class=\"wordmark\" href=\"index.html\">%s</a>" % esc(s["name"]))
     return f"""  <header class="masthead">
     {mark}
-    <nav class="masthead__links" aria-label="Elsewhere">
-      <a class="is-primary" href="{esc(s['resume'])}">Resume</a>
-      <a href="{esc(s['github'])}">GitHub</a>
-      <a href="{esc(s['linkedin'])}">LinkedIn</a>
-      <a href="mailto:{esc(s['email'])}">Email</a>
-    </nav>
+    <div class="masthead__end">
+      <nav class="masthead__links" aria-label="Elsewhere">
+        <a class="is-primary" href="{esc(s['resume'])}">Resume</a>
+        <a href="{esc(s['github'])}">GitHub</a>
+        <a href="{esc(s['linkedin'])}">LinkedIn</a>
+        <a href="mailto:{esc(s['email'])}">Email</a>
+      </nav>
+      <button class="theme" type="button" data-theme-toggle hidden aria-pressed="false">
+        <span class="theme__icons">{SUN}{MOON}</span>
+        <span class="sr-only">Dark mode</span>
+      </button>
+    </div>
   </header>
 """
 

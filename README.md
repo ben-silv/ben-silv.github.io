@@ -47,6 +47,23 @@ site.
 Push to `main`. `.github/workflows/deploy.yml` renders, checks, and publishes
 the repository root to GitHub Pages. There is no build artifact to keep in sync.
 
+## Light and dark
+
+Two palettes, one set of names. `src/styles/tokens.css` defines the six colours
+twice — once for daylight and once for night — and every rule in the site reads
+the names, never the hex.
+
+The switch in the masthead stores a choice in `localStorage`. Without a stored
+choice the site follows the operating system. The script that applies it is
+inline in the `<head>` rather than in `src/js/app.js`, because it has to run
+before the first paint or a visitor who chose dark gets a white flash on every
+page load; it is also self-contained, so the switch cannot be broken by a
+script that fails to arrive. The button is hidden in the markup and unhidden by
+that script, so nobody meets a switch that cannot switch.
+
+Both themes pass WCAG AA on every page. `tools/check.py` does not measure
+contrast — if you change a colour, check it.
+
 ## At a glance
 
 The corner button on every page opens a one-screen summary. Without JavaScript

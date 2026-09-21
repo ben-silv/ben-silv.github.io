@@ -73,6 +73,12 @@ def check_page(name):
         if 'alt="' not in tag:
             problems.append("image without alt text")
 
+    # the theme has to be settled before the first paint, which means the
+    # script runs in the head and not from a file
+    head = doc.split("</head>")[0]
+    if 'localStorage.getItem("theme")' in doc and "theme" not in head:
+        problems.append("theme script is not in the head")
+
     # the patterns this design rules out
     if "text-transform: uppercase" in doc:
         problems.append("all-caps label")
@@ -81,7 +87,7 @@ def check_page(name):
 
     # structure the site depends on. The 404 is the one page with no summary
     # panel and no corner button — it is a dead end by design.
-    needed = ['id="content"', "skip"]
+    needed = ['id="content"', "skip", "data-theme-toggle", 'localStorage.getItem("theme")']
     if name != "404.html":
         needed += ["glance", "data-glance-open"]
     for token in needed:

@@ -102,6 +102,21 @@ without much to show.
 
 ---
 
+## Changing a colour
+
+`src/styles/tokens.css` holds the palette. Every colour is named twice: once
+near the top for daylight, and once in the dark block below it for night. The
+dark block is written out twice on purpose — the comment there explains why —
+so if you change one copy, change the other.
+
+Nothing else in the site has a hex code in it. If you want the orange on the
+hobbies page to be a different orange, `--pulse` is the only place to edit.
+
+Keep an eye on contrast when you do. The current values clear WCAG AA on every
+page in both themes, and that is easy to lose by half a shade.
+
+---
+
 ## Adding or removing a section
 
 Adding a whole new page means editing `tools/render.py`, which is more than a

@@ -105,6 +105,18 @@
    Every animation above has a static finished state, so switching them off
    never leaves a layout half-built.                                       */
 
+/* Flipping the switch. The attribute is on for a third of a second either side
+   of the change and then removed, so the whole page crosses over together
+   instead of snapping — and so nothing else on the site pays for a transition
+   it never uses. The reduce block below removes it along with everything else. */
+:root[data-theme-shift] *,
+:root[data-theme-shift] *::before,
+:root[data-theme-shift] *::after {
+  transition-property: background-color, border-color, color, fill, box-shadow !important;
+  transition-duration: 0.32s !important;
+  transition-timing-function: ease !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
