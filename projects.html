@@ -3,141 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- EDIT: page title and description -->
 <title>Projects — Ben Silver</title>
-<meta name="description" content="CraveCast, a craving forecaster for addiction recovery, and Epialert, allergen detection and epinephrine mapping for travellers with severe allergies.">
-<!-- /EDIT -->
-
+<meta name="description" content="CraveCast, a craving forecaster for addiction recovery, and EpiAlert, allergen detection and epinephrine mapping for travellers.">
 <link rel="canonical" href="https://ben-silv.github.io/projects.html">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Projects — Ben Silver">
-<meta property="og:description" content="CraveCast and Epialert — two health tools built for moments where the stakes are real.">
+<meta property="og:description" content="CraveCast, a craving forecaster for addiction recovery, and EpiAlert, allergen detection and epinephrine mapping for travellers.">
 <meta property="og:url" content="https://ben-silv.github.io/projects.html">
 <meta name="twitter:card" content="summary">
-
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
-<link rel="stylesheet" href="styles/main.css">
-
-<script>
-(function () {
-  try {
-    var t = localStorage.getItem('bs-theme');
-    if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
-    document.documentElement.setAttribute('data-theme', t);
-  } catch (e) {}
-})();
-</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="src/styles/tokens.css">
+<link rel="stylesheet" href="src/styles/motion.css">
+<link rel="stylesheet" href="src/styles/main.css">
 </head>
-
-<body data-page="projects">
-<a class="skip-link" href="#content">Skip to content</a>
-
-<div class="shell">
-
-  <!-- SIDEBAR — keep in sync with the other four pages. -->
-  <aside class="sidebar">
-    <div class="sidebar__top">
-      <a class="sidebar__name" href="index.html">Ben Silver</a>
-      <span class="sidebar__toggle-mobile" data-theme-toggle></span>
-    </div>
-
-    <p class="sidebar__tagline">Computer science &amp; biology undergraduate at Tufts University. Mass cytometry at Mass General.</p>
-
-    <nav class="nav" aria-label="Main">
-      <a class="nav__link" data-nav="home"     href="index.html"><span class="nav__num">00</span>Home<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="research" href="research.html"><span class="nav__num">01</span>Research<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="projects" href="projects.html"><span class="nav__num">02</span>Projects<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="about"    href="about.html"><span class="nav__num">03</span>About<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="contact"  href="contact.html"><span class="nav__num">04</span>Contact<span class="nav__dot"></span></a>
-    </nav>
-
-    <div class="sidebar__foot">
-      <!-- EDIT: internship status line (repeated on all five pages) -->
-      <p class="sidebar__status"><span class="dot"></span>Seeking a Summer 2027 internship</p>
-      <!-- /EDIT -->
-      <div class="sidebar__links">
-        <a href="mailto:silverbenh1@gmail.com">silverbenh1@gmail.com</a>
-        <a href="https://github.com/ben-silv">github.com/ben-silv</a>
-        <a href="https://www.linkedin.com/in/bhsilver">linkedin.com/in/bhsilver</a>
-        <a class="is-accent" href="resume.pdf">Résumé (PDF)</a>
-      </div>
-      <span data-theme-toggle></span>
-    </div>
-  </aside>
-
-  <main class="main" id="content">
-
-    <!-- EDIT: page header ============================================== -->
-    <header class="col">
-      <span class="page-label">02 — Projects</span>
-      <h1 class="page-title">Two apps for bad days.</h1>
-      <p class="prose" style="margin-top: 18px;">Both are health tools built for moments where the stakes are real and nobody has patience for a bad interface. One is live; the other taught me when to cut a feature.</p>
-    </header>
-    <!-- /EDIT -->
-
-    <!-- EDIT: project 1 — CraveCast ==================================== -->
-    <article class="row row--ruled" style="margin-top: 48px;">
-      <div class="col">
-        <h2 class="entry__title entry__title--project">CraveCast</h2>
-        <p class="prose" style="margin-top: 14px;">A craving forecaster for addiction recovery. It predicts when an urge is likely to hit, warns you before it lands, and turns every day you stay clean into something growing in a garden. Built on the peer-reviewed ADARP study plus personalised kernel-density modelling.</p>
-        <p class="prose" style="margin-top: 13px;">No sign-up, no tracking — a single-file HTML app that works fully offline, so nothing about someone's recovery ever leaves their browser. That constraint drove most of the architecture.</p>
-        <div class="entry__links">
-          <a class="link-underline" href="https://ben-silv.github.io/CraveCast/">
-            Open the app
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-          </a>
-          <a class="link-underline" href="https://github.com/ben-silv/CraveCast">Source on GitHub</a>
-        </div>
-      </div>
-      <div class="notes">
-        <div class="note">
-          <span class="note__label">Status</span>
-          <span class="note__value note__value--accent"><span class="dot" style="display:inline-block;margin-right:6px;"></span>Live · September 2026</span>
-        </div>
-        <div class="note">
-          <span class="note__label">Built with</span>
-          <span class="note__value">HTML, JavaScript<br>Python<br>Kernel density estimation<br>GitHub Pages</span>
-        </div>
-      </div>
-    </article>
-    <!-- /EDIT -->
-
-    <!-- EDIT: project 2 — Epialert ===================================== -->
-    <article class="row row--ruled">
-      <div class="col">
-        <h2 class="entry__title entry__title--project">Epialert</h2>
-        <p class="prose" style="margin-top: 14px;">Allergen detection for travellers with severe dietary restrictions. Photograph a dish, get allergen detection and a risk-level warning, then a live map of the pharmacies and hospitals nearby that actually stock epinephrine auto-injectors.</p>
-        <p class="prose" style="margin-top: 13px;">I cut the peer-response feed late in development. Letting users vouch for a restaurant sounded good until I worked through what crowd-sourced safety data means when the failure mode is anaphylaxis.</p>
-      </div>
-      <div class="notes">
-        <div class="note">
-          <span class="note__label">Status</span>
-          <span class="note__value">May 2026 · repository private</span>
-        </div>
-        <div class="note">
-          <span class="note__label">Built with</span>
-          <span class="note__value">Python, Flask<br>Claude Vision API<br>Google Maps API</span>
-        </div>
-      </div>
-    </article>
-    <!-- /EDIT -->
-
-    <div class="mobile-foot">
-      <a href="mailto:silverbenh1@gmail.com">Email</a>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<div class="page">
+  <header class="masthead">
+    <a class="wordmark" href="index.html">Ben Silver</a>
+    <nav class="masthead__links" aria-label="Elsewhere">
+      <a class="is-primary" href="resume.pdf">Resume</a>
       <a href="https://github.com/ben-silv">GitHub</a>
       <a href="https://www.linkedin.com/in/bhsilver">LinkedIn</a>
-      <a href="resume.pdf">Résumé (PDF)</a>
+      <a href="mailto:silverbenh1@gmail.com">Email</a>
+    </nav>
+  </header>
+  <main class="main" id="content">
+    <div class="page-head enter">
+      <h1 class="page-title">Projects</h1>
+      <p class="page-lead">Both of these started because someone I know had a problem that software could plausibly help with, and neither of them is a demo.</p>
     </div>
-
+    <article class="entry entry--lead entry--project enter-1">
+      <div class="entry__body">
+        <h2 class="entry__name">CraveCast</h2>
+        <p class="entry__org">September 2026</p>
+        <p class="entry__text">People in recovery get a warning before a craving lands rather than a record of it afterwards, forecast from their own patterns and the peer-reviewed ADARP study.</p>
+        <p class="entry__text">It runs entirely in the browser and works with the network off, so nothing about somebody's recovery ever leaves their device. That constraint shaped most of the architecture.</p>
+        <div class="actions">
+        <a class="btn btn--primary" href="https://ben-silv.github.io/CraveCast/">Open the app</a>
+        <a class="btn" href="https://github.com/ben-silv/CraveCast">Read the source</a>
+        </div>
+      </div>
+      <div class="entry__side">
+      <div class="fact"><p>Built with</p><p>HTML, JavaScript, Python, kernel density estimation</p></div>
+      <div class="fact"><p>Status</p><p>Live, and open source</p></div>
+      </div>
+    </article>
+    <article class="entry enter-2">
+      <div class="entry__body">
+        <h2 class="entry__name">EpiAlert</h2>
+        <p class="entry__org">May 2026</p>
+        <p class="entry__text">A photograph of a meal becomes an allergen decision in seconds, with the nearest stocked epinephrine on the same screen.</p>
+        <p class="entry__text">Built for travelling with a severe allergy, where knowing you are in trouble is only half the problem. I cut a peer-review feed late on once it was clear crowd-sourced safety data is a liability when the failure mode is anaphylaxis.</p>
+        <div class="actions">
+        <a class="btn btn--primary" href="mailto:silverbenh1@gmail.com?subject=EpiAlert">Ask me for a demo</a>
+        </div>
+      </div>
+      <div class="entry__side">
+      <div class="fact"><p>Built with</p><p>Python, Flask, Claude Vision API, Google Maps API</p></div>
+      <div class="fact"><p>Status</p><p>Repository private, happy to walk through it</p></div>
+      </div>
+    </article>
   </main>
+  <section class="glance glance--inline" id="glance" aria-labelledby="glance-title">
+    <div class="glance__head">
+      <div>
+        <h2 class="glance__title" id="glance-title">At a glance</h2>
+        <p class="glance__lead">Everything on one screen, for anyone who has two minutes rather than ten. The full version of each is a page of its own.</p>
+      </div>
+    </div>
+    <div class="glance__grid">
+    <section class="glance__col">
+      <h3>Studying</h3>
+      <div class="glance__items">
+        <div><strong>Tufts University, class of 2028</strong><span>BA Computer Science, focus in Biological Sciences. Rising junior.</span></div>
+        <div><strong>Dean's List, 3.9 GPA</strong><span>Every semester so far.</span></div>
+      </div>
+    </section>
+    <section class="glance__col glance__col--research">
+      <h3>Research</h3>
+      <div class="glance__items">
+        <div><strong>Mass General, Vaccine &amp; Immunotherapy Center</strong><span>Immune populations now called from a reproducible pipeline rather than by hand, on datasets past a million events.</span></div>
+        <div><strong>Sonkusale Research Labs</strong><span>Fabrication protocols the group can repeat, from benchtop signal characterisation.</span></div>
+      </div>
+      <a class="glance__more" href="research.html">The full research page</a>
+    </section>
+    <section class="glance__col glance__col--projects">
+      <h3>Projects</h3>
+      <div class="glance__items">
+        <div><strong>CraveCast</strong><span>A warning before a craving lands, not a record afterwards. Offline, live, open source.</span></div>
+        <div><strong>EpiAlert</strong><span>A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen.</span></div>
+      </div>
+      <a class="glance__more" href="projects.html">The full projects page</a>
+    </section>
+    <section class="glance__col">
+      <h3>Also</h3>
+      <div class="glance__items">
+        <div><strong>Tufts Technology Services</strong><span>Storage requests cut from a repetitive multi-form process to a single pass, for 500+ daily users.</span></div>
+        <div><strong>Teaching and building</strong><span>Python workshops for thirty-odd students, and an L1 certification rocket that flew.</span></div>
+      </div>
+      <a class="glance__more" href="about.html">More on the about page</a>
+    </section>
+    </div>
+    <div class="glance__foot">
+      <p>Reach me at <a class="mark" href="mailto:silverbenh1@gmail.com">silverbenh1@gmail.com</a></p>
+      <div class="actions">
+        <a class="btn btn--primary" href="resume.pdf">Download resume</a>
+        <a class="btn btn--on-dark" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </section>
+  <a class="door-button" href="#glance" data-glance-open>
+    At a glance
+    <span class="door-button__mark" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+    </span>
+  </a>
+  <div id="glance-root"></div>
 </div>
-
+<script type="application/json" id="glance-data">{"button": "At a glance", "heading": "At a glance", "lead": "Everything on one screen, for anyone who has two minutes rather than ten. The full version of each is a page of its own.", "columns": [{"heading": "Studying", "accent": "", "items": [{"head": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior."}, {"head": "Dean's List, 3.9 GPA", "body": "Every semester so far."}]}, {"heading": "Research", "accent": "research", "link": {"label": "The full research page", "href": "research.html"}, "items": [{"head": "Mass General, Vaccine &amp; Immunotherapy Center", "body": "Immune populations now called from a reproducible pipeline rather than by hand, on datasets past a million events."}, {"head": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation."}]}, {"heading": "Projects", "accent": "projects", "link": {"label": "The full projects page", "href": "projects.html"}, "items": [{"head": "CraveCast", "body": "A warning before a craving lands, not a record afterwards. Offline, live, open source."}, {"head": "EpiAlert", "body": "A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen."}]}, {"heading": "Also", "accent": "", "link": {"label": "More on the about page", "href": "about.html"}, "items": [{"head": "Tufts Technology Services", "body": "Storage requests cut from a repetitive multi-form process to a single pass, for 500+ daily users."}, {"head": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew."}]}], "actions": [{"label": "Download resume", "href": "resume.pdf", "primary": true}, {"label": "Contact", "href": "contact.html", "primary": false}], "email": "silverbenh1@gmail.com", "footerNote": "Reach me at"}</script>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin defer></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin defer></script>
-<script src="js/app.js" defer></script>
+<script src="src/js/app.js" defer></script>
 </body>
 </html>

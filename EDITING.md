@@ -1,157 +1,127 @@
-# How to edit this site
+# Editing the site
 
-Every piece of text lives in plain HTML. There's no build step, no framework to
-learn, and no database. Open a file, change the words between the tags, save,
-commit, push — the site rebuilds itself in about a minute.
+Everything you can see on the site is a string in one file: `src/content.json`.
+Change a string there, run one command, and the pages rebuild. You never need
+to open an `.html` file.
 
-Editable sections are wrapped in comments so they're easy to find:
-
-```html
-<!-- EDIT: headline and intro ==================================== -->
-   ...the bit you change...
-<!-- /EDIT -->
+```sh
+python tools/render.py     # rebuild
+python tools/check.py      # make sure nothing broke
 ```
 
-Search any file for `EDIT:` to jump between them.
+Then commit and push. The deploy runs itself.
 
 ---
 
-## Where each thing lives
+## The easy way
 
-| What you want to change | File | Look for |
-|---|---|---|
-| **The internship pitch** (dates, fields, CTA) | `index.html` | `EDIT: internship availability` |
-| **"Seeking a Summer 2027 internship"** in the sidebar | all five pages | `EDIT: internship status line` |
-| The line above the headline (degree, school, class year) | `index.html` | `EDIT: headline and intro` |
-| Big headline on the front page | `index.html` | `EDIT: headline and intro` |
-| The "Now" note (update this monthly) | `index.html` | `EDIT: the "Now" note` |
-| GPA, degree, graduation date | `index.html` | `EDIT: at a glance` |
-| The internship fields listed in the margin | `index.html` | `EDIT: what I'm looking for` |
-| The three "Selected work" links | `index.html` | `EDIT: selected work list` |
-| Research intro paragraph | `research.html` | `EDIT: page header` |
-| MGH / VIC position | `research.html` | `EDIT: research position 1` |
-| Sonkusale position | `research.html` | `EDIT: research position 2` |
-| Tufts Technology Services role | `research.html` | `EDIT: research position 3` |
-| CraveCast write-up and links | `projects.html` | `EDIT: project 1 — CraveCast` |
-| Epialert write-up | `projects.html` | `EDIT: project 2 — Epialert` |
-| Your personal narrative | `about.html` | `EDIT: about narrative` |
-| Degree, coursework, clubs | `about.html` | `EDIT: education` |
-| Hobbies | `about.html` | `EDIT: hobbies` |
-| Contact copy and email address | `contact.html` | `EDIT: contact copy and email` |
-| "Looking for" / "Areas" / "Based in" | `contact.html` | `EDIT: contact margin notes` |
-| Google search result text | every page | `EDIT: page title and description` |
-| Tagline under your name | every page | `EDIT: sidebar tagline` |
-| Email / GitHub / LinkedIn links | every page | `EDIT: sidebar contact links` |
-| Colours, fonts, spacing | `styles/main.css` | section `1. TOKENS` |
-| Your résumé | replace `resume.pdf` | — |
+Open `content/experiences.md` and write whatever you want — bullets,
+half-sentences, typos, three words and a link. That file is a scratchpad and
+nothing in it is published as written.
 
----
+When you want it live, say **"update the site from my notes."** Your notes get
+rewritten as impact-first copy, dropped into `src/content.json`, and the pages
+regenerate. `content/experiences.md` is left exactly as you typed it.
 
-## The three patterns you'll reuse
+## The direct way
 
-### 1. A paragraph
+Edit `src/content.json` yourself. It is plain JSON: every value between quotes
+is text that appears on the site. Two rules and nothing else —
 
-```html
-<p class="prose">Your sentence goes here.</p>
-```
+1. Keep the quotes and the commas. If you delete one, `tools/check.py` will
+   tell you before anything ships.
+2. An apostrophe is fine. A double quote inside a string needs a backslash:
+   `"he said \"no\""`.
 
-### 2. A margin note
+### Where each thing lives
 
-The small grey items in the right-hand column. Each one is a label and a value:
+| You want to change | Edit |
+| --- | --- |
+| The line under your name on the home page | `home.identity` |
+| The paragraph under that | `home.summary` |
+| University, graduation, GPA | `home.education` |
+| The list of sections on the home page, and their blurbs | `home.doors` |
+| A research position | `research.positions` |
+| A project | `projects.items` |
+| The about page | `about.paragraphs`, `about.current` |
+| Email, GitHub, LinkedIn anywhere on the site | `site` |
+| The corner summary panel | `glance.columns` |
+| Hobbies | `hobbies` |
+| Page titles and Google descriptions | each section's `title` and `description` |
 
-```html
-<div class="note">
-  <span class="note__label">Dates</span>
-  <span class="note__value">July 2026 — present</span>
-</div>
-```
+`home.doors` is also the order the sections appear in. Move an entry up, and it
+moves up on the page.
 
-Use `<br>` for line breaks inside a value. Keep these short — two or three
-lines. They're meant to be glanced at, not read.
-
-### 3. A whole new entry (job, project, anything)
-
-Copy an existing `<article class="row row--ruled">` block and change the text.
-The structure is always: a content column, then its notes.
-
-```html
-<article class="row row--ruled">
-  <div class="col">
-    <h2 class="entry__title">Job title</h2>
-    <p class="entry__org">Where it was</p>
-    <p class="prose" style="margin-top: 16px;">What you did.</p>
-  </div>
-  <div class="notes">
-    <div class="note">
-      <span class="note__label">Dates</span>
-      <span class="note__value">Month Year — Month Year</span>
-    </div>
-  </div>
-</article>
-```
+Each research position has a `lead` (one sentence: what the work established),
+`bullets` (outcomes, not steps), and `facts` (the small label/value pairs down
+the side). Projects are the same shape, plus `actions` for the buttons.
 
 ---
 
-## Two things to watch
+## Adding your hobby photos and videos
 
-**The sidebar is repeated in all five pages.** It's the block between
-`<aside class="sidebar">` and `</aside>`. If you change a nav item or a contact
-link, change it in `index.html`, `research.html`, `projects.html`, `about.html`
-and `contact.html`. This is the one cost of having no build step — it keeps
-everything else simple, and the sidebar rarely changes.
+The hobbies page already has the slots cut. Each one currently renders as a
+dashed placeholder telling you what to put there — that is deliberate, so an
+empty slot looks unfinished rather than broken.
 
-**Write `&amp;` instead of a bare `&`.** So: `Vaccine &amp; Immunotherapy
-Center`. It renders as a normal `&`.
+To fill one:
 
----
+1. Drop the file in `assets/`. Name it plainly: `leather-hero.jpg`,
+   `stitching.mp4`.
+2. Find the slot in `src/content.json` and fill in `src` and `alt`:
 
-## When the internship search is over
-
-Three places mention it. Delete or reword all three:
-
-1. `index.html` — the whole `EDIT: internship availability` block (the green-bordered panel).
-2. All five pages — the `EDIT: internship status line` paragraph in the sidebar.
-3. `contact.html` — the opening paragraph and the "Looking for" margin note.
-
-Also update the `<title>` and `<meta name="description">` at the top of
-`index.html`, and the `"seeks"` entry in the JSON-LD block below them, so search
-results stop advertising it.
-
-## Adding a sixth page
-
-1. Copy `contact.html` to `newpage.html`.
-2. Change `<body data-page="contact">` to `<body data-page="newpage">`.
-3. Add a nav link to the sidebar **in all six files**:
-   ```html
-   <a class="nav__link" data-nav="newpage" href="newpage.html"><span class="nav__num">05</span>New page<span class="nav__dot"></span></a>
-   ```
-4. In `styles/main.css`, add `newpage` to the three selector lists in the
-   sidebar section (search for `data-page="contact"` — there are three places,
-   for the text colour, the number colour and the dot).
-
----
-
-## Previewing before you publish
-
-Double-clicking an HTML file works for a quick look. To see it exactly as
-GitHub will serve it:
-
-```bash
-cd ben-silv.github.io
-python -m http.server 8000
+```json
+{
+  "label": "the piece you are proudest of",
+  "hint": "landscape, at least 1600 across",
+  "src": "assets/leather-hero.jpg",
+  "alt": "A finished veg-tan belt, edges burnished, on the bench"
+}
 ```
 
-Then open <http://localhost:8000>. Press `Ctrl+C` to stop.
+3. `python tools/render.py`
+
+`alt` is not optional — `tools/check.py` fails the build without it, and it is
+what a screen reader reads out. Describe what is in the shot, not "photo of
+leatherworking."
+
+The slots, in order of how much room they get:
+
+- `hobbies.feature.hero` — leatherworking, the big one on the left
+- `hobbies.feature.tiles` — four more beside it. The two with `"video": true`
+  expect an `.mp4`; the other two expect stills.
+- `hobbies.second.shots` — two bike photos
+
+A tile with `"video": true` and an `.mp4` in `src` renders as a video with
+play controls, and only loads its first frame until someone presses play. Keep
+them under about ten seconds and a few megabytes — they load on a phone at a
+career fair.
+
+Everything under `hobbies.rest` is text only, on purpose. Those are the ones
+without much to show.
 
 ---
 
-## Publishing a change
+## Adding or removing a section
 
-```bash
-git add -A
-git commit -m "Update the Now note"
-git push
-```
+Adding a whole new page means editing `tools/render.py`, which is more than a
+copy change. Adding an item to an existing list is not — copy the block above
+it, including the braces, change the text, add a comma between them.
 
-Live at <https://ben-silv.github.io> within a minute or so. If it looks stale,
-hard-refresh with `Ctrl+Shift+R`.
+To take a section off the home page without deleting its page, remove its entry
+from `home.doors`. The page stays reachable by URL and from the summary panel.
+
+---
+
+## If something breaks
+
+Run `python tools/check.py`. It reads every generated page and reports:
+
+- unbalanced or unclosed tags
+- links and images pointing at files that do not exist
+- images with no `alt` text
+- the few copy patterns this design rules out
+
+If it prints `all pages check out`, the site is fine to push. If it does not,
+it names the page and the problem, and the deploy would have failed anyway —
+better to catch it here.

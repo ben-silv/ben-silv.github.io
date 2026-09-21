@@ -4,37 +4,53 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page not found — Ben Silver</title>
-<meta name="robots" content="noindex">
+<meta name="description" content="Page not found.">
+<link rel="canonical" href="https://ben-silv.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Page not found — Ben Silver">
+<meta property="og:description" content="Page not found.">
+<meta property="og:url" content="https://ben-silv.github.io/">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
-<link rel="stylesheet" href="/styles/main.css">
-<script>
-(function () {
-  try {
-    var t = localStorage.getItem('bs-theme');
-    if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
-    document.documentElement.setAttribute('data-theme', t);
-  } catch (e) {}
-})();
-</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/src/styles/tokens.css">
+<link rel="stylesheet" href="/src/styles/motion.css">
+<link rel="stylesheet" href="/src/styles/main.css">
 </head>
-
-<body data-page="none">
-<div class="shell">
-  <main class="main" id="content" style="margin: 0 auto; max-width: 660px; padding-top: 140px;">
-    <span class="page-label">404</span>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<div class="page">
+  <header class="masthead">
+    <a class="wordmark" href="/index.html">Ben Silver</a>
+    <nav class="masthead__links" aria-label="Elsewhere">
+      <a class="is-primary" href="/resume.pdf">Resume</a>
+      <a href="https://github.com/ben-silv">GitHub</a>
+      <a href="https://www.linkedin.com/in/bhsilver">LinkedIn</a>
+      <a href="mailto:silverbenh1@gmail.com">Email</a>
+    </nav>
+  </header>
+  <main class="main" id="content">
     <h1 class="page-title">That page doesn't exist.</h1>
-    <p class="prose" style="margin-top: 18px;">Which is on me, not you. Everything lives behind one of these:</p>
-
-    <section class="work" style="margin-top: 32px;">
-      <a class="work__item" href="/"><span class="work__num">00</span><span class="work__body"><span class="work__name">Home</span></span></a>
-      <a class="work__item" href="/research.html"><span class="work__num">01</span><span class="work__body"><span class="work__name">Research</span></span></a>
-      <a class="work__item" href="/projects.html"><span class="work__num">02</span><span class="work__body"><span class="work__name">Projects</span></span></a>
-      <a class="work__item" href="/about.html"><span class="work__num">03</span><span class="work__body"><span class="work__name">About</span></span></a>
-      <a class="work__item" href="/contact.html"><span class="work__num">04</span><span class="work__body"><span class="work__name">Contact</span></span></a>
-    </section>
+    <p class="summary">Which is on me, not you. Everything lives behind one of these.</p>
+    <nav class="doors" aria-label="Sections">
+      <a class="door" href="/research.html">
+        <span class="door__label">Research</span>
+      </a>
+      <a class="door" href="/projects.html">
+        <span class="door__label">Projects</span>
+      </a>
+      <a class="door" href="/about.html">
+        <span class="door__label">About</span>
+      </a>
+      <a class="door" href="/contact.html">
+        <span class="door__label">Contact</span>
+      </a>
+      <a class="door" href="/hobbies.html">
+        <span class="door__label">Hobbies</span>
+      </a>
+    </nav>
   </main>
 </div>
 </body>

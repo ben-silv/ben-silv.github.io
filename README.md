@@ -1,59 +1,60 @@
 # ben-silv.github.io
 
-Personal site — research, projects, and background.
+Ben Silver's portfolio. Static HTML, one small React island, no bundler.
+
 Live at <https://ben-silv.github.io>.
 
-**To change the text, read [EDITING.md](EDITING.md).** It maps every piece of
-copy to the file and marker where it lives.
+## How it fits together
 
-## What this is
-
-Five static HTML pages sharing one stylesheet. No build step, no bundler, no
-dependencies to install. The only JavaScript is a small React island that
-powers the light/dark toggle — if it fails to load, the site still works.
+Every word on the site lives in `src/content.json`. A Python script reads that
+file and writes the seven HTML pages. Nothing else generates markup, so a copy
+change never means touching a template.
 
 ```
-index.html          00 — Home
-research.html       01 — Research
-projects.html       02 — Projects
-about.html          03 — About
-contact.html        04 — Contact
-404.html            Not-found page
-
-styles/main.css     Everything visual. Colours are tokens at the top.
-js/app.js           Theme toggle (React 18 via CDN).
-assets/favicon.svg
-resume.pdf          Linked from every page.
+content/experiences.md   Ben's scratchpad. Notes, not copy. Never rendered.
+src/content.json         Every user-facing string. The site reads this.
+tools/render.py          content.json -> the .html files at the repo root
+tools/check.py           refuses to ship a broken page
+src/styles/tokens.css    six colours, two typefaces, the spacing scale
+src/styles/motion.css    every keyframe, and the reduced-motion switch
+src/styles/main.css      layout and components
+src/js/app.js            the only script: button pointer tracking + At a glance
+assets/                  favicon, and photos once Ben adds them
+resume.pdf               linked from the masthead of every page
 ```
 
-## How it's put together
+The generated pages — `index.html`, `research.html`, `projects.html`,
+`about.html`, `contact.html`, `hobbies.html`, `404.html` — are committed so the
+site works even if the workflow is ever disabled. They are output, not source:
+edit `src/content.json` and re-render rather than editing them by hand.
 
-- **Active nav state is pure CSS.** Each page sets `data-page` on `<body>`;
-  the stylesheet matches that against `data-nav` on each link. No JavaScript.
-- **Dark mode** follows the system setting until the visitor picks one, then
-  remembers the choice in `localStorage`. A tiny inline script in each `<head>`
-  applies the saved theme before first paint, so there's no white flash.
-- **The right-hand margin column** carries dates, collaborators and figures, so
-  they stay out of the prose. Below 960px it drops underneath the content it
-  belongs to; below 820px the sidebar becomes a top bar.
-- **Accessibility:** semantic landmarks, a skip link, visible focus rings,
-  44px minimum hit targets, `prefers-reduced-motion` respected, and text
-  contrast at WCAG AA or better in both themes.
+## Running it
 
-## Running it locally
+No install step. Python 3 is the only requirement.
 
-```bash
-python -m http.server 8000
+```sh
+python tools/render.py     # rebuild the pages from content.json
+python tools/check.py      # tag balance, dead links, missing alt text
+python -m http.server 8801 # then open http://localhost:8801
 ```
 
-<http://localhost:8000>
+`tools/check.py` exits non-zero on a problem, and the deploy workflow runs it
+before publishing, so a broken page stops the deploy instead of reaching the
+site.
 
 ## Deploying
 
-Pushing to `main` publishes the site. `.github/workflows/deploy.yml` uploads
-the repository root to GitHub Pages — this requires **Settings → Pages →
-Source → GitHub Actions**.
+Push to `main`. `.github/workflows/deploy.yml` renders, checks, and publishes
+the repository root to GitHub Pages. There is no build artifact to keep in sync.
 
-If you'd rather skip Actions entirely, set **Source** to **Deploy from a
-branch → `main` / `(root)`** and delete the workflow file. Both work; the
-branch option is one less moving part.
+## At a glance
+
+The corner button on every page opens a one-screen summary. Without JavaScript
+it is an ordinary link to a summary section at the foot of the page; with
+JavaScript that section is hidden and the same content opens as a dialog. React
+18 comes from a CDN and is used for this one component — if it fails to load,
+the link still works.
+
+## Editing
+
+See [EDITING.md](EDITING.md).

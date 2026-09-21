@@ -1,7 +1,8 @@
 name: Deploy to GitHub Pages
 
-# Publishes the repository root as-is. There is no build step: the site is
-# plain HTML, CSS and one JavaScript file.
+# Regenerates the pages from src/content.json, checks the result, then
+# publishes the repository root. No node, no bundler — Python 3 is already on
+# the runner, and the site is static HTML plus one small script.
 
 on:
   push:
@@ -25,6 +26,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Render pages from content.json
+        run: python tools/render.py
+
+      - name: Check the output
+        run: python tools/check.py
 
       - uses: actions/configure-pages@v5
 

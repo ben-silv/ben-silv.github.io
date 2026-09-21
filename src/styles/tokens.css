@@ -1,0 +1,79 @@
+/* ===========================================================================
+   tokens.css — the whole visual vocabulary
+   Six colours, two families, one spacing scale. If a value is not in here,
+   it probably should not be in the design either.
+   =========================================================================== */
+
+:root {
+  /* --- colour ------------------------------------------------------------
+     ink and ground carry every piece of text. signal, pulse and deep are
+     bright: they go on backgrounds, borders and large type, never on small
+     body copy. Which colour may carry text:
+       ink on ground      16.3:1
+       ink on signal       6.0:1
+       ink on pulse        5.5:1
+       ground on deep      7.1:1
+     Muted text is ink at 64%, so the palette stays at six names.          */
+  --ink:      #0B1B2B;
+  --ground:   #FBFBFD;
+  --signal:   #0BA5EC;
+  --pulse:    #FF6B35;
+  --deep:     #5B2FD6;
+  --hairline: #E4E8EF;
+
+  --ink-muted: rgba(11, 27, 43, 0.64);
+  --ink-soft:  rgba(11, 27, 43, 0.72);
+  --ink-body:  rgba(11, 27, 43, 0.78);
+
+  /* On the dark summary sheet. */
+  --on-dark:       #FBFBFD;
+  --on-dark-muted: rgba(251, 251, 253, 0.64);
+  --on-dark-body:  rgba(251, 251, 253, 0.82);
+  --on-dark-line:  rgba(251, 251, 253, 0.16);
+
+  /* The hobbies page, and only the hobbies page. */
+  --pulse-ground: #FFF6F2;
+  --pulse-tint:   #FFECE3;
+  --pulse-line:   #F3D9CC;
+  --pulse-dash:   #E8B79C;
+  --pulse-ink:    #C2410C;
+
+  /* Links are ink with a signal underline, so the bright blue never has to
+     carry 15px text. This darker shade is for hover only. */
+  --signal-deepen: #0A6C9C;
+
+  /* --- type -------------------------------------------------------------- */
+  --display: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+  --text: "Instrument Sans", system-ui, -apple-system, sans-serif;
+
+  --size-display: 84px;
+  --size-page:    58px;
+  --size-entry:   34px;
+  --size-section: 32px;
+  --size-sub:     25px;
+  --size-lead:    23px;
+  --size-body:    18px;
+  --size-small:   17px;
+  --size-meta:    16px;
+  --size-fine:    14px;
+
+  /* --- space ------------------------------------------------------------- */
+  --gutter: 96px;
+  --measure: 62ch;
+  --rhythm: 22px;
+  --radius: 12px;
+  --radius-pill: 999px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --size-display: 46px;
+    --size-page:    38px;
+    --size-entry:   26px;
+    --size-section: 26px;
+    --size-sub:     22px;
+    --size-lead:    19px;
+    --size-body:    17px;
+    --gutter: 22px;
+  }
+}

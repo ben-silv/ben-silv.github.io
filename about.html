@@ -3,139 +3,122 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- EDIT: page title and description -->
 <title>About — Ben Silver</title>
-<meta name="description" content="Computer science and biology at Tufts, a BA with a focus in Biological Sciences, and what Ben Silver does when he isn't in the lab.">
-<!-- /EDIT -->
-
+<meta name="description" content="Computer science and biology at Tufts, research computing at Tufts Technology Services, and where Ben Silver would like this to go next.">
 <link rel="canonical" href="https://ben-silv.github.io/about.html">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="About — Ben Silver">
-<meta property="og:description" content="Two tracks, one question: computer science, biology, and the overlap between them.">
+<meta property="og:description" content="Computer science and biology at Tufts, research computing at Tufts Technology Services, and where Ben Silver would like this to go next.">
 <meta property="og:url" content="https://ben-silv.github.io/about.html">
 <meta name="twitter:card" content="summary">
-
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
-<link rel="stylesheet" href="styles/main.css">
-
-<script>
-(function () {
-  try {
-    var t = localStorage.getItem('bs-theme');
-    if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
-    document.documentElement.setAttribute('data-theme', t);
-  } catch (e) {}
-})();
-</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="src/styles/tokens.css">
+<link rel="stylesheet" href="src/styles/motion.css">
+<link rel="stylesheet" href="src/styles/main.css">
 </head>
-
-<body data-page="about">
-<a class="skip-link" href="#content">Skip to content</a>
-
-<div class="shell">
-
-  <!-- SIDEBAR — keep in sync with the other four pages. -->
-  <aside class="sidebar">
-    <div class="sidebar__top">
-      <a class="sidebar__name" href="index.html">Ben Silver</a>
-      <span class="sidebar__toggle-mobile" data-theme-toggle></span>
-    </div>
-
-    <p class="sidebar__tagline">Computer science &amp; biology undergraduate at Tufts University. Mass cytometry at Mass General.</p>
-
-    <nav class="nav" aria-label="Main">
-      <a class="nav__link" data-nav="home"     href="index.html"><span class="nav__num">00</span>Home<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="research" href="research.html"><span class="nav__num">01</span>Research<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="projects" href="projects.html"><span class="nav__num">02</span>Projects<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="about"    href="about.html"><span class="nav__num">03</span>About<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="contact"  href="contact.html"><span class="nav__num">04</span>Contact<span class="nav__dot"></span></a>
-    </nav>
-
-    <div class="sidebar__foot">
-      <!-- EDIT: internship status line (repeated on all five pages) -->
-      <p class="sidebar__status"><span class="dot"></span>Seeking a Summer 2027 internship</p>
-      <!-- /EDIT -->
-      <div class="sidebar__links">
-        <a href="mailto:silverbenh1@gmail.com">silverbenh1@gmail.com</a>
-        <a href="https://github.com/ben-silv">github.com/ben-silv</a>
-        <a href="https://www.linkedin.com/in/bhsilver">linkedin.com/in/bhsilver</a>
-        <a class="is-accent" href="resume.pdf">Résumé (PDF)</a>
-      </div>
-      <span data-theme-toggle></span>
-    </div>
-  </aside>
-
-  <main class="main" id="content">
-
-    <!-- EDIT: about narrative ========================================== -->
-    <div class="row">
-      <div class="col">
-        <span class="page-label">03 — About</span>
-        <h1 class="page-title">Two tracks, one question.</h1>
-        <p class="prose" style="margin-top: 20px; line-height: 1.7;">I came to Tufts for computer science and stayed for the biology. The lab work gave me the vocabulary; CS gave me the tools. Somewhere in the overlap I found the thing I actually want to do — turning high-dimensional immune data into something a clinician can act on.</p>
-        <p class="prose" style="line-height: 1.7;">Before the VIC I was at Sonkusale Research Labs fabricating flexible electrode arrays, which taught me that a measurement is only as good as the thing taking it. That lesson transfers: half of mass cytometry is trusting your panel, and half of research computing is making sure the infrastructure never becomes the reason an experiment stalls.</p>
-      </div>
-      <div class="notes" style="padding-top: 34px;">
-        <div class="note">
-          <span class="note__label">Languages</span>
-          <span class="note__value">English<br>Mandarin (conversational)</span>
-        </div>
-        <div class="note">
-          <span class="note__label">Toolkit</span>
-          <span class="note__value">Python, C/C++, R<br>JavaScript, React<br>PyTorch, scikit-learn<br>FlowSOM, OMIQ</span>
-        </div>
-      </div>
-    </div>
-    <!-- /EDIT -->
-
-    <!-- EDIT: education =============================================== -->
-    <section class="row row--ruled" style="margin-top: 44px;">
-      <div class="col">
-        <h2 class="entry__title">Education</h2>
-        <p class="prose" style="margin-top: 12px;">Tufts University — BA Computer Science, focus in Biological Sciences. Coursework across Data Structures, Machine Learning, Linear Algebra, Web Programming, Machine Structure &amp; Assembly Language, Cells &amp; Organisms with Lab, and General Chemistry with Lab.</p>
-        <p class="prose" style="margin-top: 13px;">Outside coursework: designed an L1 certification rocket with Tufts SEDS in OnShape and OpenRocket, and served as treasurer of the National Student Data Corps, running Python workshops for 30+ students.</p>
-      </div>
-      <div class="notes">
-        <div class="note">
-          <span class="note__label">Standing</span>
-          <span class="note__value">GPA 3.9 / 4.0<br>Dean's List, all semesters<br>Expected May 2028</span>
-        </div>
-      </div>
-    </section>
-    <!-- /EDIT -->
-
-    <!-- EDIT: hobbies ================================================= -->
-    <section class="row row--ruled">
-      <div class="col">
-        <h2 class="entry__title">Off the clock</h2>
-        <p class="prose" style="margin-top: 12px; line-height: 1.7;">Taiwanese-American, conversational in Mandarin and always one tone away from getting it right. Raised on the food and still chasing it.</p>
-        <p class="prose" style="line-height: 1.7;">Otherwise I'm usually taking something apart. Mountain biking, and the bike maintenance that comes with it — honestly the better half. Leatherworking, which is forgiving of patience and unforgiving of rushing. Knife sharpening, for the specific satisfaction of an edge that bites paper.</p>
-      </div>
-      <div class="notes">
-        <div class="note">
-          <span class="note__label">Ask me about</span>
-          <span class="note__value">Beef noodle soup<br>Whetstone grits<br>Rocket stability margins</span>
-        </div>
-      </div>
-    </section>
-    <!-- /EDIT -->
-
-    <div class="mobile-foot">
-      <a href="mailto:silverbenh1@gmail.com">Email</a>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<div class="page">
+  <header class="masthead">
+    <a class="wordmark" href="index.html">Ben Silver</a>
+    <nav class="masthead__links" aria-label="Elsewhere">
+      <a class="is-primary" href="resume.pdf">Resume</a>
       <a href="https://github.com/ben-silv">GitHub</a>
       <a href="https://www.linkedin.com/in/bhsilver">LinkedIn</a>
-      <a href="resume.pdf">Résumé (PDF)</a>
+      <a href="mailto:silverbenh1@gmail.com">Email</a>
+    </nav>
+  </header>
+  <main class="main" id="content">
+    <div class="split">
+      <div class="split__main prose enter">
+        <h1 class="page-title">About</h1>
+      <p>I came to Tufts for computer science and added a focus in biological sciences once it turned out the biology was the part I couldn't stop reading about. Those two things looked unrelated for about a year and then stopped being unrelated at all.</p>
+      <p>I grew up in a Taiwanese-American household, which is where I learned that the answer to most questions is to take the lid off and look. That habit is more or less the whole story: a bike that shifts badly gets stripped to the frame, a knife that won't bite gets a whetstone and an argument about angles, and a dataset with a million immune cells in it gets a pipeline until the clusters mean something.</p>
+      <p>I'd like to end up in biotech or healthcare data, somewhere the output lands in front of a clinician rather than in a folder. Close enough to the science to know what the numbers mean, close enough to the software to make them usable.</p>
+      <p>Two years spent next to researchers fighting their own tooling is the reason I care about the last mile of a piece of software at all.</p>
+      </div>
+      <div class="split__side enter-1">
+        <h2 class="entry__name entry__name--minor">What I'm working on</h2>
+        <div class="stack">
+        <div class="stack__item stack__item--research">
+          <p>Massachusetts General Hospital, Vaccine &amp; Immunotherapy Center</p>
+          <p>Mass cytometry research, since July 2026</p>
+        </div>
+        <div class="stack__item stack__item--projects">
+          <p>On my own time</p>
+          <p>CraveCast and EpiAlert</p>
+        </div>
+        <div class="stack__item">
+          <p>Tufts Technology Services</p>
+          <p>Research Computing Student Specialist, since April 2025</p>
+        </div>
+        </div>
+        <p class="pointer">Research and projects each have a page of their own. The corner button gives you all of it condensed onto one screen, from wherever you are.</p>
+      </div>
     </div>
-
   </main>
+  <section class="glance glance--inline" id="glance" aria-labelledby="glance-title">
+    <div class="glance__head">
+      <div>
+        <h2 class="glance__title" id="glance-title">At a glance</h2>
+        <p class="glance__lead">Everything on one screen, for anyone who has two minutes rather than ten. The full version of each is a page of its own.</p>
+      </div>
+    </div>
+    <div class="glance__grid">
+    <section class="glance__col">
+      <h3>Studying</h3>
+      <div class="glance__items">
+        <div><strong>Tufts University, class of 2028</strong><span>BA Computer Science, focus in Biological Sciences. Rising junior.</span></div>
+        <div><strong>Dean's List, 3.9 GPA</strong><span>Every semester so far.</span></div>
+      </div>
+    </section>
+    <section class="glance__col glance__col--research">
+      <h3>Research</h3>
+      <div class="glance__items">
+        <div><strong>Mass General, Vaccine &amp; Immunotherapy Center</strong><span>Immune populations now called from a reproducible pipeline rather than by hand, on datasets past a million events.</span></div>
+        <div><strong>Sonkusale Research Labs</strong><span>Fabrication protocols the group can repeat, from benchtop signal characterisation.</span></div>
+      </div>
+      <a class="glance__more" href="research.html">The full research page</a>
+    </section>
+    <section class="glance__col glance__col--projects">
+      <h3>Projects</h3>
+      <div class="glance__items">
+        <div><strong>CraveCast</strong><span>A warning before a craving lands, not a record afterwards. Offline, live, open source.</span></div>
+        <div><strong>EpiAlert</strong><span>A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen.</span></div>
+      </div>
+      <a class="glance__more" href="projects.html">The full projects page</a>
+    </section>
+    <section class="glance__col">
+      <h3>Also</h3>
+      <div class="glance__items">
+        <div><strong>Tufts Technology Services</strong><span>Storage requests cut from a repetitive multi-form process to a single pass, for 500+ daily users.</span></div>
+        <div><strong>Teaching and building</strong><span>Python workshops for thirty-odd students, and an L1 certification rocket that flew.</span></div>
+      </div>
+      <a class="glance__more" href="about.html">More on the about page</a>
+    </section>
+    </div>
+    <div class="glance__foot">
+      <p>Reach me at <a class="mark" href="mailto:silverbenh1@gmail.com">silverbenh1@gmail.com</a></p>
+      <div class="actions">
+        <a class="btn btn--primary" href="resume.pdf">Download resume</a>
+        <a class="btn btn--on-dark" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </section>
+  <a class="door-button" href="#glance" data-glance-open>
+    At a glance
+    <span class="door-button__mark" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+    </span>
+  </a>
+  <div id="glance-root"></div>
 </div>
-
+<script type="application/json" id="glance-data">{"button": "At a glance", "heading": "At a glance", "lead": "Everything on one screen, for anyone who has two minutes rather than ten. The full version of each is a page of its own.", "columns": [{"heading": "Studying", "accent": "", "items": [{"head": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior."}, {"head": "Dean's List, 3.9 GPA", "body": "Every semester so far."}]}, {"heading": "Research", "accent": "research", "link": {"label": "The full research page", "href": "research.html"}, "items": [{"head": "Mass General, Vaccine &amp; Immunotherapy Center", "body": "Immune populations now called from a reproducible pipeline rather than by hand, on datasets past a million events."}, {"head": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation."}]}, {"heading": "Projects", "accent": "projects", "link": {"label": "The full projects page", "href": "projects.html"}, "items": [{"head": "CraveCast", "body": "A warning before a craving lands, not a record afterwards. Offline, live, open source."}, {"head": "EpiAlert", "body": "A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen."}]}, {"heading": "Also", "accent": "", "link": {"label": "More on the about page", "href": "about.html"}, "items": [{"head": "Tufts Technology Services", "body": "Storage requests cut from a repetitive multi-form process to a single pass, for 500+ daily users."}, {"head": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew."}]}], "actions": [{"label": "Download resume", "href": "resume.pdf", "primary": true}, {"label": "Contact", "href": "contact.html", "primary": false}], "email": "silverbenh1@gmail.com", "footerNote": "Reach me at"}</script>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin defer></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin defer></script>
-<script src="js/app.js" defer></script>
+<script src="src/js/app.js" defer></script>
 </body>
 </html>

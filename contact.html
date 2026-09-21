@@ -3,130 +3,114 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- EDIT: page title and description -->
 <title>Contact — Ben Silver</title>
-<meta name="description" content="Get in touch with Ben Silver — email, GitHub and LinkedIn. Open to research collaborations and Summer 2027 internships.">
-<!-- /EDIT -->
-
+<meta name="description" content="Email, GitHub and LinkedIn for Ben Silver.">
 <link rel="canonical" href="https://ben-silv.github.io/contact.html">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Contact — Ben Silver">
-<meta property="og:description" content="Email is the fastest way to reach me. Research collaborations go to the top of the pile.">
+<meta property="og:description" content="Email, GitHub and LinkedIn for Ben Silver.">
 <meta property="og:url" content="https://ben-silv.github.io/contact.html">
 <meta name="twitter:card" content="summary">
-
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
-<link rel="stylesheet" href="styles/main.css">
-
-<script>
-(function () {
-  try {
-    var t = localStorage.getItem('bs-theme');
-    if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
-    document.documentElement.setAttribute('data-theme', t);
-  } catch (e) {}
-})();
-</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="src/styles/tokens.css">
+<link rel="stylesheet" href="src/styles/motion.css">
+<link rel="stylesheet" href="src/styles/main.css">
 </head>
-
-<body data-page="contact">
-<a class="skip-link" href="#content">Skip to content</a>
-
-<div class="shell">
-
-  <!-- SIDEBAR — keep in sync with the other four pages. -->
-  <aside class="sidebar">
-    <div class="sidebar__top">
-      <a class="sidebar__name" href="index.html">Ben Silver</a>
-      <span class="sidebar__toggle-mobile" data-theme-toggle></span>
-    </div>
-
-    <p class="sidebar__tagline">Computer science &amp; biology undergraduate at Tufts University. Mass cytometry at Mass General.</p>
-
-    <nav class="nav" aria-label="Main">
-      <a class="nav__link" data-nav="home"     href="index.html"><span class="nav__num">00</span>Home<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="research" href="research.html"><span class="nav__num">01</span>Research<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="projects" href="projects.html"><span class="nav__num">02</span>Projects<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="about"    href="about.html"><span class="nav__num">03</span>About<span class="nav__dot"></span></a>
-      <a class="nav__link" data-nav="contact"  href="contact.html"><span class="nav__num">04</span>Contact<span class="nav__dot"></span></a>
-    </nav>
-
-    <div class="sidebar__foot">
-      <!-- EDIT: internship status line (repeated on all five pages) -->
-      <p class="sidebar__status"><span class="dot"></span>Seeking a Summer 2027 internship</p>
-      <!-- /EDIT -->
-      <div class="sidebar__links">
-        <a href="mailto:silverbenh1@gmail.com">silverbenh1@gmail.com</a>
-        <a href="https://github.com/ben-silv">github.com/ben-silv</a>
-        <a href="https://www.linkedin.com/in/bhsilver">linkedin.com/in/bhsilver</a>
-        <a class="is-accent" href="resume.pdf">Résumé (PDF)</a>
-      </div>
-      <span data-theme-toggle></span>
-    </div>
-  </aside>
-
-  <main class="main" id="content">
-
-    <div class="row">
-      <div class="col">
-        <!-- EDIT: contact copy and email ============================== -->
-        <span class="page-label">04 — Contact</span>
-        <h1 class="page-title">Let's talk.</h1>
-        <p class="prose" style="margin-top: 20px; line-height: 1.7;">I'm a computer science and biology undergraduate at Tufts, and I'm looking for a <strong style="font-weight: 600;">Summer 2027 internship</strong> — computational biology, bioinformatics, or research software. If you're hiring for one, email is the fastest way to reach me and I'll send anything you need.</p>
-        <p class="prose" style="line-height: 1.7;">Research collaborations are just as welcome. I'll answer either way.</p>
-
-        <a class="email-link" href="mailto:silverbenh1@gmail.com?subject=Hello%20from%20your%20site">
-          silverbenh1@gmail.com
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-        </a>
-
-        <div class="social">
-          <a href="https://github.com/ben-silv">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.55v-2.13c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .3.2.66.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
-            github.com/ben-silv
-          </a>
-          <a href="https://www.linkedin.com/in/bhsilver">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95C21.6 8.75 23 10.9 23 14.24V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21h-4V9Z"/></svg>
-            linkedin.com/in/bhsilver
-          </a>
-        </div>
-        <!-- /EDIT -->
-      </div>
-
-      <div class="notes" style="padding-top: 34px;">
-        <!-- EDIT: contact margin notes =============================== -->
-        <div class="note">
-          <span class="note__label"><span class="dot"></span>Looking for</span>
-          <span class="note__value">Summer 2027 internship<br>June – August 2027</span>
-        </div>
-        <div class="note">
-          <span class="note__label">Areas</span>
-          <span class="note__value">Computational biology<br>Bioinformatics<br>Research software<br>Research collaborations</span>
-        </div>
-        <div class="note">
-          <span class="note__label">Based in</span>
-          <span class="note__value">Medford &amp; Boston, MA<br>Open to relocating</span>
-        </div>
-        <!-- /EDIT -->
-      </div>
-    </div>
-
-    <div class="mobile-foot">
-      <a href="mailto:silverbenh1@gmail.com">Email</a>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<div class="page">
+  <header class="masthead">
+    <a class="wordmark" href="index.html">Ben Silver</a>
+    <nav class="masthead__links" aria-label="Elsewhere">
+      <a class="is-primary" href="resume.pdf">Resume</a>
       <a href="https://github.com/ben-silv">GitHub</a>
       <a href="https://www.linkedin.com/in/bhsilver">LinkedIn</a>
-      <a href="resume.pdf">Résumé (PDF)</a>
+      <a href="mailto:silverbenh1@gmail.com">Email</a>
+    </nav>
+  </header>
+  <main class="main" id="content">
+    <div class="split">
+      <div class="split__main enter">
+        <h1 class="page-title">Contact</h1>
+        <p class="summary">Email reaches me fastest. I read everything, and I'd rather hear from a person than from a form.</p>
+        <a class="email-big" href="mailto:silverbenh1@gmail.com">silverbenh1@gmail.com</a>
+        <div class="actions">
+        <a class="btn btn--primary" href="mailto:silverbenh1@gmail.com">Email me</a>
+        <a class="btn" href="resume.pdf">Download resume</a>
+        </div>
+      </div>
+      <div class="split__side enter-1">
+        <div class="rows">
+        <div><p>GitHub</p><p>github.com/ben-silv</p></div>
+        <div><p>LinkedIn</p><p>linkedin.com/in/bhsilver</p></div>
+        <div><p>Based in</p><p>Medford and Boston, Massachusetts</p></div>
+        <div><p>Usually replies</p><p>Within a day or two, sooner if it is about research</p></div>
+        </div>
+      </div>
     </div>
-
   </main>
+  <section class="glance glance--inline" id="glance" aria-labelledby="glance-title">
+    <div class="glance__head">
+      <div>
+        <h2 class="glance__title" id="glance-title">At a glance</h2>
+        <p class="glance__lead">Everything on one screen, for anyone who has two minutes rather than ten. The full version of each is a page of its own.</p>
+      </div>
+    </div>
+    <div class="glance__grid">
+    <section class="glance__col">
+      <h3>Studying</h3>
+      <div class="glance__items">
+        <div><strong>Tufts University, class of 2028</strong><span>BA Computer Science, focus in Biological Sciences. Rising junior.</span></div>
+        <div><strong>Dean's List, 3.9 GPA</strong><span>Every semester so far.</span></div>
+      </div>
+    </section>
+    <section class="glance__col glance__col--research">
+      <h3>Research</h3>
+      <div class="glance__items">
+        <div><strong>Mass General, Vaccine &amp; Immunotherapy Center</strong><span>Immune populations now called from a reproducible pipeline rather than by hand, on datasets past a million events.</span></div>
+        <div><strong>Sonkusale Research Labs</strong><span>Fabrication protocols the group can repeat, from benchtop signal characterisation.</span></div>
+      </div>
+      <a class="glance__more" href="research.html">The full research page</a>
+    </section>
+    <section class="glance__col glance__col--projects">
+      <h3>Projects</h3>
+      <div class="glance__items">
+        <div><strong>CraveCast</strong><span>A warning before a craving lands, not a record afterwards. Offline, live, open source.</span></div>
+        <div><strong>EpiAlert</strong><span>A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen.</span></div>
+      </div>
+      <a class="glance__more" href="projects.html">The full projects page</a>
+    </section>
+    <section class="glance__col">
+      <h3>Also</h3>
+      <div class="glance__items">
+        <div><strong>Tufts Technology Services</strong><span>Storage requests cut from a repetitive multi-form process to a single pass, for 500+ daily users.</span></div>
+        <div><strong>Teaching and building</strong><span>Python workshops for thirty-odd students, and an L1 certification rocket that flew.</span></div>
+      </div>
+      <a class="glance__more" href="about.html">More on the about page</a>
+    </section>
+    </div>
+    <div class="glance__foot">
+      <p>Reach me at <a class="mark" href="mailto:silverbenh1@gmail.com">silverbenh1@gmail.com</a></p>
+      <div class="actions">
+        <a class="btn btn--primary" href="resume.pdf">Download resume</a>
+        <a class="btn btn--on-dark" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </section>
+  <a class="door-button" href="#glance" data-glance-open>
+    At a glance
+    <span class="door-button__mark" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+    </span>
+  </a>
+  <div id="glance-root"></div>
 </div>
-
+<script type="application/json" id="glance-data">{"button": "At a glance", "heading": "At a glance", "lead": "Everything on one screen, for anyone who has two minutes rather than ten. The full version of each is a page of its own.", "columns": [{"heading": "Studying", "accent": "", "items": [{"head": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior."}, {"head": "Dean's List, 3.9 GPA", "body": "Every semester so far."}]}, {"heading": "Research", "accent": "research", "link": {"label": "The full research page", "href": "research.html"}, "items": [{"head": "Mass General, Vaccine &amp; Immunotherapy Center", "body": "Immune populations now called from a reproducible pipeline rather than by hand, on datasets past a million events."}, {"head": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation."}]}, {"heading": "Projects", "accent": "projects", "link": {"label": "The full projects page", "href": "projects.html"}, "items": [{"head": "CraveCast", "body": "A warning before a craving lands, not a record afterwards. Offline, live, open source."}, {"head": "EpiAlert", "body": "A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen."}]}, {"heading": "Also", "accent": "", "link": {"label": "More on the about page", "href": "about.html"}, "items": [{"head": "Tufts Technology Services", "body": "Storage requests cut from a repetitive multi-form process to a single pass, for 500+ daily users."}, {"head": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew."}]}], "actions": [{"label": "Download resume", "href": "resume.pdf", "primary": true}, {"label": "Contact", "href": "contact.html", "primary": false}], "email": "silverbenh1@gmail.com", "footerNote": "Reach me at"}</script>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin defer></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin defer></script>
-<script src="js/app.js" defer></script>
+<script src="src/js/app.js" defer></script>
 </body>
 </html>
