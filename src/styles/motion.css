@@ -35,15 +35,16 @@
   to   { opacity: 1; }
 }
 
-/* The sheet grows from the bottom-right, where the button is. */
-@keyframes sheetUp {
-  from { opacity: 0; transform: translateY(64px) scale(0.97); }
+/* The panel arrives in the middle of the screen, rising a little as it comes
+   up to size — enough to read as "this was tucked away, now it is open". */
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(26px) scale(0.965); }
   to   { opacity: 1; transform: none; }
 }
 
-@keyframes sheetDown {
+@keyframes popOut {
   from { opacity: 1; transform: none; }
-  to   { opacity: 0; transform: translateY(48px) scale(0.975); }
+  to   { opacity: 0; transform: translateY(18px) scale(0.975); }
 }
 
 /* --- the load sequence ---------------------------------------------------- */
@@ -65,10 +66,10 @@
 /* --- the summary sheet ---------------------------------------------------- */
 
 .glance-scrim { animation: scrimIn 0.32s ease-out both; }
-.glance-sheet { animation: sheetUp 0.46s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both; }
+.glance-sheet { animation: popIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both; }
 
 .glance-overlay[data-closing="true"] .glance-scrim { animation: scrimIn 0.24s ease-in reverse both; }
-.glance-overlay[data-closing="true"] .glance-sheet { animation: sheetDown 0.26s cubic-bezier(0.4, 0, 1, 1) both; }
+.glance-overlay[data-closing="true"] .glance-sheet { animation: popOut 0.26s cubic-bezier(0.4, 0, 1, 1) both; }
 
 /* --- the button ----------------------------------------------------------- */
 /* One idea, used on every button: the fill rises from the bottom edge,

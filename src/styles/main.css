@@ -469,21 +469,23 @@ a:hover { color: var(--signal-deepen); }
   inset: 0;
   z-index: 60;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+  padding: 48px 32px;
 }
 .glance-scrim { position: absolute; inset: 0; background: var(--scrim); border: 0; padding: 0; }
 .glance-sheet {
   position: relative;
-  width: calc(100% - 128px);
-  max-height: calc(100vh - 92px);
+  width: min(1180px, 100%);
+  max-height: calc(100vh - 96px);
+  max-height: calc(100dvh - 96px);
   overflow-y: auto;
   margin: 0;
   padding: 40px 56px 44px;
   background: var(--sheet);
   color: var(--on-dark);
-  border-radius: 22px 22px 0 0;
-  box-shadow: 0 -20px 60px rgba(11, 27, 43, 0.35);
+  border-radius: 22px;
+  box-shadow: 0 30px 80px rgba(11, 27, 43, 0.45);
 }
 
 /* --- hobbies -------------------------------------------------------------- */
@@ -644,7 +646,12 @@ a:hover { color: var(--signal-deepen); }
 
   .rest__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   .glance__grid { grid-template-columns: 1fr; gap: 24px; }
-  .glance-sheet { width: 100%; padding: 28px 22px 32px; max-height: calc(100vh - 40px); border-radius: 18px 18px 0 0; }
+  .glance__head { gap: 14px; }
+  .glance__title { font-size: 30px; line-height: 1.1; }
+  .glance__close { width: 44px; height: 44px; }
+  .glance-overlay { padding: 20px 16px; }
+  .glance-sheet { padding: 28px 22px 32px; border-radius: 18px;
+    max-height: calc(100vh - 40px); max-height: calc(100dvh - 40px); }
 
   .door-button { right: 16px; bottom: 16px; height: 52px; padding: 0 10px 0 18px; font-size: 15px; }
   .email-big { font-size: 26px; }
