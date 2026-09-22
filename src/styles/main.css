@@ -566,14 +566,33 @@ a:hover { color: var(--signal-deepen); }
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 4px;
-  background: var(--sheet);
 }
+/* Only the video wants a dark box to sit in before it has a frame to show.
+   A photograph waiting to load should not flash navy on a warm page. */
+.shot video { background: var(--sheet); }
 .shot figcaption {
   margin-top: 10px;
   font-size: var(--size-fine);
   line-height: 1.55;
   color: var(--ink-soft);
 }
+
+/* Bikes. One landscape, one portrait — squaring both off would cut the wheels
+   off the first, so they share a height and keep their own shapes. Smaller than
+   the wallets above them, which is the right order of importance. */
+.gallery--pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  max-width: 700px;
+}
+.gallery--pair .shot { flex: 0 0 auto; }
+.gallery--pair .shot img {
+  width: auto;
+  height: 280px;
+  aspect-ratio: var(--ar);
+}
+.gallery--pair figcaption { max-width: 30ch; }
 
 /* The two photographs at the foot of a research entry. Small on purpose. */
 .strip { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 26px; }
@@ -703,6 +722,8 @@ a:hover { color: var(--signal-deepen); }
 @media (max-width: 420px) {
   .rest__grid { grid-template-columns: 1fr; }
   .compare { grid-template-columns: 1fr; }
+  .gallery--pair .shot { flex: 1 1 100%; }
+  .gallery--pair .shot img { width: 100%; height: auto; }
   .gallery { grid-template-columns: 1fr; }
   .shot--small img { height: 150px; }
 }

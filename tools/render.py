@@ -482,7 +482,8 @@ def render_hobbies(c):
       </figure>\n"""
         for i in f["compare"]["items"])
     shots = "".join(shot(t) for t in s.get("shots", []))
-    second_media = f"""      <div class="gallery">\n{shots}      </div>\n""" if shots else ""
+    second_media = (f"""      <div class="gallery gallery--pair">\n{shots}      </div>\n"""
+                    if shots else "")
     rest = "".join(
         f"""        <div><h3>{esc(r['name'])}</h3><p>{esc(r['body'])}</p></div>\n"""
         for r in hb["rest"])
