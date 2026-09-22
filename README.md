@@ -17,6 +17,7 @@ src/content.json         Every user-facing string. The site reads this.
 tools/render.py          content.json -> the .html files at the repo root
 tools/check.py           refuses to ship a broken page
 tools/images.py          a phone photo -> a web-sized file in assets/
+tools/mute.py            takes the audio track out of a clip
 src/styles/tokens.css    six colours, two typefaces, the spacing scale
 src/styles/motion.css    every keyframe, and the reduced-motion switch
 src/styles/main.css      layout and components
@@ -44,9 +45,9 @@ python -m http.server 8801 # then open http://localhost:8801
 before publishing, so a broken page stops the deploy instead of reaching the
 site.
 
-`tools/images.py` is the exception to "no install step": it needs Pillow. It is
-an authoring tool, run by hand when new photographs arrive, and the deploy
-never calls it.
+`tools/images.py` is the exception to "no install step": it needs Pillow. It and
+`tools/mute.py` are authoring tools, run by hand when new photographs or clips
+arrive, and the deploy never calls either.
 
 ## Deploying
 

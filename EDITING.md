@@ -110,10 +110,21 @@ A slot with nothing in `src` renders nothing at all, so an empty one costs you
 nothing while you wait to take the picture. Everything under `hobbies.rest` is
 text only on purpose — those are the ones without much to show.
 
-Video is left alone rather than re-encoded, so export it small before dropping
-it in: ten seconds or so, and a few megabytes rather than thirty. It is set to
-load only its first frame until somebody presses play, so a big one will not
-slow the page down, but it will still be a big download for anyone who does.
+Video keeps its picture untouched — there is no encoder here to re-compress it
+— so export it small before dropping it in: ten seconds or so, and a few
+megabytes rather than thirty. It loads only its first frame until somebody
+presses play, so a big one will not slow the page down, but it will still be a
+big download for anyone who does.
+
+The sound does come out:
+
+```sh
+python tools/mute.py content/leatherworking/walletvid.mp4 assets/leather-wallet.mp4
+```
+
+A phone clip carries whatever was being said in the room, and none of these are
+here to be listened to. This removes the audio track from the file rather than
+muting it in the page, so there is nothing to unmute. Run it on every clip.
 
 ---
 
