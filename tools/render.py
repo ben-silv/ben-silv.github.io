@@ -13,6 +13,7 @@ GitHub Actions runner.
 
 import json
 import os
+import struct
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -279,6 +280,10 @@ def render_research(c):
                     + """        </ul>\n""")
         else:
             body = "".join(f"""        <p class="entry__text">{t}</p>\n""" for t in p.get("paragraphs", []))
+        if p.get("images"):
+            body += ("""        <div class="strip">\n"""
+                     + "".join(shot(i, extra=" shot--small") for i in p["images"])
+                     + """        </div>\n""")
         blocks.append(f"""    <article class="{cls} enter-{i + 1}">
       <div class="entry__body">
         <h2 class="{name_cls}">{p['name']}</h2>
@@ -387,35 +392,97 @@ def render_contact(c):
             + glance_section(c) + door_button(c) + tail(c))
 
 
-def slot(item, extra=""):
-    """A photo or video placeholder, or the real media once a src is set."""
-    if item.get("src"):
-        if item.get("video"):
-            return (f"""        <video class="slot{extra}" controls preload="metadata" """
-                    f"""aria-label="{esc(item.get('alt') or item['label'])}">"""
-                    f"""<source src="{esc(item['src'])}"></video>\n""")
-        return (f"""        <img class="slot{extra}" src="{esc(item['src'])}" """
-                f"""alt="{esc(item.get('alt') or item['label'])}" loading="lazy">\n""")
+_SIZES = {}
 
-    play = ""
-    cls = extra
+
+def measure(path):
+    """(width, height) of a JPEG or PNG, read from its header.
+
+    So that content.json only ever holds words. Pillow would be one line, but
+    nothing else in the build needs installing and this keeps it that way.
+    Returns None for anything it does not recognise, video included.
+    """
+    if path in _SIZES:
+        return _SIZES[path]
+    full = os.path.join(ROOT, path)
+    size = None
+    try:
+        with open(full, "rb") as fh:
+            head = fh.read(24)
+            if head[:8] == b"\x89PNG\r\n\x1a\n":
+                size = struct.unpack(">II", head[16:24])
+            elif head[:2] == b"\xff\xd8":
+                fh.seek(2)
+                while True:
+                    marker = fh.read(2)
+                    if len(marker) < 2 or marker[0] != 0xFF:
+                        break
+                    length = struct.unpack(">H", fh.read(2))[0]
+                    # SOF0..SOF15, minus the four that are not frame headers
+                    if 0xC0 <= marker[1] <= 0xCF and marker[1] not in (0xC4, 0xC8, 0xCC):
+                        h, w = struct.unpack(">HH", fh.read(5)[1:])
+                        size = (w, h)
+                        break
+                    fh.seek(length - 2, 1)
+    except (OSError, struct.error):
+        size = None
+    _SIZES[path] = size
+    return size
+
+
+def size_attrs(src):
+    """width/height, and the shape as a custom property.
+
+    The attributes reserve the right box before the file arrives, so nothing
+    below a picture jumps when it loads. --ar carries the same shape to CSS,
+    for the boxes that are sized from their height and so cannot wait for the
+    file to tell them the ratio.
+    """
+    wh = measure(src)
+    if not wh:
+        return ""
+    return f""" width="{wh[0]}" height="{wh[1]}" style="--ar: {wh[0]}/{wh[1]}\""""
+
+
+def shot(item, extra=""):
+    """One photo or video, with its caption.
+
+    A slot with nothing in src renders nothing at all. A labelled gap reads as
+    unfinished once the rest of the page has real pictures in it; the empty
+    entry stays in content.json as the reminder of what still needs shooting.
+    """
+    if not item.get("src"):
+        return ""
+    alt = esc(item.get("alt") or item.get("caption", ""))
+    # width and height keep the box the right shape before the file arrives,
+    # so nothing below a picture jumps once it loads
+    size = size_attrs(item["src"])
     if item.get("video"):
-        cls += " slot--video"
-        play = ("""          <span class="play" aria-hidden="true">"""
-                """<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">"""
-                """<path d="M8 5.5v13l11-6.5Z"></path></svg></span>\n""")
-    return f"""        <div class="slot{cls}">
-{play}          <strong>{esc(item['label'])}</strong>
-          <span>{esc(item['hint'])}</span>
-        </div>\n"""
+        media = (f"""        <video preload="metadata" controls playsinline{size}"""
+                 f""" aria-label="{alt}"><source src="{esc(item['src'])}\""""
+                 f""" type="video/mp4"></video>\n""")
+    else:
+        media = (f"""        <img src="{esc(item['src'])}" alt="{alt}"{size}"""
+                 f""" loading="lazy" decoding="async">\n""")
+    caption = ""
+    if item.get("caption"):
+        caption = f"""        <figcaption>{esc(item['caption'])}</figcaption>\n"""
+    return f"""      <figure class="shot{extra}">\n{media}{caption}      </figure>\n"""
 
 
 def render_hobbies(c):
     hb = c["hobbies"]
     f = hb["feature"]
     s = hb["second"]
-    tiles = "".join(slot(t) for t in f["tiles"])
-    shots = "".join(slot(t) for t in s["shots"])
+    tiles = "".join(shot(t) for t in f["tiles"])
+    compare = "".join(
+        f"""      <figure class="versus">
+        <img src="{esc(i['src'])}" alt="{esc(i['alt'])}"{size_attrs(i['src'])} loading="lazy" decoding="async">
+        <figcaption><strong>{esc(i['tag'])}</strong><span>{esc(i['note'])}</span></figcaption>
+      </figure>\n"""
+        for i in f["compare"]["items"])
+    shots = "".join(shot(t) for t in s.get("shots", []))
+    second_media = f"""      <div class="gallery">\n{shots}      </div>\n""" if shots else ""
     rest = "".join(
         f"""        <div><h3>{esc(r['name'])}</h3><p>{esc(r['body'])}</p></div>\n"""
         for r in hb["rest"])
@@ -433,10 +500,11 @@ def render_hobbies(c):
         <h2 class="feature__name" id="feature-title">{esc(f['name'])}</h2>
         <p class="feature__blurb">{esc(f['blurb'])}</p>
       </div>
+      <p class="compare__label">{esc(f['compare']['label'])}</p>
+      <div class="compare">
+{compare}      </div>
       <div class="gallery">
-{slot(f['hero'], extra=' gallery__hero slot--hero')}        <div class="gallery__grid">
-{tiles}        </div>
-      </div>
+{tiles}      </div>
       <p class="feature__note">{esc(f['note'])}</p>
     </section>
 
@@ -445,9 +513,7 @@ def render_hobbies(c):
         <h2 class="second__name" id="second-title">{esc(s['name'])}</h2>
         <p class="feature__blurb">{esc(s['blurb'])}</p>
       </div>
-      <div class="pair">
-{shots}      </div>
-    </section>
+{second_media}    </section>
 
     <section class="rest enter-3" aria-labelledby="rest-title">
       <p class="rest__label" id="rest-title">{esc(hb['restLabel'])}</p>

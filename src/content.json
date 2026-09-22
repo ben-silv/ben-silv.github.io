@@ -1,6 +1,5 @@
 {
   "_comment": "Generated from content/experiences.md. Every user-facing string on the site lives here. Edit this and run: python tools/render.py",
-
   "site": {
     "name": "Ben Silver",
     "email": "silverbenh1@gmail.com",
@@ -12,16 +11,27 @@
     "baseUrl": "https://ben-silv.github.io/",
     "footerNote": "Reach me at"
   },
-
   "home": {
     "title": "Ben Silver — computer science and biology at Tufts",
     "description": "Ben Silver is a rising junior at Tufts University studying computer science with a focus in biological sciences, with mass cytometry research at Mass General.",
     "identity": "Rising junior at Tufts, studying computer science with a focus in biological sciences.",
     "summary": "I like problems where the answer has to reach a person at the end of it. Most of what I do sits somewhere between software and biology; the rest of it usually involves taking something apart on a bench to find out why it stopped working.",
     "education": [
-      { "label": "Studying at", "value": "Tufts University", "note": "BA Computer Science, focus in Biological Sciences" },
-      { "label": "Graduating", "value": "May 2028", "note": "Third year this autumn" },
-      { "label": "Standing", "value": "Dean's List", "note": "3.9 GPA, every semester" }
+      {
+        "label": "Studying at",
+        "value": "Tufts University",
+        "note": "BA Computer Science, focus in Biological Sciences"
+      },
+      {
+        "label": "Graduating",
+        "value": "May 2028",
+        "note": "Third year this autumn"
+      },
+      {
+        "label": "Standing",
+        "value": "Dean's List",
+        "note": "3.9 GPA, every semester"
+      }
     ],
     "doors": [
       {
@@ -47,11 +57,10 @@
       {
         "href": "hobbies.html",
         "label": "Hobbies",
-        "desc": "Gear trading, a bike that is usually in pieces, leather and whetstones. Nothing on that page has anything to do with work."
+        "desc": "Leatherworking mostly, then a bike that is usually in pieces. Nothing on that page has anything to do with work."
       }
     ]
   },
-
   "research": {
     "title": "Research — Ben Silver",
     "description": "Mass cytometry at Mass General's Vaccine and Immunotherapy Center, and flexible bioelectronics at Sonkusale Research Labs.",
@@ -65,12 +74,22 @@
         "bullets": [
           "Immune populations across vaccine stimulations can now be called from a reproducible Python pipeline rather than by hand, on datasets past a million events.",
           "Raw instrument output reaches usable populations in a single pass, because FCS parsing, arcsinh transformation and dimensionality reduction were built into one path instead of three manual steps.",
-          "Cluster assignments hold up to immunological review rather than merely looking clean, after biological validation metrics were added to the existing clustering."
+          "Cluster assignments hold up to immunological review rather than merely looking clean, after biological validation metrics were added to the existing clustering.",
+          "New cohorts start from the pipeline instead of from scratch: X-shift surfaces where cell population abundance has moved, and the Shannon and Simpson diversity notebooks written for the first project carry straight across, at the same million-cell scale."
         ],
         "facts": [
-          { "label": "Working with", "value": "Richard Dzeng<br>Ethan Rabinowitz" },
-          { "label": "Scale", "value": "Fifty-plus parameters per cell, past a million events per dataset" },
-          { "label": "Method", "value": "Python, NumPy, scikit-learn, FlowSOM, OMIQ, UMAP and PCA" }
+          {
+            "label": "Working with",
+            "value": "Richard Dzeng<br>Ethan Rabinowitz"
+          },
+          {
+            "label": "Scale",
+            "value": "Fifty-plus parameters per cell, past a million events per dataset"
+          },
+          {
+            "label": "Method",
+            "value": "Python, NumPy, scikit-learn, FlowSOM, OMIQ, UMAP and PCA"
+          }
         ]
       },
       {
@@ -78,15 +97,30 @@
         "org": "Tufts University, February to May 2026",
         "lead": false,
         "paragraphs": [
-          "Gave the group fabrication protocols they could repeat, by characterising the signal across physiological conditions on the bench until the failure points were known rather than guessed. The lesson carried: a measurement is only ever as good as the thing taking it."
+          "Gave the group fabrication protocols they could repeat, by characterising the signal across physiological conditions on the bench until the failure points were known rather than guessed. The lesson carried: a measurement is only ever as good as the thing taking it.",
+          "It is also where I learned to be useful in a wet lab. Protocol and safety first, which is what earns you the bench time to try anything at all."
         ],
         "facts": [
-          { "label": "Domain", "value": "Flexible bioelectronics for wearable, point-of-care diagnostics" }
+          {
+            "label": "Domain",
+            "value": "Flexible bioelectronics for wearable, point-of-care diagnostics"
+          }
+        ],
+        "images": [
+          {
+            "src": "assets/sonkusale-array.jpg",
+            "alt": "A gloved hand holding a syringe over a flexible electrode array, its five leads taped down to the bench with yellow tape",
+            "caption": "Dosing an array on the bench"
+          },
+          {
+            "src": "assets/sonkusale-bench.jpg",
+            "alt": "Ben in gloves in the Sonkusale lab, with the bench behind him: a probe station, reagent bottles, tools and finished arrays",
+            "caption": "The lab it happened in"
+          }
         ]
       }
     ]
   },
-
   "projects": {
     "title": "Projects — Ben Silver",
     "description": "CraveCast, a craving forecaster for addiction recovery, and EpiAlert, allergen detection and epinephrine mapping for travellers.",
@@ -98,16 +132,32 @@
         "when": "September 2026",
         "lead": true,
         "paragraphs": [
-          "People in recovery get a warning before a craving lands rather than a record of it afterwards, forecast from their own patterns and the peer-reviewed ADARP study.",
-          "It runs entirely in the browser and works with the network off, so nothing about somebody's recovery ever leaves their device. That constraint shaped most of the architecture."
+          "People in recovery get a warning before a craving lands rather than a record of it afterwards, forecast from their own logs and the peer-reviewed ADARP study.",
+          "The forecast is kernel density estimation over the hours somebody has actually logged a craving, read against the population-level risk windows in the study, so it is useful on the first day and personal by the second week. It runs entirely in the browser and works with the network off, so nothing about a person's recovery leaves their device. Building it is where I learned what it takes to get a published model to actually run: choosing the bandwidth, deciding what counts as a signal, and working out how you would know whether a prediction was any good.",
+          "It started at a lung transplant observership at Mass General. COPD is one of the most common reasons somebody ends up needing new lungs, and smoking is the leading cause of COPD. Watching what people went through before, during and after that operation is why I wanted to build something for the addiction end of it rather than the surgical end.",
+          "The other half of it is that it should be worth opening. Recovery apps tend to be either a logbook or a clinical dashboard, and nobody wants either at the moment they need one. This one has streaks and unlocks and some colour, because breaking an addiction is hard enough without the tool being another chore."
         ],
         "facts": [
-          { "label": "Built with", "value": "HTML, JavaScript, Python, kernel density estimation" },
-          { "label": "Status", "value": "Live, and open source" }
+          {
+            "label": "Built with",
+            "value": "HTML, JavaScript, Python, kernel density estimation"
+          },
+          {
+            "label": "Status",
+            "value": "Live, and open source"
+          }
         ],
         "actions": [
-          { "label": "Open the app", "href": "https://ben-silv.github.io/CraveCast/", "primary": true },
-          { "label": "Read the source", "href": "https://github.com/ben-silv/CraveCast", "primary": false }
+          {
+            "label": "Open the app",
+            "href": "https://ben-silv.github.io/CraveCast/",
+            "primary": true
+          },
+          {
+            "label": "Read the source",
+            "href": "https://github.com/ben-silv/CraveCast",
+            "primary": false
+          }
         ]
       },
       {
@@ -116,19 +166,30 @@
         "lead": false,
         "paragraphs": [
           "A photograph of a meal becomes an allergen decision in seconds, with the nearest stocked epinephrine on the same screen.",
-          "Built for travelling with a severe allergy, where knowing you are in trouble is only half the problem. I cut a peer-review feed late on once it was clear crowd-sourced safety data is a liability when the failure mode is anaphylaxis."
+          "I grew up in Taiwan with a nut allergy. By now I know that pad thai usually has crushed peanuts in it and that a lot of Indian curries are thickened with cashews, but a shy nine-year-old has none of that and is not going to ask a waiter. This is the check I did not have.",
+          "It is a first check and not a verdict, and the app says so. The point is the unfamiliar meal in a country where you cannot be sure the waiter understood the question — enough to settle it, or to tell you this is one to ask about properly. It remembers what you are allergic to, and it is simple enough that a kid could use it at the table.",
+          "I cut a peer-review feed late on, once it was clear that crowd-sourced safety data is a liability when the failure mode is anaphylaxis."
         ],
         "facts": [
-          { "label": "Built with", "value": "Python, Flask, Claude Vision API, Google Maps API" },
-          { "label": "Status", "value": "Repository private, happy to walk through it" }
+          {
+            "label": "Built with",
+            "value": "Python, Flask, Claude Vision API, Google Maps API"
+          },
+          {
+            "label": "Status",
+            "value": "Repository private, happy to walk through it"
+          }
         ],
         "actions": [
-          { "label": "Ask me for a demo", "href": "mailto:silverbenh1@gmail.com?subject=EpiAlert", "primary": true }
+          {
+            "label": "Ask me for a demo",
+            "href": "mailto:silverbenh1@gmail.com?subject=EpiAlert",
+            "primary": true
+          }
         ]
       }
     ]
   },
-
   "about": {
     "title": "About — Ben Silver",
     "description": "Computer science and biology at Tufts, research computing at Tufts Technology Services, and where Ben Silver would like this to go next.",
@@ -136,70 +197,139 @@
     "paragraphs": [
       "I came to Tufts for computer science and added a focus in biological sciences once it turned out the biology was the part I couldn't stop reading about. Those two things looked unrelated for about a year and then stopped being unrelated at all.",
       "I grew up in a Taiwanese-American household, which is where I learned that the answer to most questions is to take the lid off and look. That habit is more or less the whole story: a bike that shifts badly gets stripped to the frame, a knife that won't bite gets a whetstone and an argument about angles, and a dataset with a million immune cells in it gets a pipeline until the clusters mean something.",
-      "I'd like to end up in biotech or healthcare data, somewhere the output lands in front of a clinician rather than in a folder. Close enough to the science to know what the numbers mean, close enough to the software to make them usable.",
-      "Two years spent next to researchers fighting their own tooling is the reason I care about the last mile of a piece of software at all."
+      "At Tufts Technology Services I look after tooling for research storage. The old request workflow had staff retyping the same details into a fixed format by hand; mine takes a paste, picks the template for the kind of request being handled, and formats it. About a quarter of the time back on each one, a single consistent format at the end of it, and nothing for a new starter to memorise.",
+      "Data is one big haystack and computer science is the magnet. That is most of why I like this: finding the pattern, and then getting it in front of somebody who can act on it. Biotech and healthcare data are where I would most like that to land, though the part I actually care about — prediction, patterns, making numbers usable — travels anywhere data does."
     ],
     "sideHeading": "What I'm working on",
     "current": [
-      { "where": "Massachusetts General Hospital, Vaccine &amp; Immunotherapy Center", "what": "Mass cytometry research, since July 2026", "accent": "research" },
-      { "where": "On my own time", "what": "CraveCast and EpiAlert", "accent": "projects" },
-      { "where": "Tufts Technology Services", "what": "Research Computing Student Specialist, since April 2025", "accent": "" }
+      {
+        "where": "Massachusetts General Hospital, Vaccine &amp; Immunotherapy Center",
+        "what": "Mass cytometry research, since July 2026",
+        "accent": "research"
+      },
+      {
+        "where": "On my own time",
+        "what": "CraveCast and EpiAlert",
+        "accent": "projects"
+      },
+      {
+        "where": "Tufts Technology Services",
+        "what": "Research Computing Student Specialist, since April 2025",
+        "accent": ""
+      }
     ],
     "pointer": "Research and projects each have a page of their own. The corner button gives you all of it condensed onto one screen, from wherever you are."
   },
-
   "contact": {
     "title": "Contact — Ben Silver",
     "description": "Email, GitHub and LinkedIn for Ben Silver.",
     "heading": "Contact",
     "lead": "Email reaches me fastest. I read everything, and I'd rather hear from a person than from a form.",
     "actions": [
-      { "label": "Email me", "href": "mailto:silverbenh1@gmail.com", "primary": true },
-      { "label": "Download resume", "href": "resume.pdf", "primary": false }
+      {
+        "label": "Email me",
+        "href": "mailto:silverbenh1@gmail.com",
+        "primary": true
+      },
+      {
+        "label": "Download resume",
+        "href": "resume.pdf",
+        "primary": false
+      }
     ],
     "rows": [
-      { "label": "GitHub", "value": "github.com/ben-silv" },
-      { "label": "LinkedIn", "value": "linkedin.com/in/bhsilver" },
-      { "label": "Based in", "value": "Medford and Boston, Massachusetts" },
-      { "label": "Usually replies", "value": "Within a day or two, sooner if it is about research" }
+      {
+        "label": "GitHub",
+        "value": "github.com/ben-silv"
+      },
+      {
+        "label": "LinkedIn",
+        "value": "linkedin.com/in/bhsilver"
+      },
+      {
+        "label": "Based in",
+        "value": "Medford and Boston, Massachusetts"
+      },
+      {
+        "label": "Usually replies",
+        "value": "Within a day or two, sooner if it is about research"
+      }
     ]
   },
-
   "hobbies": {
     "title": "Hobbies — Ben Silver",
     "description": "Leatherworking, bikes, gear trading, whetstones and model rocketry. Nothing to do with work.",
     "heading": "Hobbies",
-    "lead": "None of this is a transferable skill and I'm not going to pretend otherwise. It's just what I do when nobody is paying me.",
+    "lead": "None of this is a transferable skill and I am not going to pretend otherwise. It is just what I do when nobody is paying me.",
     "feature": {
       "name": "Leatherworking",
-      "blurb": "The one I'd talk about for an hour. Slow, forgiving of patience, completely unforgiving of rushing, and the only thing I do where a mistake is permanent the second it happens.",
-      "note": "Short clips work better than stills for the stitching and the burnishing, because the whole point is the rhythm of it. Two or three ten-second videos and a handful of photographs is plenty.",
-      "hero": { "label": "the piece you are proudest of", "hint": "landscape, at least 1600 across", "src": "", "alt": "" },
+      "blurb": "The one I would talk about for an hour. Slow, forgiving of patience, completely unforgiving of rushing, and the only thing I do where a mistake is permanent the second it happens.",
+      "compare": {
+        "label": "The same wallet, a year apart",
+        "items": [
+          {
+            "tag": "The first one",
+            "note": "Two years of pocket wear on it, but the stitching wandered and the edges were never finished properly to begin with.",
+            "src": "assets/leather-wallet-first.jpg",
+            "alt": "The first wallet, standing open: dark scuffed outer leather, uneven white stitching and rough unburnished edges"
+          },
+          {
+            "tag": "A year later",
+            "note": "Same pattern, same blue and tan. Even stitch spacing, square corners, and edges that hold their shape.",
+            "src": "assets/leather-wallet-second.jpg",
+            "alt": "The second wallet in the same pose: navy outer leather with a tan interior, regular white saddle stitching and clean burnished edges"
+          }
+        ]
+      },
       "tiles": [
-        { "label": "a detail shot of the stitching", "hint": "close, square crop", "video": false, "src": "", "alt": "" },
-        { "label": "saddle stitching", "hint": "video, ten seconds", "video": true, "src": "", "alt": "" },
-        { "label": "burnishing an edge", "hint": "video, ten seconds", "video": true, "src": "", "alt": "" },
-        { "label": "the bench, mid-project", "hint": "square crop", "video": false, "src": "", "alt": "" }
-      ]
+        {
+          "caption": "Six card slots, all the same size, which is the whole trick",
+          "src": "assets/leather-wallet-inside.jpg",
+          "alt": "The second wallet open flat, showing six tan card slots stitched in white thread"
+        },
+        {
+          "caption": "Patterns I draw in Inkscape, cut in paper and fitted before anything touches the leather",
+          "src": "assets/leather-pattern.jpg",
+          "alt": "Six paper pattern pieces laid out on a sheet of black leather over a gridded cutting mat"
+        },
+        {
+          "caption": "Ten seconds of the finished thing",
+          "video": true,
+          "src": "assets/leather-wallet.mp4",
+          "alt": "A short clip of a finished leather wallet being opened and turned over in the hand"
+        }
+      ],
+      "note": "I draw the patterns myself and prototype them in paper first, because leather does not forgive a measurement you guessed at. Most of what got better between those two wallets is that I stopped guessing."
     },
     "second": {
       "name": "Bikes, mostly in pieces",
-      "blurb": "I ride them and I fix them, and the fixing is the better half. There is nearly always a drivetrain on newspaper somewhere in the flat.",
-      "shots": [
-        { "label": "the bike, built", "hint": "landscape", "src": "", "alt": "" },
-        { "label": "the bike, in pieces", "hint": "landscape", "src": "", "alt": "" }
-      ]
+      "blurb": "I ride mountain bikes, and the half I like best is the one where the bike is on the floor in pieces. Brakes bled and upgraded, a dropper post fitted, headset and gears dialled in, a new cassette — most of what is on mine now, I put there. Down to cable ends that match the frame, which nobody notices but me."
     },
     "restLabel": "Also, with less to show for them",
     "rest": [
-      { "name": "Gear trading", "body": "I will find the used one. Half the price, usually in better shape than the listing admits." },
-      { "name": "Knife sharpening", "body": "Whetstones, consistent angles, and an edge that finally bites paper instead of tearing it." },
-      { "name": "Taiwanese food", "body": "Raised on it, still chasing it. Load-bearing opinions about beef noodle soup." },
-      { "name": "Model rocketry", "body": "An L1 certification build with Tufts SEDS, and an evening lost to centre of pressure." }
+      {
+        "name": "Gear trading",
+        "body": "Marketplace, mostly, hunting parts for the bikes. I will find the used one — half the price and usually in better shape than the listing admits."
+      },
+      {
+        "name": "Knife sharpening",
+        "body": "Whetstones, a consistent angle, an edge that bites paper. The one I am proudest of is my grandfather's deba, the knife he filleted fish with, brought back from blunt."
+      },
+      {
+        "name": "Taiwanese food",
+        "body": "Danzai noodles first, Taiwanese pork chop rice a close second. I will argue about both."
+      },
+      {
+        "name": "Model rocketry",
+        "body": "The L1 certification rocket with Tufts SEDS — drawn, cut, glued, and flown, which is the only part that counts."
+      }
     ],
-    "hunting": { "before": "Currently hunting for", "highlight": "a used wheelset that isn't a scam", "after": "and a shoulder of veg-tan I can justify." }
+    "hunting": {
+      "before": "Currently hunting for",
+      "highlight": "a used wheelset that isn't a scam",
+      "after": "and a shoulder of veg-tan I can justify."
+    }
   },
-
   "glance": {
     "button": "At a glance",
     "heading": "At a glance",
@@ -209,44 +339,84 @@
         "heading": "Studying",
         "accent": "",
         "items": [
-          { "head": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior." },
-          { "head": "Dean's List, 3.9 GPA", "body": "Every semester so far." }
+          {
+            "head": "Tufts University, class of 2028",
+            "body": "BA Computer Science, focus in Biological Sciences. Rising junior."
+          },
+          {
+            "head": "Dean's List, 3.9 GPA",
+            "body": "Every semester so far."
+          }
         ]
       },
       {
         "heading": "Research",
         "accent": "research",
-        "link": { "label": "The full research page", "href": "research.html" },
+        "link": {
+          "label": "The full research page",
+          "href": "research.html"
+        },
         "items": [
-          { "head": "Mass General, Vaccine &amp; Immunotherapy Center", "body": "Immune populations now called from a reproducible pipeline rather than by hand, on datasets past a million events." },
-          { "head": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation." }
+          {
+            "head": "Mass General, Vaccine &amp; Immunotherapy Center",
+            "body": "Immune populations now called from a reproducible pipeline rather than by hand, on datasets past a million events."
+          },
+          {
+            "head": "Sonkusale Research Labs",
+            "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation."
+          }
         ]
       },
       {
         "heading": "Projects",
         "accent": "projects",
-        "link": { "label": "The full projects page", "href": "projects.html" },
+        "link": {
+          "label": "The full projects page",
+          "href": "projects.html"
+        },
         "items": [
-          { "head": "CraveCast", "body": "A warning before a craving lands, not a record afterwards. Offline, live, open source." },
-          { "head": "EpiAlert", "body": "A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen." }
+          {
+            "head": "CraveCast",
+            "body": "A warning before a craving lands, not a record afterwards. Offline, live, open source."
+          },
+          {
+            "head": "EpiAlert",
+            "body": "A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen."
+          }
         ]
       },
       {
         "heading": "Also",
         "accent": "",
-        "link": { "label": "More on the about page", "href": "about.html" },
+        "link": {
+          "label": "More on the about page",
+          "href": "about.html"
+        },
         "items": [
-          { "head": "Tufts Technology Services", "body": "Storage requests cut from a repetitive multi-form process to a single pass, for 500+ daily users." },
-          { "head": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew." }
+          {
+            "head": "Tufts Technology Services",
+            "body": "Storage requests cut from a repetitive multi-form process to a single paste, about a quarter of the time back on each one, for 500+ daily users."
+          },
+          {
+            "head": "Teaching and building",
+            "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew."
+          }
         ]
       }
     ],
     "actions": [
-      { "label": "Download resume", "href": "resume.pdf", "primary": true },
-      { "label": "Contact", "href": "contact.html", "primary": false }
+      {
+        "label": "Download resume",
+        "href": "resume.pdf",
+        "primary": true
+      },
+      {
+        "label": "Contact",
+        "href": "contact.html",
+        "primary": false
+      }
     ]
   },
-
   "notFound": {
     "title": "Page not found — Ben Silver",
     "heading": "That page doesn't exist.",

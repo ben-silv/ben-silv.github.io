@@ -1,0 +1,6 @@
+# Photographs as they came off the phone. Several megabytes each, and still
+# carrying their EXIF, which includes where the picture was taken — this repo
+# is public and everything in it is served, so the originals stay local.
+# tools/images.py writes the published versions into assets/, resized and with
+# the metadata stripped.
+content/*/

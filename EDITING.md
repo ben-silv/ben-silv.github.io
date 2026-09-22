@@ -58,47 +58,62 @@ the side). Projects are the same shape, plus `actions` for the buttons.
 
 ---
 
-## Adding your hobby photos and videos
+## Adding photos and video
 
-The hobbies page already has the slots cut. Each one currently renders as a
-dashed placeholder telling you what to put there — that is deliberate, so an
-empty slot looks unfinished rather than broken.
+Drop the files anywhere under `content/` — a folder per subject is easiest,
+which is what `content/leatherworking/` is — and say **"put the new photos in."**
+They get rotated, cropped if they need it, resized, stripped of their metadata
+(which includes where the photo was taken) and written into `assets/`, and the
+right slots in `src/content.json` get filled in.
 
-To fill one:
+To do it by hand:
 
-1. Drop the file in `assets/`. Name it plainly: `leather-hero.jpg`,
-   `stitching.mp4`.
-2. Find the slot in `src/content.json` and fill in `src` and `alt`:
+```sh
+python tools/images.py content/bikes/frame.jpeg assets/bike-frame.jpg --max 900 --square
+```
+
+`--max` is the longest side in pixels, `--square` centre-crops to 1:1, and
+`--crop left,top,right,bottom` takes fractions between 0 and 1 if you want to
+cut something out of the frame first. That script is the one thing here that
+needs Pillow (`pip install Pillow`); it is for authoring only and the deploy
+never runs it.
+
+Then point a slot at the file in `src/content.json`:
 
 ```json
 {
-  "label": "the piece you are proudest of",
-  "hint": "landscape, at least 1600 across",
-  "src": "assets/leather-hero.jpg",
-  "alt": "A finished veg-tan belt, edges burnished, on the bench"
+  "caption": "Six card slots, all the same size, which is the whole trick",
+  "src": "assets/leather-wallet-inside.jpg",
+  "alt": "The second wallet open flat, showing six tan card slots stitched in white thread"
 }
 ```
 
-3. `python tools/render.py`
+and run `python tools/render.py`. Nothing else is needed — the page works out
+the dimensions from the file itself, so there are no pixel sizes to keep in
+step.
 
-`alt` is not optional — `tools/check.py` fails the build without it, and it is
+`alt` is not optional. `tools/check.py` fails the build without it, and it is
 what a screen reader reads out. Describe what is in the shot, not "photo of
 leatherworking."
 
-The slots, in order of how much room they get:
+### Where the slots are
 
-- `hobbies.feature.hero` — leatherworking, the big one on the left
-- `hobbies.feature.tiles` — four more beside it. The two with `"video": true`
-  expect an `.mp4`; the other two expect stills.
-- `hobbies.second.shots` — two bike photos
+- `hobbies.feature.compare.items` — the two wallets, side by side. Each has a
+  `tag` and a `note` under it, which is where the comparison gets made.
+- `hobbies.feature.tiles` — the row of three under them. One of them has
+  `"video": true` and expects an `.mp4`.
+- `hobbies.second.shots` — bikes. Empty, waiting for photos.
+- `research.positions[n].images` — the small strip at the foot of a research
+  entry. Two per row is about right; they are meant to stay small.
 
-A tile with `"video": true` and an `.mp4` in `src` renders as a video with
-play controls, and only loads its first frame until someone presses play. Keep
-them under about ten seconds and a few megabytes — they load on a phone at a
-career fair.
+A slot with nothing in `src` renders nothing at all, so an empty one costs you
+nothing while you wait to take the picture. Everything under `hobbies.rest` is
+text only on purpose — those are the ones without much to show.
 
-Everything under `hobbies.rest` is text only, on purpose. Those are the ones
-without much to show.
+Video is left alone rather than re-encoded, so export it small before dropping
+it in: ten seconds or so, and a few megabytes rather than thirty. It is set to
+load only its first frame until somebody presses play, so a big one will not
+slow the page down, but it will still be a big download for anyone who does.
 
 ---
 

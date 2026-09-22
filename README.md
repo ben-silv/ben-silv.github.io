@@ -12,9 +12,11 @@ change never means touching a template.
 
 ```
 content/experiences.md   Ben's scratchpad. Notes, not copy. Never rendered.
+content/<subject>/       Photos as they came off the phone. Never published.
 src/content.json         Every user-facing string. The site reads this.
 tools/render.py          content.json -> the .html files at the repo root
 tools/check.py           refuses to ship a broken page
+tools/images.py          a phone photo -> a web-sized file in assets/
 src/styles/tokens.css    six colours, two typefaces, the spacing scale
 src/styles/motion.css    every keyframe, and the reduced-motion switch
 src/styles/main.css      layout and components
@@ -41,6 +43,10 @@ python -m http.server 8801 # then open http://localhost:8801
 `tools/check.py` exits non-zero on a problem, and the deploy workflow runs it
 before publishing, so a broken page stops the deploy instead of reaching the
 site.
+
+`tools/images.py` is the exception to "no install step": it needs Pillow. It is
+an authoring tool, run by hand when new photographs arrive, and the deploy
+never calls it.
 
 ## Deploying
 
