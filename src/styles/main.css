@@ -501,14 +501,12 @@ a:hover { color: var(--signal-deepen); }
 }
 
 /* --- hobbies -------------------------------------------------------------- */
+/* No palette of its own. This page used to arrive in orange on warm paper,
+   which made the least important page on the site the loudest thing on it.
+   The separation it was doing is structural anyway: its own page, its own
+   layout, and copy that drops the impact framing entirely. */
 
-.hobbies { background: var(--pulse-ground); }
-.hobbies { --accent-line: var(--pulse); }
-.hobbies .masthead { border-bottom-color: var(--pulse-line); }
-.hobbies a:hover { color: var(--pulse-ink); }
-.hobbies .page-title { color: var(--pulse); font-size: 72px; line-height: 0.92; }
-
-.feature { margin-top: 40px; padding-top: 26px; border-top: 4px solid var(--pulse); }
+.feature { margin-top: 40px; padding-top: 26px; border-top: 3px solid var(--signal); }
 .feature__head { display: flex; gap: 72px; align-items: flex-end; }
 .feature__name { flex-shrink: 0; font-size: 46px; line-height: 1.0; letter-spacing: -0.026em; }
 .feature__blurb { margin-bottom: 4px; max-width: 620px; font-size: var(--size-body); line-height: 1.6; color: var(--ink-body); }
@@ -600,13 +598,13 @@ a:hover { color: var(--signal-deepen); }
 .shot--small img { width: auto; height: 190px; aspect-ratio: var(--ar); }
 .shot--small figcaption { max-width: 22ch; }
 
-.second { margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--pulse); }
+.second { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--hairline); }
 /* Bottom-aligned reads well against two lines of blurb and badly against
    five, and this one runs long. */
 .second__head { display: flex; gap: 72px; align-items: flex-start; }
 .second__name { flex-shrink: 0; font-size: var(--size-section); line-height: 1.05; letter-spacing: -0.022em; }
 
-.rest { margin-top: 38px; padding-top: 22px; border-top: 1px solid var(--pulse-line); }
+.rest { margin-top: 38px; padding-top: 22px; border-top: 1px solid var(--hairline); }
 .rest__label { margin-bottom: 18px; font-size: var(--size-meta); color: var(--ink-muted); }
 .rest__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px; }
 .rest__grid h3 { font-size: 19px; letter-spacing: -0.014em; }
@@ -615,7 +613,7 @@ a:hover { color: var(--signal-deepen); }
 .hunting {
   margin-top: 40px;
   padding-top: 22px;
-  border-top: 1px solid var(--pulse-line);
+  border-top: 1px solid var(--hairline);
   display: flex;
   align-items: baseline;
   gap: 18px;
@@ -628,7 +626,7 @@ a:hover { color: var(--signal-deepen); }
   font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.015em;
-  color: var(--pulse);
+  color: var(--ink);
 }
 
 /* --- about, contact -------------------------------------------------------- */
@@ -715,7 +713,6 @@ a:hover { color: var(--signal-deepen); }
 
   .door-button { right: 16px; bottom: 16px; height: 52px; padding: 0 10px 0 18px; font-size: 15px; }
   .email-big { font-size: 26px; }
-  .hobbies .page-title { font-size: 46px; }
   .feature__name { font-size: 30px; }
 }
 

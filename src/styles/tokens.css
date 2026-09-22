@@ -1,25 +1,24 @@
 /* ===========================================================================
    tokens.css — the whole visual vocabulary
-   Six colours, two families, one spacing scale. If a value is not in here,
+   Five colours, two families, one spacing scale. If a value is not in here,
    it probably should not be in the design either.
    =========================================================================== */
 
 :root {
   /* --- colour ------------------------------------------------------------
-     ink and ground carry every piece of text. signal, pulse and deep are
-     bright: they go on backgrounds, borders and large type, never on small
-     body copy. Which colour may carry text:
+     ink and ground carry every piece of text. signal and deep are bright:
+     they go on backgrounds, borders and large type, never on small body
+     copy. Which colour may carry text:
        ink on ground      16.3:1
        ink on signal       6.0:1
-       ink on pulse        5.0:1
        ground on deep      7.1:1
-     pulse is a shade deeper on paper than it is at night — #FF6B35 is a
-     lovely orange and misses 3:1 against the hobbies page, at 2.7.
-     Muted text is ink at 64%, so the palette stays at six names.          */
+     Muted text is ink at 64%, so the palette stays at five names.
+     There was a sixth, an orange, which the hobbies page used to lead with.
+     That page now looks like every other one, so the orange is gone rather
+     than left sitting here unused.                                        */
   --ink:      #0B1B2B;
   --ground:   #FBFBFD;
   --signal:   #0BA5EC;
-  --pulse:    #EC5B17;
   --deep:     #5B2FD6;
   --hairline: #E4E8EF;
 
@@ -34,8 +33,8 @@
   --sheet-lift: #12293E;
   --scrim:      rgba(11, 27, 43, 0.58);
 
-  /* Text on a signal or pulse fill. Bright fills want dark type whichever
-     theme is on, so this one does not flip. */
+  /* Text on a signal fill. A bright fill wants dark type whichever theme is
+     on, so this one does not flip. */
   --on-bright: #0B1B2B;
 
   /* On the dark summary sheet. */
@@ -43,14 +42,6 @@
   --on-dark-muted: rgba(251, 251, 253, 0.64);
   --on-dark-body:  rgba(251, 251, 253, 0.82);
   --on-dark-line:  rgba(251, 251, 253, 0.16);
-
-  /* The hobbies page, and only the hobbies page. */
-  --pulse-ground: #FFF6F2;
-  --pulse-tint:   #FFECE3;
-  --pulse-line:   #F3D9CC;
-  --pulse-dash:   #E8B79C;
-  --pulse-ink:    #C2410C;
-  --pulse-hint:   rgba(11, 27, 43, 0.66);
 
   /* Links are ink with a signal underline, so the bright blue never has to
      carry 15px text. This darker shade is for hover only. */
@@ -86,9 +77,9 @@
    Same six names, different values — nothing below this line is a new colour
    idea, it is the same palette after dark. Contrast against the night ground
    #0E1A26:
-     ink            15.1:1        ink at 64%      6.8:1
-     signal          8.2:1        deep            6.5:1
-     pulse           6.2:1        on-bright/signal 8.1:1
+     ink            15.1:1        ink at 64%       6.8:1
+     signal          8.2:1        deep             6.5:1
+     on-bright on signal          8.1:1
 
    The block appears twice on purpose. Once for a visitor who picked dark, and
    once for a visitor who never picked anything and whose system is dark — CSS
@@ -101,7 +92,6 @@
   --ink:      #E8EEF5;
   --ground:   #0E1A26;
   --signal:   #38BDF8;
-  --pulse:    #FF6B35;
   --deep:     #A78BFA;
   --hairline: #22313F;
 
@@ -113,13 +103,6 @@
   --sheet-lift: #1E3348;
   --scrim:      rgba(4, 10, 16, 0.72);
 
-  --pulse-ground: #17110E;
-  --pulse-tint:   #231813;
-  --pulse-line:   #3A2820;
-  --pulse-dash:   #4E3628;
-  --pulse-ink:    #FF8355;
-  --pulse-hint:   rgba(232, 238, 245, 0.55);
-
   --signal-deepen: #7DD3FC;
 
   color-scheme: dark;
@@ -130,7 +113,6 @@
     --ink:      #E8EEF5;
     --ground:   #0E1A26;
     --signal:   #38BDF8;
-    --pulse:    #FF6B35;
     --deep:     #A78BFA;
     --hairline: #22313F;
 
@@ -141,13 +123,6 @@
     --sheet:      #16263A;
     --sheet-lift: #1E3348;
     --scrim:      rgba(4, 10, 16, 0.72);
-
-    --pulse-ground: #17110E;
-    --pulse-tint:   #231813;
-    --pulse-line:   #3A2820;
-    --pulse-dash:   #4E3628;
-    --pulse-ink:    #FF8355;
-    --pulse-hint:   rgba(232, 238, 245, 0.55);
 
     --signal-deepen: #7DD3FC;
 
