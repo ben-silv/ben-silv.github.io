@@ -84,16 +84,16 @@
   <main class="main" id="content">
     <div class="page-head enter">
       <h1 class="page-title">Projects</h1>
-      <p class="page-lead">Both of these started with a problem someone I know actually had. Neither of them is a demo.</p>
+      <p class="page-lead">Both of these started with a problem someone I know actually had. Neither is a demo.</p>
     </div>
     <article class="entry entry--lead entry--project enter-1">
       <div class="entry__body">
         <h2 class="entry__name">CraveCast</h2>
         <p class="entry__org">September 2026</p>
-        <p class="entry__text">CraveCast warns people in recovery before a craving lands, instead of recording it afterwards. The forecast comes from their own logs and the peer-reviewed ADARP study.</p>
-        <p class="entry__text">Underneath it is kernel density estimation over the hours someone has actually logged a craving, read against the study's population-level risk windows — useful on the first day, personal by the second week. It runs entirely in the browser and works offline, so nothing about a person's recovery leaves their device. Getting a published model to actually run taught me the parts that aren't in the paper: choosing a bandwidth, deciding what counts as a signal, and working out how you'd know whether a prediction was any good.</p>
-        <p class="entry__text">The idea came from a lung transplant observership at Mass General. COPD is one of the most common reasons people end up needing new lungs, and smoking is the leading cause of COPD. I wanted to build something for the addiction end of that, not the surgical end.</p>
-        <p class="entry__text">It also had to be worth opening. Recovery apps tend to be either a logbook or a clinical dashboard, and neither is what you reach for in the moment you need it. This one has streaks, unlocks and some colour — breaking an addiction is hard enough without the tool being another chore.</p>
+        <p class="entry__text">CraveCast predicts high-risk windows for people in recovery, so they get a warning before a craving hits rather than a log of it afterwards.</p>
+        <p class="entry__text">The prediction combines the peer-reviewed ADARP study with kernel density estimation over a person's own logged cravings. It starts from the study's population-level risk windows and gets more accurate as it learns from their entries. Building it taught me the parts of machine learning that aren't in the paper: choosing a bandwidth, deciding what counts as a signal, and working out how to tell whether a prediction is any good.</p>
+        <p class="entry__text">It's a single-file HTML app on GitHub Pages. It works fully offline, with no sign-up and no tracking, so nothing leaves the browser. That constraint shaped most of the architecture.</p>
+        <p class="entry__text">The idea came from a lung transplant observership at Mass General. COPD is one of the most common reasons people need a lung transplant, and smoking is its leading cause. Most recovery apps are either a plain logbook or a clinical dashboard, so I added streaks and unlockables — something people would keep opening.</p>
         <div class="actions">
         <a class="btn btn--primary" href="https://ben-silv.github.io/CraveCast/">Open the app</a>
         <a class="btn" href="https://github.com/ben-silv/CraveCast">Read the source</a>
@@ -108,10 +108,10 @@
       <div class="entry__body">
         <h2 class="entry__name">EpiAlert</h2>
         <p class="entry__org">May 2026</p>
-        <p class="entry__text">EpiAlert turns a photo of a meal into an allergen decision in seconds, with the nearest stocked epinephrine on the same screen.</p>
-        <p class="entry__text">I grew up in Taiwan with a nut allergy. I know now that pad thai usually has crushed peanuts in it and that a lot of Indian curries are thickened with cashews. A shy nine-year-old doesn't, and isn't going to ask a waiter. This is the check I didn't have.</p>
-        <p class="entry__text">It's a first check, not a verdict, and the app says so. It's built for the unfamiliar meal in a country where you can't be sure the waiter understood the question — enough to settle it, or to tell you this is one to ask about properly. It remembers your allergies, and it's simple enough for a kid to use at the table.</p>
-        <p class="entry__text">I cut a peer-review feed late in development. Crowd-sourced safety data is a liability when the failure mode is anaphylaxis.</p>
+        <p class="entry__text">EpiAlert reads a photo of a meal, flags likely allergens and gives a risk-level warning. It also maps nearby pharmacies and hospitals that stock epinephrine auto-injectors.</p>
+        <p class="entry__text">It's a full-stack web app: Python and Flask, with the Claude Vision API doing the photo analysis and the Google Maps API the map. It remembers your allergies, and it's simple enough for a child to use at the table.</p>
+        <p class="entry__text">I grew up in Taiwan with a nut allergy. You learn over time that pad thai often has crushed peanuts in it and that a lot of Indian curries are thickened with cashews, but a kid doesn't know that and won't ask a waiter. It's a first check and not a verdict, and it's most useful travelling, when you can't be sure the question got across.</p>
+        <p class="entry__text">I cut a peer-response feed late in development. Crowd-sourced safety data is a liability when the failure mode is anaphylaxis.</p>
         <div class="actions">
         <a class="btn btn--primary" href="mailto:silverbenh1@gmail.com?subject=EpiAlert">Ask me for a demo</a>
         </div>
@@ -140,7 +140,7 @@
     <section class="glance__col glance__col--research">
       <h3>Research</h3>
       <div class="glance__items">
-        <div><strong>Mass General, Vaccine &amp; Immunotherapy Center</strong><span>Immune populations called from a reproducible pipeline instead of by hand, on datasets past a million events.</span></div>
+        <div><strong>Mass General, Vaccine &amp; Immunotherapy Center</strong><span>A Python pipeline that identifies immune cell populations, on datasets of over a million cells.</span></div>
         <div><strong>Sonkusale Research Labs</strong><span>Fabrication protocols the group can repeat, from benchtop signal characterisation.</span></div>
       </div>
       <a class="glance__more" href="research.html">The full research page</a>
@@ -148,15 +148,15 @@
     <section class="glance__col glance__col--projects">
       <h3>Projects</h3>
       <div class="glance__items">
-        <div><strong>CraveCast</strong><span>A warning before a craving lands, not a record afterwards. Offline, live, open source.</span></div>
-        <div><strong>EpiAlert</strong><span>A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen.</span></div>
+        <div><strong>CraveCast</strong><span>Predicts high-risk windows for people in recovery. Offline, live, open source.</span></div>
+        <div><strong>EpiAlert</strong><span>Reads a photo of a meal for allergens, with the nearest epinephrine on the same screen.</span></div>
       </div>
       <a class="glance__more" href="projects.html">The full projects page</a>
     </section>
     <section class="glance__col">
       <h3>Also</h3>
       <div class="glance__items">
-        <div><strong>Tufts Technology Services</strong><span>Storage requests cut from a repetitive multi-form process to a single paste, about a quarter of the time back on each one, for 500+ daily users.</span></div>
+        <div><strong>Tufts Technology Services</strong><span>Research computing requests in one place, and a request workflow about 25% faster, for 500+ daily users.</span></div>
         <div><strong>Teaching and building</strong><span>Python workshops for thirty-odd students, and an L1 certification rocket that flew.</span></div>
       </div>
       <a class="glance__more" href="about.html">More on the about page</a>
@@ -178,7 +178,7 @@
   </a>
   <div id="glance-root"></div>
 </div>
-<script type="application/json" id="glance-data">{"button": "At a glance", "heading": "At a glance", "lead": "Everything on one screen, for anyone who has two minutes rather than ten. The full version of each is a page of its own.", "columns": [{"heading": "Studying", "accent": "", "items": [{"head": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior."}, {"head": "Dean's List, 3.9 GPA", "body": "Every semester so far."}]}, {"heading": "Research", "accent": "research", "link": {"label": "The full research page", "href": "research.html"}, "items": [{"head": "Mass General, Vaccine &amp; Immunotherapy Center", "body": "Immune populations called from a reproducible pipeline instead of by hand, on datasets past a million events."}, {"head": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation."}]}, {"heading": "Projects", "accent": "projects", "link": {"label": "The full projects page", "href": "projects.html"}, "items": [{"head": "CraveCast", "body": "A warning before a craving lands, not a record afterwards. Offline, live, open source."}, {"head": "EpiAlert", "body": "A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen."}]}, {"heading": "Also", "accent": "", "link": {"label": "More on the about page", "href": "about.html"}, "items": [{"head": "Tufts Technology Services", "body": "Storage requests cut from a repetitive multi-form process to a single paste, about a quarter of the time back on each one, for 500+ daily users."}, {"head": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew."}]}], "actions": [{"label": "Download resume", "href": "resume.pdf", "primary": true}, {"label": "Contact", "href": "contact.html", "primary": false}], "email": "silverbenh1@gmail.com", "footerNote": "Reach me at"}</script>
+<script type="application/json" id="glance-data">{"button": "At a glance", "heading": "At a glance", "lead": "Everything on one screen, for anyone who has two minutes rather than ten. The full version of each is a page of its own.", "columns": [{"heading": "Studying", "accent": "", "items": [{"head": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior."}, {"head": "Dean's List, 3.9 GPA", "body": "Every semester so far."}]}, {"heading": "Research", "accent": "research", "link": {"label": "The full research page", "href": "research.html"}, "items": [{"head": "Mass General, Vaccine &amp; Immunotherapy Center", "body": "A Python pipeline that identifies immune cell populations, on datasets of over a million cells."}, {"head": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation."}]}, {"heading": "Projects", "accent": "projects", "link": {"label": "The full projects page", "href": "projects.html"}, "items": [{"head": "CraveCast", "body": "Predicts high-risk windows for people in recovery. Offline, live, open source."}, {"head": "EpiAlert", "body": "Reads a photo of a meal for allergens, with the nearest epinephrine on the same screen."}]}, {"heading": "Also", "accent": "", "link": {"label": "More on the about page", "href": "about.html"}, "items": [{"head": "Tufts Technology Services", "body": "Research computing requests in one place, and a request workflow about 25% faster, for 500+ daily users."}, {"head": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew."}]}], "actions": [{"label": "Download resume", "href": "resume.pdf", "primary": true}, {"label": "Contact", "href": "contact.html", "primary": false}], "email": "silverbenh1@gmail.com", "footerNote": "Reach me at"}</script>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin defer></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin defer></script>
 <script src="src/js/app.js" defer></script>

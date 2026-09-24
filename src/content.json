@@ -15,7 +15,7 @@
     "title": "Ben Silver — computer science and biology at Tufts",
     "description": "Ben Silver is a rising junior at Tufts University studying computer science with a focus in biological sciences, with mass cytometry research at Mass General.",
     "identity": "Rising junior at Tufts, studying computer science with a focus in biological sciences.",
-    "summary": "I like problems where the answer has to reach a person at the end of it. Most of my work sits between software and biology. The rest of it usually involves taking something apart to find out why it stopped working.",
+    "summary": "I like problems where the answer has to reach a person at the end of it. Most of my work sits between software and biology. I'm looking for a Summer 2027 internship.",
     "education": [
       {
         "label": "Studying at",
@@ -37,17 +37,17 @@
       {
         "href": "research.html",
         "label": "Research",
-        "desc": "Mass cytometry at Mass General, and flexible bioelectronics before that. What the work established, not how it was done."
+        "desc": "Mass cytometry at Mass General, and flexible electrode arrays before that. What the work produced, not how it was done."
       },
       {
         "href": "projects.html",
         "label": "Projects",
-        "desc": "CraveCast and EpiAlert. Two health tools built for moments where a bad interface costs somebody something."
+        "desc": "CraveCast and EpiAlert. Two health tools, both built for a moment where getting it wrong costs somebody something."
       },
       {
         "href": "about.html",
         "label": "About",
-        "desc": "Where I came from, how the computer science and the biology ended up in the same place, and where I would like this to go next."
+        "desc": "Where I came from, how the computer science and the biology ended up in the same place, and where I'd like to take it."
       },
       {
         "href": "contact.html",
@@ -57,7 +57,7 @@
       {
         "href": "hobbies.html",
         "label": "Hobbies",
-        "desc": "Leatherworking mostly, then a bike that is usually in pieces. Nothing on that page has anything to do with work."
+        "desc": "Leatherworking mostly, then bikes. None of it has anything to do with work."
       }
     ]
   },
@@ -65,17 +65,17 @@
     "title": "Research — Ben Silver",
     "description": "Mass cytometry at Mass General's Vaccine and Immunotherapy Center, and flexible bioelectronics at Sonkusale Research Labs.",
     "heading": "Research",
-    "lead": "Two labs so far, both asking a version of the same question: can you trust what the instrument just told you, and can anyone reproduce it tomorrow?",
+    "lead": "Two labs so far. Both come down to the same question: can you trust what the instrument told you, and can someone else get the same answer tomorrow?",
     "positions": [
       {
         "name": "Mass cytometry at the Vaccine &amp; Immunotherapy Center",
         "org": "Massachusetts General Hospital, since July 2026",
         "lead": true,
         "bullets": [
-          "Replaced hand-called immune populations with a reproducible Python pipeline, running across vaccine stimulations on datasets past a million events.",
-          "Cut raw instrument output to usable populations in one pass — FCS parsing, arcsinh transformation and dimensionality reduction in a single path instead of three manual steps.",
-          "Made cluster assignments hold up to immunological review rather than just look clean, by adding biological validation metrics to the existing clustering.",
-          "Extended the pipeline to new cohorts, using X-shift to find where population abundance has moved and carrying across the Shannon and Simpson diversity notebooks I wrote for the first project."
+          "Built a Python pipeline that identifies immune cell populations across vaccine stimulations. It replaced work that was being done by hand, on datasets of over a million cells with fifty-plus parameters each.",
+          "Handles the whole preprocessing path in one pass: FCS parsing, arcsinh transformation, and dimensionality reduction with PCA and UMAP.",
+          "Added biological validation metrics to the existing clustering, so the population assignments hold up when someone checks them.",
+          "Now extending it to new datasets, using X-shift to track changes in population abundance and reusing the Shannon and Simpson diversity notebooks I wrote for the first project."
         ],
         "facts": [
           {
@@ -115,9 +115,9 @@
           }
         ],
         "bullets": [
-          "Gave the group fabrication protocols they could repeat, for flexible electrode arrays headed for wearable, point-of-care diagnostics.",
-          "Found the failure points rather than guessing at them, by characterising signal across physiological conditions on the bench.",
-          "Came out able to run bench work on my own — protocol and safety first, which is what earns you the time to try anything."
+          "Developed and validated fabrication protocols for flexible electrode arrays, built for wearable point-of-care diagnostics.",
+          "Characterised the signal across physiological conditions on the bench, which is how the failure points got found rather than guessed at.",
+          "Learned lab safety and protocol well enough to run bench work on my own."
         ]
       }
     ]
@@ -126,17 +126,17 @@
     "title": "Projects — Ben Silver",
     "description": "CraveCast, a craving forecaster for addiction recovery, and EpiAlert, allergen detection and epinephrine mapping for travellers.",
     "heading": "Projects",
-    "lead": "Both of these started with a problem someone I know actually had. Neither of them is a demo.",
+    "lead": "Both of these started with a problem someone I know actually had. Neither is a demo.",
     "items": [
       {
         "name": "CraveCast",
         "when": "September 2026",
         "lead": true,
         "paragraphs": [
-          "CraveCast warns people in recovery before a craving lands, instead of recording it afterwards. The forecast comes from their own logs and the peer-reviewed ADARP study.",
-          "Underneath it is kernel density estimation over the hours someone has actually logged a craving, read against the study's population-level risk windows — useful on the first day, personal by the second week. It runs entirely in the browser and works offline, so nothing about a person's recovery leaves their device. Getting a published model to actually run taught me the parts that aren't in the paper: choosing a bandwidth, deciding what counts as a signal, and working out how you'd know whether a prediction was any good.",
-          "The idea came from a lung transplant observership at Mass General. COPD is one of the most common reasons people end up needing new lungs, and smoking is the leading cause of COPD. I wanted to build something for the addiction end of that, not the surgical end.",
-          "It also had to be worth opening. Recovery apps tend to be either a logbook or a clinical dashboard, and neither is what you reach for in the moment you need it. This one has streaks, unlocks and some colour — breaking an addiction is hard enough without the tool being another chore."
+          "CraveCast predicts high-risk windows for people in recovery, so they get a warning before a craving hits rather than a log of it afterwards.",
+          "The prediction combines the peer-reviewed ADARP study with kernel density estimation over a person's own logged cravings. It starts from the study's population-level risk windows and gets more accurate as it learns from their entries. Building it taught me the parts of machine learning that aren't in the paper: choosing a bandwidth, deciding what counts as a signal, and working out how to tell whether a prediction is any good.",
+          "It's a single-file HTML app on GitHub Pages. It works fully offline, with no sign-up and no tracking, so nothing leaves the browser. That constraint shaped most of the architecture.",
+          "The idea came from a lung transplant observership at Mass General. COPD is one of the most common reasons people need a lung transplant, and smoking is its leading cause. Most recovery apps are either a plain logbook or a clinical dashboard, so I added streaks and unlockables — something people would keep opening."
         ],
         "facts": [
           {
@@ -166,10 +166,10 @@
         "when": "May 2026",
         "lead": false,
         "paragraphs": [
-          "EpiAlert turns a photo of a meal into an allergen decision in seconds, with the nearest stocked epinephrine on the same screen.",
-          "I grew up in Taiwan with a nut allergy. I know now that pad thai usually has crushed peanuts in it and that a lot of Indian curries are thickened with cashews. A shy nine-year-old doesn't, and isn't going to ask a waiter. This is the check I didn't have.",
-          "It's a first check, not a verdict, and the app says so. It's built for the unfamiliar meal in a country where you can't be sure the waiter understood the question — enough to settle it, or to tell you this is one to ask about properly. It remembers your allergies, and it's simple enough for a kid to use at the table.",
-          "I cut a peer-review feed late in development. Crowd-sourced safety data is a liability when the failure mode is anaphylaxis."
+          "EpiAlert reads a photo of a meal, flags likely allergens and gives a risk-level warning. It also maps nearby pharmacies and hospitals that stock epinephrine auto-injectors.",
+          "It's a full-stack web app: Python and Flask, with the Claude Vision API doing the photo analysis and the Google Maps API the map. It remembers your allergies, and it's simple enough for a child to use at the table.",
+          "I grew up in Taiwan with a nut allergy. You learn over time that pad thai often has crushed peanuts in it and that a lot of Indian curries are thickened with cashews, but a kid doesn't know that and won't ask a waiter. It's a first check and not a verdict, and it's most useful travelling, when you can't be sure the question got across.",
+          "I cut a peer-response feed late in development. Crowd-sourced safety data is a liability when the failure mode is anaphylaxis."
         ],
         "facts": [
           {
@@ -196,10 +196,10 @@
     "description": "Computer science and biology at Tufts, research computing at Tufts Technology Services, and where Ben Silver would like this to go next.",
     "heading": "About",
     "paragraphs": [
-      "I came to Tufts for computer science and added a focus in biological sciences once it turned out biology was the part I couldn't stop reading about. The two looked unrelated for about a year, and then stopped being unrelated at all.",
-      "I grew up in a Taiwanese-American household, where the answer to most questions was to take the lid off and look. That's more or less the whole story. A bike that shifts badly gets stripped to the frame; a knife that won't bite gets a whetstone and an argument about angles; a dataset with a million immune cells in it gets a pipeline until the clusters mean something.",
-      "At Tufts Technology Services I build tooling for research storage. The old request workflow had staff retyping the same details into a fixed format by hand — mine takes a paste, picks the template for the kind of request, and formats it. That's about a quarter of the time back on each one, one consistent format at the end, and nothing for a new starter to memorise.",
-      "Data is one big haystack and computer science is the magnet. Finding the pattern and getting it in front of someone who can act on it is most of why I like this work. Biotech and healthcare data are where I'd most like it to land, though prediction, patterns and making numbers usable travel anywhere data does."
+      "I came to Tufts for computer science and added a focus in biological sciences once biology turned out to be the part I couldn't stop reading about. The two looked unrelated for about a year, and then stopped being unrelated at all.",
+      "I grew up in a Taiwanese-American household, where the answer to most questions was to take the lid off and look. That's still how I work. A bike that shifts badly gets stripped down, a knife that won't cut gets a whetstone, and a dataset with a million immune cells in it gets a pipeline until the clusters mean something.",
+      "At Tufts Technology Services I build tooling for research computing. I helped launch and test a new site that puts every research computing request in one place, running on ColdFront, so researchers can manage their own storage. I also replaced a request workflow that staff had been typing out by hand with one that takes a paste and formats it from templates — about 25% faster per request, and one format for everything.",
+      "What I'm interested in is using data to find patterns and make predictions. Data is one big haystack and computer science is the magnet. Biotech and healthcare data are where I'd most like that to land, though the same work applies to data science and analysis anywhere."
     ],
     "sideHeading": "What I'm working on",
     "current": [
@@ -225,7 +225,7 @@
     "title": "Contact — Ben Silver",
     "description": "Email, GitHub and LinkedIn for Ben Silver.",
     "heading": "Contact",
-    "lead": "Email reaches me fastest. I read everything, and I'd rather hear from a person than a form.",
+    "lead": "Email is the fastest way to reach me. I read everything, and I'd rather hear from a person than a form.",
     "actions": [
       {
         "label": "Email me",
@@ -261,10 +261,10 @@
     "title": "Hobbies — Ben Silver",
     "description": "Leatherworking, bikes, gear trading, whetstones and model rocketry. Nothing to do with work.",
     "heading": "Hobbies",
-    "lead": "None of this is a transferable skill and I'm not going to pretend otherwise. It's just what I do when nobody's paying me.",
+    "lead": "None of this is a transferable skill. It's just what I do when nobody's paying me.",
     "feature": {
       "name": "Leatherworking",
-      "blurb": "The one I'd talk about for an hour. Slow, forgiving of patience, completely unforgiving of rushing, and the only thing I do where a mistake is permanent the second it happens.",
+      "blurb": "The one I could talk about for an hour. It's slow work, and the details are the whole thing: even stitching, matching cuts, edges finished properly. A mistake is permanent the second you make it.",
       "compare": {
         "label": "The same wallet, a year apart",
         "items": [
@@ -284,7 +284,7 @@
       },
       "tiles": [
         {
-          "caption": "Six card slots, all the same size, which is the whole trick",
+          "caption": "Six card slots, all the same size, which is the hard part",
           "src": "assets/leather-wallet-inside.jpg",
           "alt": "The second wallet open flat, showing six tan card slots stitched in white thread"
         },
@@ -294,20 +294,20 @@
           "alt": "Six paper pattern pieces laid out on a sheet of black leather over a gridded cutting mat"
         },
         {
-          "caption": "Ten seconds of the finished thing",
+          "caption": "Ten seconds of a finished one",
           "video": true,
           "src": "assets/leather-wallet.mp4",
           "alt": "A short clip of a finished leather wallet being opened and turned over in the hand"
         }
       ],
-      "note": "I draw the patterns myself and prototype them in paper first, because leather doesn't forgive a measurement you guessed at. Most of what got better between those two wallets is that I stopped guessing."
+      "note": "I draw my own patterns and prototype them in paper first, checking the measurements before anything gets cut. Most of what improved between those two wallets is that I stopped guessing."
     },
     "second": {
-      "name": "Bikes, mostly in pieces",
-      "blurb": "I ride mountain bikes, and the half I like best is the one where the bike is on the floor in pieces. Brakes bled and upgraded, a dropper post fitted, headset and gears dialled in, a new cassette — most of what's on mine now, I put there. Down to cable ends that match the frame, which nobody notices but me.",
+      "name": "Bikes",
+      "blurb": "I ride a 2024 Niner AIR 9, and most of what's on it now I put there myself: brakes bled and upgraded, a dropper post fitted, headset and gears adjusted, and the cassette swapped from SRAM SX to NX. The fixing is the half I like best. That extends to cable ends that match the frame, which nobody notices but me.",
       "shots": [
         {
-          "caption": "The Niner, and most of what's on it I put there",
+          "caption": "The Niner, most of it upgraded from where it started",
           "src": "assets/bike-niner.jpg",
           "alt": "A silver and blue Niner hardtail mountain bike leaning against a tree on a wooded trail"
         },
@@ -322,19 +322,19 @@
     "rest": [
       {
         "name": "Gear trading",
-        "body": "Marketplace, mostly, hunting parts for the bikes. I'll find the used one — half the price and usually in better shape than the listing admits."
+        "body": "Hunting marketplace listings for bike parts. I'll find the used one — usually half the price, and in better shape than the listing suggests."
       },
       {
         "name": "Knife sharpening",
-        "body": "Whetstones, a consistent angle, an edge that bites paper. The one I'm proudest of is my grandfather's deba, the knife he filleted fish with, brought back from blunt."
+        "body": "Whetstones and a consistent angle, until the edge bites paper. The one I'm proudest of is my grandfather's deba, the knife he filleted fish with, brought back from blunt."
       },
       {
         "name": "Taiwanese food",
-        "body": "Danzai noodles first, Taiwanese pork chop rice a close second. I'll argue about both."
+        "body": "Danzai noodles first, Taiwanese pork chop rice second. I'll argue about both."
       },
       {
         "name": "Model rocketry",
-        "body": "The L1 certification rocket with Tufts SEDS — drawn, cut, glued and flown, which is the only part that counts."
+        "body": "The L1 certification rocket with Tufts SEDS — designed, cut, assembled and flown."
       }
     ],
     "hunting": {
@@ -372,7 +372,7 @@
         "items": [
           {
             "head": "Mass General, Vaccine &amp; Immunotherapy Center",
-            "body": "Immune populations called from a reproducible pipeline instead of by hand, on datasets past a million events."
+            "body": "A Python pipeline that identifies immune cell populations, on datasets of over a million cells."
           },
           {
             "head": "Sonkusale Research Labs",
@@ -390,11 +390,11 @@
         "items": [
           {
             "head": "CraveCast",
-            "body": "A warning before a craving lands, not a record afterwards. Offline, live, open source."
+            "body": "Predicts high-risk windows for people in recovery. Offline, live, open source."
           },
           {
             "head": "EpiAlert",
-            "body": "A photo of a meal becomes an allergen decision, with the nearest epinephrine on the same screen."
+            "body": "Reads a photo of a meal for allergens, with the nearest epinephrine on the same screen."
           }
         ]
       },
@@ -408,7 +408,7 @@
         "items": [
           {
             "head": "Tufts Technology Services",
-            "body": "Storage requests cut from a repetitive multi-form process to a single paste, about a quarter of the time back on each one, for 500+ daily users."
+            "body": "Research computing requests in one place, and a request workflow about 25% faster, for 500+ daily users."
           },
           {
             "head": "Teaching and building",
