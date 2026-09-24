@@ -96,6 +96,11 @@
         "name": "Flexible electrode arrays at Sonkusale Research Labs",
         "org": "Tufts University, February to May 2026",
         "lead": false,
+        "bullets": [
+          "Developed and validated fabrication protocols for flexible electrode arrays, built for wearable point-of-care diagnostics.",
+          "Characterised the signal across physiological conditions on the bench, which is how the failure points got found rather than guessed at.",
+          "Learned lab safety and protocol well enough to run bench work on my own."
+        ],
         "facts": [
           {
             "label": "Domain",
@@ -113,11 +118,6 @@
             "alt": "Ben in gloves in the Sonkusale lab, with the bench behind him: a probe station, reagent bottles, tools and finished arrays",
             "caption": "The lab it happened in"
           }
-        ],
-        "bullets": [
-          "Developed and validated fabrication protocols for flexible electrode arrays, built for wearable point-of-care diagnostics.",
-          "Characterised the signal across physiological conditions on the bench, which is how the failure points got found rather than guessed at.",
-          "Learned lab safety and protocol well enough to run bench work on my own."
         ]
       }
     ]

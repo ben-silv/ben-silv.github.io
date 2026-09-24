@@ -37,6 +37,13 @@ jobs:
       - name: Check the output
         run: python tools/check.py
 
+      # content/ is Ben's own writing — rough notes, questions to himself, the
+      # editable copy deck — and tools/ is the build. Neither belongs on the
+      # portfolio's own domain. They stay in the repository; they just are not
+      # served. This runs after check.py, which expects them to be there.
+      - name: Keep the workshop out of the shop window
+        run: rm -rf content tools
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3

@@ -23,6 +23,30 @@ When you want it live, say **"update the site from my notes."** Your notes get
 rewritten as impact-first copy, dropped into `src/content.json`, and the pages
 regenerate. `content/experiences.md` is left exactly as you typed it.
 
+## Rewriting it yourself, word for word
+
+`content/copy.md` is every word on the site, laid out to be read and rewritten,
+with a heading over each block saying where it appears. Change whatever you
+like in it, then:
+
+```sh
+python tools/prose.py import
+python tools/render.py
+```
+
+Four things worth knowing:
+
+- Leave the `###` headings alone. They are how each block finds its way back.
+- A blank line inside a block starts a new item — a new bullet, a new
+  paragraph. Delete one and the two run together; add one and they split.
+- A few blocks contain HTML, like `<span class="mark">`. Keep the tags and
+  change the words around them.
+- `git diff` shows exactly what you changed, so nothing is unrecoverable.
+
+The file is regenerated every time `tools/render.py` runs, so it can never
+fall behind the site. That also means it reformats your line breaks — the
+words are kept exactly, the wrapping is not.
+
 ## The direct way
 
 Edit `src/content.json` yourself. It is plain JSON: every value between quotes

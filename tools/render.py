@@ -4,7 +4,8 @@
     python tools/render.py
 
 Writes index.html, research.html, projects.html, about.html, contact.html,
-hobbies.html and 404.html into the repository root. Nothing else touches those
+hobbies.html and 404.html into the repository root, and refreshes the readable
+copy of the same text in content/copy.md. Nothing else touches those
 files by hand — edit src/content.json and run this again.
 
 Standard library only, so it runs anywhere Python 3 does, including the
@@ -15,6 +16,8 @@ import json
 import os
 import struct
 import sys
+
+import prose
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTENT = os.path.join(ROOT, "src", "content.json")
@@ -580,6 +583,11 @@ def main():
         with open(os.path.join(ROOT, name), "w", encoding="utf-8", newline="\n") as fh:
             fh.write(html)
         print("wrote %-16s %6d bytes" % (name, len(html.encode("utf-8"))))
+
+    # content/copy.md is a readable view of the same strings. Refreshing it
+    # here means it can never be stale, and so can never be imported back over
+    # something newer than itself.
+    prose.export()
     return 0
 
 

@@ -12,10 +12,12 @@ change never means touching a template.
 
 ```
 content/experiences.md   Ben's scratchpad. Notes, not copy. Never rendered.
+content/copy.md          every word on the site, laid out to be rewritten
 content/<subject>/       Photos as they came off the phone. Never published.
 src/content.json         Every user-facing string. The site reads this.
-tools/render.py          content.json -> the .html files at the repo root
+tools/render.py          content.json -> the .html files, and copy.md
 tools/check.py           refuses to ship a broken page
+tools/prose.py           content.json <-> copy.md, both directions
 tools/images.py          a phone photo -> a web-sized file in assets/
 tools/mute.py            takes the audio track out of a clip
 src/styles/tokens.css    six colours, two typefaces, the spacing scale
@@ -53,6 +55,10 @@ arrive, and the deploy never calls either.
 
 Push to `main`. `.github/workflows/deploy.yml` renders, checks, and publishes
 the repository root to GitHub Pages. There is no build artifact to keep in sync.
+
+`content/` and `tools/` are dropped just before publishing. They stay in the
+repository; they are simply not served from the portfolio's own domain, which
+is no place for Ben's rough notes or the build scripts.
 
 ## Light and dark
 
