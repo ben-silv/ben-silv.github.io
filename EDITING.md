@@ -17,7 +17,8 @@ Then commit and push. The deploy runs itself.
 
 Open `content/experiences.md` and write whatever you want — bullets,
 half-sentences, typos, three words and a link. That file is a scratchpad and
-nothing in it is published as written.
+nothing in it is published as written. It is git-ignored too, so it never
+leaves your machine; this repository is public and your notes are not.
 
 When you want it live, say **"update the site from my notes."** Your notes get
 rewritten as impact-first copy, dropped into `src/content.json`, and the pages

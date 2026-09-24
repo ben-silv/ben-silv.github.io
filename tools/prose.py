@@ -128,7 +128,24 @@ def wrap(text):
                          break_on_hyphens=False)
 
 
-def export():
+def export(force=False):
+    """Write content/copy.md from content.json.
+
+    Unless the file has edits in it that have not been imported yet, in which
+    case it is left alone. render.py calls this on every run, and overwriting
+    somebody's half-finished sentence because they had not run import yet would
+    be a poor way to repay them for using the file.
+    """
+    if not force:
+        waiting = [p for p, _, _ in changes()]
+        if waiting:
+            print("content/copy.md has %d unimported edit%s, leaving it alone:"
+                  % (len(waiting), "" if len(waiting) == 1 else "s"))
+            for path in waiting:
+                print("  " + path)
+            print("  -> python tools/prose.py import, or 'export --force' to discard")
+            return
+
     with io.open(CONTENT, encoding="utf-8") as fh:
         data = json.load(fh)
 
@@ -195,49 +212,61 @@ def parse(text):
             for p, b in collected.items()}
 
 
-def apply():
+def changes():
+    """What copy.md would do to content.json: a list of (path, value, note).
+
+    note is None for an ordinary edit, or says why a block is being passed
+    over. Nothing is written. apply() and export() both ask this first.
+    """
+    if not os.path.exists(COPY):
+        return []
     with io.open(CONTENT, encoding="utf-8") as fh:
         data = json.load(fh)
-    if not os.path.exists(COPY):
-        sys.exit("no content/copy.md yet — run: python tools/prose.py export")
     with io.open(COPY, encoding="utf-8") as fh:
         blocks = parse(fh.read())
 
-    changed, unknown, emptied = [], [], []
+    out = []
     for path, chunks in blocks.items():
         try:
             holder, key = resolve(data, path)
             before = holder[key]
         except (KeyError, IndexError, ValueError, TypeError):
-            unknown.append(path)
+            out.append((path, None, "no such setting"))
             continue
-
         if not chunks:
-            emptied.append(path)
+            out.append((path, None, "left blank"))
             continue
 
         # every value here is prose, so however it got wrapped in the file it
         # goes back as one line
         flat = [" ".join(c.split()) for c in chunks]
         after = flat if isinstance(before, list) else " ".join(flat)
-
         if after != before:
-            holder[key] = after
-            changed.append(path)
+            out.append((path, after, None))
+    return out
 
-    for path in unknown:
-        print("skipped, no such setting: %s" % path)
-    for path in emptied:
-        print("skipped, left blank: %s" % path)
+
+def apply():
+    pending = changes()
+    for path, _, why in pending:
+        if why:
+            print("skipped, %s: %s" % (why, path))
+    changed = [(p, v) for p, v, why in pending if not why]
 
     if not changed:
         print("nothing changed")
         return 0
 
+    with io.open(CONTENT, encoding="utf-8") as fh:
+        data = json.load(fh)
+    for path, value in changed:
+        holder, key = resolve(data, path)
+        holder[key] = value
     with io.open(CONTENT, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+
     print("updated %d block%s:" % (len(changed), "" if len(changed) == 1 else "s"))
-    for path in changed:
+    for path, _ in changed:
         print("  " + path)
     print("\nnow run: python tools/render.py")
     return 0
@@ -246,8 +275,14 @@ def apply():
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else ""
     if mode == "export":
-        export()
+        export(force="--force" in sys.argv)
     elif mode == "import":
         sys.exit(apply())
+    elif mode == "status":
+        pending = changes()
+        for path, _, why in pending:
+            print("%-16s %s" % (why or "edited", path))
+        if not pending:
+            print("content/copy.md matches the site")
     else:
         sys.exit(__doc__)

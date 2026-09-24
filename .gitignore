@@ -7,3 +7,8 @@ content/*/
 
 # Python leaves these behind when one tool imports another.
 __pycache__/
+
+# Ben's own notes. They live on his machine and nowhere else — this repo is
+# public, and the notes are where he thinks out loud, including about work he
+# may not be free to describe yet.
+content/experiences.md

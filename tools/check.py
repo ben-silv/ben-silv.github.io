@@ -110,7 +110,7 @@ def main():
 
     for extra in ["src/styles/tokens.css", "src/styles/motion.css",
                   "src/styles/main.css", "src/js/app.js", "resume.pdf",
-                  "assets/favicon.svg", "content/experiences.md"]:
+                  "assets/favicon.svg", "content/copy.md"]:
         if not os.path.exists(os.path.join(ROOT, extra)):
             print("FAIL missing " + extra)
             failed = True

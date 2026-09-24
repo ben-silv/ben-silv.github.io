@@ -11,7 +11,7 @@ file and writes the seven HTML pages. Nothing else generates markup, so a copy
 change never means touching a template.
 
 ```
-content/experiences.md   Ben's scratchpad. Notes, not copy. Never rendered.
+content/experiences.md   Ben's scratchpad. Not in this repo — see below.
 content/copy.md          every word on the site, laid out to be rewritten
 content/<subject>/       Photos as they came off the phone. Never published.
 src/content.json         Every user-facing string. The site reads this.
@@ -58,7 +58,12 @@ the repository root to GitHub Pages. There is no build artifact to keep in sync.
 
 `content/` and `tools/` are dropped just before publishing. They stay in the
 repository; they are simply not served from the portfolio's own domain, which
-is no place for Ben's rough notes or the build scripts.
+is no place for the build scripts.
+
+`content/experiences.md` goes further: it is git-ignored and exists only on
+Ben's machine. It is where he thinks out loud, including about work he may not
+be free to describe yet, and this repository is public. A fresh clone will not
+have it, and that is correct — write a new one and carry on.
 
 ## Light and dark
 
