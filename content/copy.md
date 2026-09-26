@@ -135,8 +135,8 @@ Projects
 
 > Projects
 
-CraveCast and EpiAlert. Two health tools, both built for a moment where
-getting it wrong costs somebody something.
+CraveCast and TRACE. Two health tools, both built for a moment where getting
+it wrong costs somebody something.
 
 ### home.doors[2].label
 
@@ -190,8 +190,10 @@ Research
 
 ### research.lead
 
-Two labs so far. Both come down to the same question: can you trust what the
-instrument told you, and can someone else get the same answer tomorrow?
+Applying what I learn in school to make a real difference has always been my
+ultimate goal. I've spent time working in a physical lab and also in silico,
+and the latter fascinates me: data can be used to reveal more data, an
+interesting recursion.
 
 ### research.positions[0].name
 
@@ -207,19 +209,24 @@ Massachusetts General Hospital, since July 2026
 
 > Mass cytometry at the Vaccine &amp; Immunotherapy Center
 
-Built a Python pipeline that identifies immune cell populations across vaccine
-stimulations. It replaced work that was being done by hand, on datasets of
-over a million cells with fifty-plus parameters each.
+Current mass cytometry clustering algorithms require manual inputs, the goal
+of the project was to explore ways to minimize manual inputs. This would open
+up the use of these mass cytometry tools to more people and help standardize
+how the tools are used.
 
-Handles the whole preprocessing path in one pass: FCS parsing, arcsinh
-transformation, and dimensionality reduction with PCA and UMAP.
+We built a Python pipeline that identifies immune cell populations across
+vaccine stimulations to use as a tool to investigate how to augment these
+algorithms to make them more user friendly. It handles the whole preprocessing
+path in one pass: FCS parsing, arcsinh transformation, and dimensionality
+reduction with PCA and UMAP.
 
-Added biological validation metrics to the existing clustering, so the
-population assignments hold up when someone checks them.
+We are looking to add biological validation metrics to the existing
+clustering, so the population assignments are not just based in math, but also
+in real biology.
 
-Now extending it to new datasets, using X-shift to track changes in population
-abundance and reusing the Shannon and Simpson diversity notebooks I wrote for
-the first project.
+Now extending it to new datasets (Flu & ALS), using X-shift to track changes
+in population abundance and adapting the Shannon and Simpson diversity
+notebooks I wrote for the first project.
 
 ### research.positions[0].facts[0].label
 
@@ -249,7 +256,7 @@ Method
 
 > Method
 
-Python, NumPy, scikit-learn, FlowSOM, OMIQ, UMAP and PCA
+Python, NumPy, scikit-learn, FlowSOM, OMIQ, X-shift, UMAP and PCA
 
 ### research.positions[1].name
 
@@ -265,13 +272,13 @@ Tufts University, February to May 2026
 
 > Flexible electrode arrays at Sonkusale Research Labs
 
-Developed and validated fabrication protocols for flexible electrode arrays,
-built for wearable point-of-care diagnostics.
+I developed and validated fabrication protocols for flexible electrode arrays
+built for wearable point-of-care diagnostics, and learned about our
+microneedling project designed to work alongside the arrays.
 
-Characterised the signal across physiological conditions on the bench, which
-is how the failure points got found rather than guessed at.
-
-Learned lab safety and protocol well enough to run bench work on my own.
+At the bench, I characterised the signal across physiological conditions on
+the bench and documented how different fabrication protocols affected the
+results.
 
 ### research.positions[1].facts[0].label
 
@@ -285,25 +292,25 @@ Flexible bioelectronics for wearable, point-of-care diagnostics
 
 ### research.positions[1].images[0].alt
 
-> Dosing an array on the bench — Read aloud in place of the picture. Describe what is in the shot.
+> Fabrication of sensors: carefully applying silver epoxy onto Polyimide. — Read aloud in place of the picture. Describe what is in the shot.
 
 A gloved hand holding a syringe over a flexible electrode array, its five
 leads taped down to the bench with yellow tape
 
 ### research.positions[1].images[0].caption
 
-Dosing an array on the bench
+Fabrication of sensors: carefully applying silver epoxy onto Polyimide.
 
 ### research.positions[1].images[1].alt
 
-> The lab it happened in — Read aloud in place of the picture. Describe what is in the shot.
+> Average day in the lab — Read aloud in place of the picture. Describe what is in the shot.
 
 Ben in gloves in the Sonkusale lab, with the bench behind him: a probe
 station, reagent bottles, tools and finished arrays
 
 ### research.positions[1].images[1].caption
 
-The lab it happened in
+Average day in the lab
 
 ## Projects page
 
@@ -317,8 +324,8 @@ Projects — Ben Silver
 
 > Search results and link previews. Not shown on the page.
 
-CraveCast, a craving forecaster for addiction recovery, and EpiAlert, allergen
-detection and epinephrine mapping for travellers.
+CraveCast, a craving forecaster for addiction recovery, and TRACE, allergen
+detection for travellers and kids.
 
 ### projects.heading
 
@@ -326,8 +333,7 @@ Projects
 
 ### projects.lead
 
-Both of these started with a problem someone I know actually had. Neither is a
-demo.
+Two projects inspired by my life experiences.
 
 ### projects.items[0].name
 
@@ -349,19 +355,17 @@ warning before a craving hits rather than a log of it afterwards.
 The prediction combines the peer-reviewed ADARP study with kernel density
 estimation over a person's own logged cravings. It starts from the study's
 population-level risk windows and gets more accurate as it learns from their
-entries. Building it taught me the parts of machine learning that aren't in
-the paper: choosing a bandwidth, deciding what counts as a signal, and working
-out how to tell whether a prediction is any good.
+entries.
 
 It's a single-file HTML app on GitHub Pages. It works fully offline, with no
-sign-up and no tracking, so nothing leaves the browser. That constraint shaped
-most of the architecture.
+sign-up and no tracking, so nothing leaves the browser.
 
 The idea came from a lung transplant observership at Mass General. COPD is one
 of the most common reasons people need a lung transplant, and smoking is its
-leading cause. Most recovery apps are either a plain logbook or a clinical
-dashboard, so I added streaks and unlockables — something people would keep
-opening.
+leading cause. Most recovery apps are either a plain logbook or a technical
+dashboard, which make logging a chore. People attempting to break addiction
+don't need any more hindrances, so I made a gamified version by adding streaks
+and unlockables to encourage users to keep tracking.
 
 ### projects.items[0].facts[0].label
 
@@ -393,34 +397,34 @@ Read the source
 
 ### projects.items[1].name
 
-EpiAlert
+TRACE
 
 ### projects.items[1].when
 
-> EpiAlert
+> TRACE
 
 May 2026
 
 ### projects.items[1].paragraphs
 
-> EpiAlert
+> TRACE
 
-EpiAlert reads a photo of a meal, flags likely allergens and gives a
-risk-level warning. It also maps nearby pharmacies and hospitals that stock
-epinephrine auto-injectors.
+TRACE takes a photo of a meal, flags likely allergens and gives a risk-level
+warning.
 
-It's a full-stack web app: Python and Flask, with the Claude Vision API doing
-the photo analysis and the Google Maps API the map. It remembers your
-allergies, and it's simple enough for a child to use at the table.
+It's a full-stack web app built with Python and Flask, with the Claude Vision
+API handling the photo analysis. It remembers your allergies, and it's simple
+enough for a child to use.
 
-I grew up in Taiwan with a nut allergy. You learn over time that pad thai
-often has crushed peanuts in it and that a lot of Indian curries are thickened
-with cashews, but a kid doesn't know that and won't ask a waiter. It's a first
-check and not a verdict, and it's most useful travelling, when you can't be
-sure the question got across.
+I grew up in Taiwan with a nut allergy. As a shy kid, navigating that in a
+foreign country was hard and I'd often avoid asking about allergens out of
+embarrassment or fear of getting the question wrong. Unfortunately, that's not
+unique to being abroad; kids everywhere struggle to speak up for themselves.
 
-I cut a peer-response feed late in development. Crowd-sourced safety data is a
-liability when the failure mode is anaphylaxis.
+Outside of just children, travellers also face issues with allergens when
+encountering new foods abroad or struggling to communicate in a different
+language. TRACE helps provide one extra level of comfort by giving you
+guidance on how likely a food is to have an allergen.
 
 ### projects.items[1].facts[0].label
 
@@ -430,7 +434,7 @@ Built with
 
 > Built with
 
-Python, Flask, Claude Vision API, Google Maps API
+Python, Flask, Claude Vision API
 
 ### projects.items[1].facts[1].label
 
@@ -467,27 +471,23 @@ About
 
 ### about.paragraphs
 
-I came to Tufts for computer science and added a focus in biological sciences
-once biology turned out to be the part I couldn't stop reading about. The two
-looked unrelated for about a year, and then stopped being unrelated at all.
+I came to Tufts completely undecided on what I wanted to do with the rest of
+my life. Over the past two years, I've spent my time exploring different
+paths, eventually landing on Computer Science.
 
-I grew up in a Taiwanese-American household, where the answer to most
-questions was to take the lid off and look. That's still how I work. A bike
-that shifts badly gets stripped down, a knife that won't cut gets a whetstone,
-and a dataset with a million immune cells in it gets a pipeline until the
-clusters mean something.
+What fascinates me most is using data to uncover new discoveries, whether
+that's predicting addiction craving times or analyzing large datasets to find
+patterns in ALS and flu patients. I love learning different methods of
+prediction and machine learning, and finding new ways to apply them.
 
-At Tufts Technology Services I build tooling for research computing. I helped
-launch and test a new site that puts every research computing request in one
-place, running on ColdFront, so researchers can manage their own storage. I
-also replaced a request workflow that staff had been typing out by hand with
-one that takes a paste and formats it from templates — about 25% faster per
-request, and one format for everything.
+Outside of classes and CS work, I'm an active member of the Tufts NSDC,
+Taiwanese Association of Students at Tufts University, and Tufts SEDS. I also
+work for Tufts Technology Services, helping researchers with their storage
+needs.
 
-What I'm interested in is using data to find patterns and make predictions.
-Data is one big haystack and computer science is the magnet. Biotech and
-healthcare data are where I'd most like that to land, though the same work
-applies to data science and analysis anywhere.
+One thing I love doing is picking up new hobbies. From leatherworking
+(specifically wallet making) to mountain biking to knife sharpening and
+restoration, I'm always adding some new random skill to my arsenal.
 
 ### about.sideHeading
 
@@ -501,7 +501,7 @@ Massachusetts General Hospital, Vaccine &amp; Immunotherapy Center
 
 > Massachusetts General Hospital, Vaccine &amp; Immunotherapy Center
 
-Mass cytometry research, since July 2026
+Mass cytometry research (in silico), since July 2026
 
 ### about.current[1].where
 
@@ -511,7 +511,7 @@ On my own time
 
 > On my own time
 
-CraveCast and EpiAlert
+CraveCast and TRACE
 
 ### about.current[2].where
 
@@ -587,7 +587,7 @@ Based in
 
 > Based in
 
-Medford and Boston, Massachusetts
+Medford, Massachusetts
 
 ### contact.rows[3].label
 
@@ -597,7 +597,7 @@ Usually replies
 
 > Usually replies
 
-Within a day or two, sooner if it is about research
+Within a day
 
 ## Hobbies page
 
@@ -620,8 +620,7 @@ Hobbies
 
 ### hobbies.lead
 
-None of this is a transferable skill. It's just what I do when nobody's paying
-me.
+What I like to do on a rainy Sunday afternoon
 
 ### hobbies.feature.name
 
@@ -629,9 +628,10 @@ Leatherworking
 
 ### hobbies.feature.blurb
 
-The one I could talk about for an hour. It's slow work, and the details are
-the whole thing: even stitching, matching cuts, edges finished properly. A
-mistake is permanent the second you make it.
+My favorite of them all. The intense concentration it takes to get everything
+perfect puts me in the zone and clears my mind of any distractions. Ask me
+anything about leatherworking and be ready for 30 minutes of random
+leatherworking facts you never asked for!
 
 ### hobbies.feature.compare.label
 
@@ -645,8 +645,8 @@ The first one
 
 > The first one
 
-Two years of pocket wear on it, but the stitching wandered and the edges were
-never finished properly to begin with.
+It looks worn down, but that's just the skill level I was at back then.
+Nothing lines up evenly, and the leather was fraying from day one.
 
 ### hobbies.feature.compare.items[0].alt
 
@@ -663,8 +663,8 @@ A year later
 
 > A year later
 
-Same pattern, same blue and tan. Even stitch spacing, square corners, edges
-that hold their shape.
+Same pattern, same blue and tan but wildly different in quality. Cleaner
+edges, more consistent stitching, and overall a more professional look.
 
 ### hobbies.feature.compare.items[1].alt
 
@@ -675,11 +675,11 @@ regular white saddle stitching and clean burnished edges
 
 ### hobbies.feature.tiles[0].caption
 
-Six card slots, all the same size, which is the hard part
+Two (almost) perfectly symmetrical halves of the wallet.
 
 ### hobbies.feature.tiles[0].alt
 
-> Six card slots, all the same size, which is the hard part — Read aloud in place of the picture. Describe what is in the shot.
+> Two (almost) perfectly symmetrical halves of the wallet. — Read aloud in place of the picture. Describe what is in the shot.
 
 The second wallet open flat, showing six tan card slots stitched in white
 thread
@@ -698,20 +698,20 @@ cutting mat
 
 ### hobbies.feature.tiles[2].caption
 
-Ten seconds of a finished one
+Ten seconds of the wallet I made for my dad
 
 ### hobbies.feature.tiles[2].alt
 
-> Ten seconds of a finished one — Read aloud in place of the picture. Describe what is in the shot.
+> Ten seconds of the wallet I made for my dad — Read aloud in place of the picture. Describe what is in the shot.
 
 A short clip of a finished leather wallet being opened and turned over in the
 hand
 
 ### hobbies.feature.note
 
-I draw my own patterns and prototype them in paper first, checking the
-measurements before anything gets cut. Most of what improved between those two
-wallets is that I stopped guessing.
+I draw my own patterns in Inkscape and prototype them in paper first, checking
+the measurements before anything gets cut. You'll find me on YouTube
+constantly learning new ways to get cleaner stitching, cuts, and edges.
 
 ### hobbies.second.name
 
@@ -719,30 +719,30 @@ Bikes
 
 ### hobbies.second.blurb
 
-I ride a 2024 Niner AIR 9, and most of what's on it now I put there myself:
-brakes bled and upgraded, a dropper post fitted, headset and gears adjusted,
-and the cassette swapped from SRAM SX to NX. The fixing is the half I like
-best. That extends to cable ends that match the frame, which nobody notices
-but me.
+I ride a 2024 Niner AIR 9, and half the parts are upgraded from stock: brakes
+bled and upgraded, a dropper post fitted, headset and drivetrain adjusted, and
+the cassette upgraded. As annoying as it is when something breaks, I enjoy
+spending my Sunday afternoon tweaking parts to get rid of the smallest squeak.
 
 ### hobbies.second.shots[0].caption
 
-The Niner, most of it upgraded from where it started
+My upgraded Niner Air 9 2-Star, feel free to ask me about the specs if you are
+interested :)
 
 ### hobbies.second.shots[0].alt
 
-> The Niner, most of it upgraded from where it started — Read aloud in place of the picture. Describe what is in the shot.
+> My upgraded Niner Air 9 2-Star, feel free to ask me about the specs if you are interested :) — Read aloud in place of the picture. Describe what is in the shot.
 
 A silver and blue Niner hardtail mountain bike leaning against a tree on a
 wooded trail
 
 ### hobbies.second.shots[1].caption
 
-The other half of the hobby
+My favorite part of the hobby.
 
 ### hobbies.second.shots[1].alt
 
-> The other half of the hobby — Read aloud in place of the picture. Describe what is in the shot.
+> My favorite part of the hobby. — Read aloud in place of the picture. Describe what is in the shot.
 
 A tool tray of bike gear: hex keys, cable cutters, screwdrivers, a brake
 rotor, bleed kit and bagged spares
@@ -759,8 +759,8 @@ Gear trading
 
 > Gear trading
 
-Hunting marketplace listings for bike parts. I'll find the used one — usually
-half the price, and in better shape than the listing suggests.
+Hunting marketplace listings for anything from bike parts to furniture. I will
+spend 2 hours searching just to save 10 dollars on a nightstand.
 
 ### hobbies.rest[1].name
 
@@ -770,9 +770,9 @@ Knife sharpening
 
 > Knife sharpening
 
-Whetstones and a consistent angle, until the edge bites paper. The one I'm
-proudest of is my grandfather's deba, the knife he filleted fish with, brought
-back from blunt.
+Sharpening with whetstones and restoring knives. My most recent is my
+grandfather's rusted deba all sharpened, sanded and polished to nearly brand
+new, without losing the rustic feel.
 
 ### hobbies.rest[2].name
 
@@ -782,15 +782,15 @@ Taiwanese food
 
 > Taiwanese food
 
-Danzai noodles first, Taiwanese pork chop rice second. I'll argue about both.
+1. Danzai noodles 2. Taiwanese pork chop rice
 
 ### hobbies.rest[3].name
 
-Model rocketry
+Tufts SEDS
 
 ### hobbies.rest[3].body
 
-> Model rocketry
+> Tufts SEDS
 
 The L1 certification rocket with Tufts SEDS — designed, cut, assembled and
 flown.
@@ -801,11 +801,11 @@ Currently hunting for
 
 ### hobbies.hunting.highlight
 
-a used wheelset that isn't a scam
+a Herman Miller Aeron under $100 that isn't a scam
 
 ### hobbies.hunting.after
 
-and a shoulder of veg-tan I can justify.
+and a pair of skis to try skiing this winter.
 
 ## At a glance
 
@@ -821,8 +821,8 @@ At a glance
 
 ### glance.lead
 
-Everything on one screen, for anyone who has two minutes rather than ten. The
-full version of each is a page of its own.
+An overview of everything I've done so far. Click into the links for more
+detail.
 
 ### glance.columns[0].heading
 
@@ -902,14 +902,13 @@ Predicts high-risk windows for people in recovery. Offline, live, open source.
 
 ### glance.columns[2].items[1].head
 
-EpiAlert
+TRACE
 
 ### glance.columns[2].items[1].body
 
-> EpiAlert
+> TRACE
 
-Reads a photo of a meal for allergens, with the nearest epinephrine on the
-same screen.
+Reads a photo of a meal for allergens and alerts you of likelihood.
 
 ### glance.columns[3].heading
 
@@ -929,8 +928,8 @@ Tufts Technology Services
 
 > Tufts Technology Services
 
-Research computing requests in one place, and a request workflow about 25%
-faster, for 500+ daily users.
+Research computing requests in one place, and a request workflow eliminating
+wait times for 500+ daily users and researchers.
 
 ### glance.columns[3].items[1].head
 
