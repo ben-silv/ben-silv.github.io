@@ -13,19 +13,19 @@
   },
   "home": {
     "title": "Ben Silver — computer science and biology at Tufts",
-    "description": "Ben Silver is a rising junior at Tufts University studying computer science with a focus in biological sciences, with mass cytometry research at Mass General.",
-    "identity": "Rising junior at Tufts, studying computer science with a focus in biological sciences.",
-    "summary": "I like problems where the answer has to reach a person at the end of it. Most of my work sits between software and biology. I'm looking for a Summer 2027 internship.",
+    "description": "Ben Silver is a junior at Tufts University studying computer science with a focus in biological sciences, with mass cytometry research at Mass General.",
+    "identity": "Junior at Tufts, studying computer science",
+    "summary": "Currently looking for a Summer 2027 internship",
     "education": [
       {
         "label": "Studying at",
         "value": "Tufts University",
-        "note": "BA Computer Science, focus in Biological Sciences"
+        "note": "BA Computer Science"
       },
       {
         "label": "Graduating",
         "value": "May 2028",
-        "note": "Third year this autumn"
+        "note": "Junior this fall"
       },
       {
         "label": "Standing",
@@ -37,17 +37,17 @@
       {
         "href": "research.html",
         "label": "Research",
-        "desc": "Mass cytometry at Mass General, and flexible electrode arrays before that. What the work produced, not how it was done."
+        "desc": "Mass cytometry at Mass General, and flexible electrode arrays at Sonkusale Research Labs (Tufts) before that"
       },
       {
         "href": "projects.html",
         "label": "Projects",
-        "desc": "CraveCast and TRACE. Two health tools, both built for a moment where getting it wrong costs somebody something."
+        "desc": "CraveCast and TRACE. Two health tools both built with the intention to help make people's lives easier and safer."
       },
       {
         "href": "about.html",
         "label": "About",
-        "desc": "Where I came from, how the computer science and the biology ended up in the same place, and where I'd like to take it."
+        "desc": "My academic interests and how I spend my time."
       },
       {
         "href": "contact.html",
@@ -57,7 +57,7 @@
       {
         "href": "hobbies.html",
         "label": "Hobbies",
-        "desc": "Leatherworking mostly, then bikes. None of it has anything to do with work."
+        "desc": "Leatherworking mostly, then bikes and more. Always developing new skills."
       }
     ]
   },

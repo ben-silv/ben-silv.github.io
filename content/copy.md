@@ -53,20 +53,16 @@ Ben Silver — computer science and biology at Tufts
 
 > Search results and link previews. Not shown on the page.
 
-Ben Silver is a rising junior at Tufts University studying computer science
-with a focus in biological sciences, with mass cytometry research at Mass
-General.
+Ben Silver is a junior at Tufts University studying computer science with a
+focus in biological sciences, with mass cytometry research at Mass General.
 
 ### home.identity
 
-Rising junior at Tufts, studying computer science with a focus in biological
-sciences.
+Junior at Tufts, studying computer science
 
 ### home.summary
 
-I like problems where the answer has to reach a person at the end of it. Most
-of my work sits between software and biology. I'm looking for a Summer 2027
-internship.
+Currently looking for a Summer 2027 internship
 
 ### home.education[0].label
 
@@ -82,7 +78,7 @@ Tufts University
 
 > Studying at
 
-BA Computer Science, focus in Biological Sciences
+BA Computer Science
 
 ### home.education[1].label
 
@@ -98,7 +94,7 @@ May 2028
 
 > Graduating
 
-Third year this autumn
+Junior this fall
 
 ### home.education[2].label
 
@@ -124,8 +120,8 @@ Research
 
 > Research
 
-Mass cytometry at Mass General, and flexible electrode arrays before that.
-What the work produced, not how it was done.
+Mass cytometry at Mass General, and flexible electrode arrays at Sonkusale
+Research Labs (Tufts) before that
 
 ### home.doors[1].label
 
@@ -135,8 +131,8 @@ Projects
 
 > Projects
 
-CraveCast and TRACE. Two health tools, both built for a moment where getting
-it wrong costs somebody something.
+CraveCast and TRACE. Two health tools both built with the intention to help
+make people's lives easier and safer.
 
 ### home.doors[2].label
 
@@ -146,8 +142,7 @@ About
 
 > About
 
-Where I came from, how the computer science and the biology ended up in the
-same place, and where I'd like to take it.
+My academic interests and how I spend my time.
 
 ### home.doors[3].label
 
@@ -167,7 +162,7 @@ Hobbies
 
 > Hobbies
 
-Leatherworking mostly, then bikes. None of it has anything to do with work.
+Leatherworking mostly, then bikes and more. Always developing new skills.
 
 ## Research page
 
