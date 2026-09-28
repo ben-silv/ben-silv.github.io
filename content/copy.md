@@ -382,6 +382,30 @@ Status
 
 Live, and open source
 
+### projects.items[0].images[0].caption
+
+The dashboard: risk right now, and the next twelve hours
+
+### projects.items[0].images[0].alt
+
+> The dashboard: risk right now, and the next twelve hours — Read aloud in place of the picture. Describe what is in the shot.
+
+The CraveCast dashboard. A dial reads 77% high with the note “A rough stretch,
+right now” and a warning that the usual 7am window starts in about eight
+hours, beside the day's plant, streak counters and a twelve-hour forecast.
+
+### projects.items[0].images[1].caption
+
+The garden: what the clean days add up to
+
+### projects.items[0].images[1].alt
+
+> The garden: what the clean days add up to — Read aloud in place of the picture. Describe what is in the shot.
+
+The CraveCast garden. A four by four plot with a sunflower being planted,
+progress towards the next unlock, and a collection grid of the plants earned
+so far.
+
 ### projects.items[0].actions[0].label
 
 Open the app

@@ -309,6 +309,15 @@ def render_research(c):
             + glance_section(c) + door_button(c) + tail(c))
 
 
+def shelf(images):
+    """Screenshots stacked down the side column, under the facts."""
+    if not images:
+        return ""
+    return ('''      <div class="shelf">\n'''
+            + "".join(shot(i, extra=" shot--wide") for i in images)
+            + '''      </div>\n''')
+
+
 def render_projects(c):
     p = c["projects"]
     blocks = []
@@ -323,7 +332,7 @@ def render_projects(c):
 {actions(item['actions'])}        </div>
       </div>
       <div class="entry__side">
-{facts(item['facts'])}      </div>
+{facts(item['facts'])}{shelf(item.get("images"))}      </div>
     </article>
 """)
 

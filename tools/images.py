@@ -6,7 +6,8 @@
 Phone photos arrive at 3000px and several megabytes, often with an orientation
 flag instead of actual rotation. This applies the rotation, crops if asked,
 resizes, strips the metadata (which includes where the photo was taken) and
-saves a progressive JPEG.
+saves a progressive JPEG — or a PNG, if that is the extension you ask for,
+which is the right choice for a screenshot.
 
 Local authoring only — it needs Pillow and is not part of the build. The deploy
 runs tools/render.py and tools/check.py, both standard library, and never this.
@@ -24,6 +25,10 @@ except ImportError:
 
 def convert(src, dest, longest, square=False, crop=None, quality=82):
     im = ImageOps.exif_transpose(Image.open(src)).convert("RGB")
+    # A screenshot is flat colour and small type, which JPEG smears and PNG
+    # stores cheaply. Photographs are the other way round. The extension asked
+    # for decides it.
+    as_png = dest.lower().endswith(".png")
 
     if crop:
         l, t, r, b = crop
@@ -37,7 +42,10 @@ def convert(src, dest, longest, square=False, crop=None, quality=82):
     im.thumbnail((longest, longest), Image.LANCZOS)
 
     os.makedirs(os.path.dirname(dest) or ".", exist_ok=True)
-    im.save(dest, "JPEG", quality=quality, optimize=True, progressive=True)
+    if as_png:
+        im.save(dest, "PNG", optimize=True)
+    else:
+        im.save(dest, "JPEG", quality=quality, optimize=True, progressive=True)
 
     print("%-34s %sx%s  %.0fkB  (from %.1fMB)"
           % (os.path.basename(dest), im.width, im.height,
@@ -51,7 +59,7 @@ def main():
     ap.add_argument("--max", type=int, default=1200, help="longest side, px")
     ap.add_argument("--square", action="store_true", help="centre-crop to 1:1")
     ap.add_argument("--crop", help="left,top,right,bottom as 0-1 fractions")
-    ap.add_argument("--quality", type=int, default=82)
+    ap.add_argument("--quality", type=int, default=82, help="JPEG only")
     args = ap.parse_args()
 
     crop = [float(n) for n in args.crop.split(",")] if args.crop else None

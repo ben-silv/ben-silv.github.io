@@ -592,6 +592,18 @@ a:hover { color: var(--signal-deepen); }
 }
 .gallery--pair figcaption { max-width: 30ch; }
 
+/* Screenshots stacked down the side column of a project, under its facts.
+   Full width of that column, which is the widest they can be without taking
+   the page over from the writing. */
+/* Capped, because the side column grows with the window and screenshots
+   wider than the prose would put the pictures in charge of the page. */
+.shelf { display: flex; flex-direction: column; gap: 18px; max-width: 560px; }
+.shot--wide img {
+  width: 100%;
+  aspect-ratio: var(--ar);
+  border: 1px solid var(--hairline);
+}
+
 /* The two photographs at the foot of a research entry. Small on purpose. */
 .strip { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 26px; }
 .shot--small { flex: 0 0 auto; }
