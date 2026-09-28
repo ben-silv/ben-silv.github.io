@@ -131,8 +131,8 @@ Projects
 
 > Projects
 
-CraveCast and TRACE. Two health tools both built with the intention to help
-make people's lives easier and safer.
+CraveCast and TRACE, two health tools built to make people's lives easier and
+safer, and gerp, a search engine written in C++.
 
 ### home.doors[2].label
 
@@ -319,8 +319,8 @@ Projects — Ben Silver
 
 > Search results and link previews. Not shown on the page.
 
-CraveCast, a craving forecaster for addiction recovery, and TRACE, allergen
-detection for travellers and kids.
+CraveCast, a craving forecaster for addiction recovery, gerp, a C++ search
+engine, and TRACE, allergen detection for travellers and kids.
 
 ### projects.heading
 
@@ -328,7 +328,8 @@ Projects
 
 ### projects.lead
 
-Two projects inspired by my life experiences.
+Two health tools that came out of my own life, and a search engine from my
+data structures class.
 
 ### projects.items[0].name
 
@@ -416,15 +417,80 @@ Read the source
 
 ### projects.items[1].name
 
-TRACE
+gerp
 
 ### projects.items[1].when
+
+> gerp
+
+Spring 2026
+
+### projects.items[1].paragraphs
+
+> gerp
+
+gerp returns every line a word appears on across a whole directory tree, fast
+enough that the size of the tree stops mattering. It reads each file once at
+startup and builds an index, so every search after that is a lookup rather
+than another walk over the disk.
+
+It's written in C++ and leans on nothing outside the standard library. The
+index is a hash table I built by hand — a vector of sets holding each word,
+its lowercased form, and pointers back to the line and file it came from —
+with open addressing for collisions and a rehash whenever the load factor
+passes 0.7. Keeping the lowercased form beside the original is what lets
+case-sensitive and case-insensitive searches run off the same structure.
+
+It was the final project for CS15, Tufts' data structures course, last
+semester, written with Anubhav Sinha. Recursing through the directories was
+the easy half; the assignment was really about the index, and it was the first
+thing I'd written where picking the data structure was the whole problem.
+
+### projects.items[1].facts[0].label
+
+Built with
+
+### projects.items[1].facts[0].value
+
+> Built with
+
+C++, standard library only
+
+### projects.items[1].facts[1].label
+
+Course
+
+### projects.items[1].facts[1].value
+
+> Course
+
+CS15 Data Structures, Tufts
+
+### projects.items[1].facts[2].label
+
+Status
+
+### projects.items[1].facts[2].value
+
+> Status
+
+Open source
+
+### projects.items[1].actions[0].label
+
+Read the source
+
+### projects.items[2].name
+
+TRACE
+
+### projects.items[2].when
 
 > TRACE
 
 May 2026
 
-### projects.items[1].paragraphs
+### projects.items[2].paragraphs
 
 > TRACE
 
@@ -445,27 +511,27 @@ encountering new foods abroad or struggling to communicate in a different
 language. TRACE helps provide one extra level of comfort by giving you
 guidance on how likely a food is to have an allergen.
 
-### projects.items[1].facts[0].label
+### projects.items[2].facts[0].label
 
 Built with
 
-### projects.items[1].facts[0].value
+### projects.items[2].facts[0].value
 
 > Built with
 
 Python, Flask, Claude Vision API
 
-### projects.items[1].facts[1].label
+### projects.items[2].facts[1].label
 
 Status
 
-### projects.items[1].facts[1].value
+### projects.items[2].facts[1].value
 
 > Status
 
 Repository private, happy to walk through it
 
-### projects.items[1].actions[0].label
+### projects.items[2].actions[0].label
 
 Ask me for a demo
 
@@ -921,9 +987,20 @@ Predicts high-risk windows for people in recovery. Offline, live, open source.
 
 ### glance.columns[2].items[1].head
 
-TRACE
+gerp
 
 ### glance.columns[2].items[1].body
+
+> gerp
+
+Searches a whole directory tree for a word instantly. C++, hand-built hash
+index.
+
+### glance.columns[2].items[2].head
+
+TRACE
+
+### glance.columns[2].items[2].body
 
 > TRACE
 
