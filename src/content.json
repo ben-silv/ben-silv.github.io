@@ -243,6 +243,17 @@
       "Outside of classes and CS work, I'm an active member of the Tufts NSDC, Taiwanese Association of Students at Tufts University, and Tufts SEDS. I also work for Tufts Technology Services, helping researchers with their storage needs.",
       "One thing I love doing is picking up new hobbies. From leatherworking (specifically wallet making) to mountain biking to knife sharpening and restoration, I'm always adding some new random skill to my arsenal."
     ],
+    "languagesHeading": "Languages I work in",
+    "languages": [
+      "Python",
+      "C/C++",
+      "R",
+      "SQL",
+      "JavaScript",
+      "HTML"
+    ],
+    "toolsLabel": "And the tools around them",
+    "tools": "React, Flask, FastAPI, PyTorch, NumPy, pandas, Matplotlib and scikit-learn",
     "sideHeading": "What I'm working on",
     "current": [
       {

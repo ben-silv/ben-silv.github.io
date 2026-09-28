@@ -358,13 +358,21 @@ def render_about(c):
         </div>\n"""
         for s in a["current"])
 
+    langs = "".join(f"""          <li>{esc(l)}</li>\n""" for l in a["languages"])
+
     return (head(c, a, c["site"]["baseUrl"] + "about.html")
             + masthead(c)
             + f"""  <main class="main" id="content">
     <div class="split">
       <div class="split__main prose enter">
         <h1 class="page-title">{esc(a['heading'])}</h1>
-{paras}      </div>
+{paras}        <section class="langs" aria-labelledby="langs-heading">
+          <h2 class="langs__heading" id="langs-heading">{esc(a['languagesHeading'])}</h2>
+          <ul class="langs__list">
+{langs}          </ul>
+          <p class="langs__also"><span>{esc(a['toolsLabel'])}</span> {esc(a['tools'])}</p>
+        </section>
+      </div>
       <div class="split__side enter-1">
         <h2 class="entry__name entry__name--minor">{esc(a['sideHeading'])}</h2>
         <div class="stack">

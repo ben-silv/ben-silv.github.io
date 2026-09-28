@@ -574,6 +574,32 @@ One thing I love doing is picking up new hobbies. From leatherworking
 (specifically wallet making) to mountain biking to knife sharpening and
 restoration, I'm always adding some new random skill to my arsenal.
 
+### about.languagesHeading
+
+Languages I work in
+
+### about.languages
+
+Python
+
+C/C++
+
+R
+
+SQL
+
+JavaScript
+
+HTML
+
+### about.toolsLabel
+
+And the tools around them
+
+### about.tools
+
+React, Flask, FastAPI, PyTorch, NumPy, pandas, Matplotlib and scikit-learn
+
 ### about.sideHeading
 
 What I'm working on

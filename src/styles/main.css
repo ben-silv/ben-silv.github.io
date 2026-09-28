@@ -667,6 +667,47 @@ a:hover { color: var(--signal-deepen); }
   color: var(--ink-muted);
 }
 
+/* The languages sit at the foot of the about column, in the same display type
+   and signal underline the contact page gives the email address — big enough
+   to be read before the prose above them, and no new colour idea. The list
+   wraps, so the underline carries the emphasis rather than dividers, which
+   would strand a rule at the end of a wrapped row. */
+.langs {
+  margin-top: 46px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hairline);
+}
+.langs__heading {
+  font-family: var(--text);
+  font-size: var(--size-fine);
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+.langs__list {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 26px;
+}
+.langs__list li {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+  padding-bottom: 5px;
+  border-bottom: 4px solid var(--signal);
+}
+.langs__also {
+  margin-top: 28px;
+  font-size: var(--size-meta);
+  line-height: 1.65;
+  color: var(--ink-muted);
+}
+.langs__also span { color: var(--ink); font-weight: 600; }
+
 .email-big {
   display: inline-block;
   margin-top: 36px;
