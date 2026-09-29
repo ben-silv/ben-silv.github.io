@@ -42,7 +42,7 @@
       {
         "href": "projects.html",
         "label": "Projects",
-        "desc": "CraveCast and TRACE, two health tools built to make people's lives easier and safer, and gerp, a search engine written in C++."
+        "desc": "CraveCast and TRACE, two health tools built to make people's lives easier and safer, plus a multi-client TCP server and gerp, a search engine, both written in C++."
       },
       {
         "href": "about.html",
@@ -123,9 +123,9 @@
   },
   "projects": {
     "title": "Projects — Ben Silver",
-    "description": "CraveCast, a craving forecaster for addiction recovery, gerp, a C++ search engine, and TRACE, allergen detection for travellers and kids.",
+    "description": "CraveCast, a craving forecaster for addiction recovery, a multi-client TCP server and gerp, a search engine, both in C++, and TRACE, allergen detection for travellers and kids.",
     "heading": "Projects",
-    "lead": "Two health tools that came out of my own life, and a search engine from my data structures class.",
+    "lead": "Two health tools that came out of my own life, a networked server in C++, and a search engine from my data structures class.",
     "items": [
       {
         "name": "CraveCast",
@@ -169,6 +169,32 @@
             "label": "Read the source",
             "href": "https://github.com/ben-silv/CraveCast",
             "primary": false
+          }
+        ]
+      },
+      {
+        "name": "TCP echo server",
+        "when": "September 2026",
+        "lead": false,
+        "paragraphs": [
+          "A server that holds several conversations at once: any number of clients can connect, and each one gets back exactly what it sent without waiting behind the others.",
+          "It's C++ on raw POSIX sockets, with every connection handed to its own thread. Sends loop until every byte is out, because a single send can write only part of a message. A small command-line client comes with it, and a plain netcat session works just as well."
+        ],
+        "facts": [
+          {
+            "label": "Built with",
+            "value": "C++17, POSIX sockets, threads"
+          },
+          {
+            "label": "Status",
+            "value": "Open source"
+          }
+        ],
+        "actions": [
+          {
+            "label": "Read the source",
+            "href": "https://github.com/ben-silv/tcp-echo-server",
+            "primary": true
           }
         ]
       },
@@ -444,6 +470,10 @@
           {
             "head": "CraveCast",
             "body": "Predicts high-risk windows for people in recovery. Offline, live, open source."
+          },
+          {
+            "head": "TCP echo server",
+            "body": "Serves many clients at once, one thread per connection. C++ on raw POSIX sockets."
           },
           {
             "head": "gerp",

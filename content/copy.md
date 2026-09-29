@@ -132,7 +132,8 @@ Projects
 > Projects
 
 CraveCast and TRACE, two health tools built to make people's lives easier and
-safer, and gerp, a search engine written in C++.
+safer, plus a multi-client TCP server and gerp, a search engine, both written
+in C++.
 
 ### home.doors[2].label
 
@@ -319,8 +320,9 @@ Projects — Ben Silver
 
 > Search results and link previews. Not shown on the page.
 
-CraveCast, a craving forecaster for addiction recovery, gerp, a C++ search
-engine, and TRACE, allergen detection for travellers and kids.
+CraveCast, a craving forecaster for addiction recovery, a multi-client TCP
+server and gerp, a search engine, both in C++, and TRACE, allergen detection
+for travellers and kids.
 
 ### projects.heading
 
@@ -328,8 +330,8 @@ Projects
 
 ### projects.lead
 
-Two health tools that came out of my own life, and a search engine from my
-data structures class.
+Two health tools that came out of my own life, a networked server in C++, and
+a search engine from my data structures class.
 
 ### projects.items[0].name
 
@@ -417,15 +419,62 @@ Read the source
 
 ### projects.items[1].name
 
-gerp
+TCP echo server
 
 ### projects.items[1].when
+
+> TCP echo server
+
+September 2026
+
+### projects.items[1].paragraphs
+
+> TCP echo server
+
+A server that holds several conversations at once: any number of clients can
+connect, and each one gets back exactly what it sent without waiting behind
+the others.
+
+It's C++ on raw POSIX sockets, with every connection handed to its own thread.
+Sends loop until every byte is out, because a single send can write only part
+of a message. A small command-line client comes with it, and a plain netcat
+session works just as well.
+
+### projects.items[1].facts[0].label
+
+Built with
+
+### projects.items[1].facts[0].value
+
+> Built with
+
+C++17, POSIX sockets, threads
+
+### projects.items[1].facts[1].label
+
+Status
+
+### projects.items[1].facts[1].value
+
+> Status
+
+Open source
+
+### projects.items[1].actions[0].label
+
+Read the source
+
+### projects.items[2].name
+
+gerp
+
+### projects.items[2].when
 
 > gerp
 
 Spring 2026
 
-### projects.items[1].paragraphs
+### projects.items[2].paragraphs
 
 > gerp
 
@@ -446,51 +495,51 @@ semester, written with Anubhav Sinha. Recursing through the directories was
 the easy half; the assignment was really about the index, and it was the first
 thing I'd written where picking the data structure was the whole problem.
 
-### projects.items[1].facts[0].label
+### projects.items[2].facts[0].label
 
 Built with
 
-### projects.items[1].facts[0].value
+### projects.items[2].facts[0].value
 
 > Built with
 
 C++, standard library only
 
-### projects.items[1].facts[1].label
+### projects.items[2].facts[1].label
 
 Course
 
-### projects.items[1].facts[1].value
+### projects.items[2].facts[1].value
 
 > Course
 
 CS15 Data Structures, Tufts
 
-### projects.items[1].facts[2].label
+### projects.items[2].facts[2].label
 
 Status
 
-### projects.items[1].facts[2].value
+### projects.items[2].facts[2].value
 
 > Status
 
 Open source
 
-### projects.items[1].actions[0].label
+### projects.items[2].actions[0].label
 
 Read the source
 
-### projects.items[2].name
+### projects.items[3].name
 
 TRACE
 
-### projects.items[2].when
+### projects.items[3].when
 
 > TRACE
 
 May 2026
 
-### projects.items[2].paragraphs
+### projects.items[3].paragraphs
 
 > TRACE
 
@@ -511,27 +560,27 @@ encountering new foods abroad or struggling to communicate in a different
 language. TRACE helps provide one extra level of comfort by giving you
 guidance on how likely a food is to have an allergen.
 
-### projects.items[2].facts[0].label
+### projects.items[3].facts[0].label
 
 Built with
 
-### projects.items[2].facts[0].value
+### projects.items[3].facts[0].value
 
 > Built with
 
 Python, Flask, Claude Vision API
 
-### projects.items[2].facts[1].label
+### projects.items[3].facts[1].label
 
 Status
 
-### projects.items[2].facts[1].value
+### projects.items[3].facts[1].value
 
 > Status
 
 Repository private, happy to walk through it
 
-### projects.items[2].actions[0].label
+### projects.items[3].actions[0].label
 
 Ask me for a demo
 
@@ -1013,20 +1062,31 @@ Predicts high-risk windows for people in recovery. Offline, live, open source.
 
 ### glance.columns[2].items[1].head
 
-gerp
+TCP echo server
 
 ### glance.columns[2].items[1].body
+
+> TCP echo server
+
+Serves many clients at once, one thread per connection. C++ on raw POSIX
+sockets.
+
+### glance.columns[2].items[2].head
+
+gerp
+
+### glance.columns[2].items[2].body
 
 > gerp
 
 Searches a whole directory tree for a word instantly. C++, hand-built hash
 index.
 
-### glance.columns[2].items[2].head
+### glance.columns[2].items[3].head
 
 TRACE
 
-### glance.columns[2].items[2].body
+### glance.columns[2].items[3].body
 
 > TRACE
 
