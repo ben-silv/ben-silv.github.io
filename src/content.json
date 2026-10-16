@@ -9,7 +9,10 @@
     "linkedinLabel": "linkedin.com/in/bhsilver",
     "resume": "resume.pdf",
     "baseUrl": "https://ben-silv.github.io/",
-    "footerNote": "Reach me at"
+    "footerNote": "Reach me at",
+    "searchLabel": "Search the site",
+    "searchPlaceholder": "Jump to a page, a project, a role",
+    "copied": "Email address copied"
   },
   "home": {
     "title": "Ben Silver — computer science and biology at Tufts",

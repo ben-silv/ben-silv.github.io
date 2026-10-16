@@ -23,7 +23,7 @@ tools/mute.py            takes the audio track out of a clip
 src/styles/tokens.css    six colours, two typefaces, the spacing scale
 src/styles/motion.css    every keyframe, and the reduced-motion switch
 src/styles/main.css      layout and components
-src/js/app.js            the only script: button pointer tracking + At a glance
+src/js/app.js            the only script: springs, the corner button, the sheet, photos
 assets/                  favicon, and photos once Ben adds them
 resume.pdf               linked from the masthead of every page
 ```

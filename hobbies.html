@@ -16,9 +16,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="src/styles/tokens.css">
-<link rel="stylesheet" href="src/styles/motion.css">
-<link rel="stylesheet" href="src/styles/main.css">
+<link rel="stylesheet" href="src/styles/tokens.css?v=19dca64c">
+<link rel="stylesheet" href="src/styles/motion.css?v=38ec055a">
+<link rel="stylesheet" href="src/styles/main.css?v=308b3ead">
+<link rel="stylesheet" href="src/styles/fx.css?v=fb0bf99d">
 <script>
 (function () {
   var root = document.documentElement;
@@ -57,8 +58,44 @@
     button.addEventListener("click", function () {
       var next = theme === "dark" ? "light" : "dark";
       try { localStorage.setItem("theme", next); } catch (e) {}
-      apply(next, true);
+      // The new theme spreads out of the switch that was pressed, as a circle
+      // wide enough to reach the far corner. Where view transitions or motion
+      // are not on offer, the old cross-fade does the job instead.
+      var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!document.startViewTransition || still) { apply(next, true); return; }
+      var box = button.getBoundingClientRect();
+      var x = box.left + box.width / 2, y = box.top + box.height / 2;
+      var r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      root.classList.add("theme-flip");
+      var shift = document.startViewTransition(function () { apply(next, false); });
+      shift.finished.then(function () { root.classList.remove("theme-flip"); },
+                          function () { root.classList.remove("theme-flip"); });
+      shift.ready.then(function () {
+        root.animate({ clipPath: ["circle(0px at " + x + "px " + y + "px)",
+                                  "circle(" + r + "px at " + x + "px " + y + "px)"] },
+                     { duration: 620, easing: "cubic-bezier(0.32, 0.72, 0, 1)",
+                       pseudoElement: "::view-transition-new(root)" });
+      }).catch(function () {});
     });
+  });
+})();
+</script>
+<script>
+(function () {
+  var all = ["page-morph", "large-title", "scroll-progress", "scroll-reveal", "hero-scroll", "image-scrub", "tilt", "magnetic", "dock-name", "aurora", "spotlight", "island", "haptics"];
+  var off = [];
+  try { off = JSON.parse(localStorage.getItem("fx-off") || "[]"); } catch (e) {}
+  var on = all.filter(function (n) { return off.indexOf(n) < 0; });
+  document.documentElement.setAttribute("data-fx", on.join(" "));
+  window.FX = [["page-morph", "Page titles morph from page to page"], ["large-title", "Page title tucks into the header as you scroll"], ["scroll-progress", "Reading-progress line under the header"], ["scroll-reveal", "Sections come into focus as you scroll to them"], ["hero-scroll", "Home name recedes as you scroll away"], ["image-scrub", "Photos open out and drift as they scroll in"], ["tilt", "Photos tilt toward the pointer, with glare"], ["magnetic", "Buttons lean toward the pointer"], ["dock-name", "Name magnifies under the pointer, like the Dock"], ["aurora", "Slow colour drifting behind the name on Home"], ["spotlight", "Spotlight search: press / or Ctrl K"], ["island", "A Dynamic Island when the email is copied"], ["haptics", "A tap of vibration on snaps, on phones"]];
+  // Moving between pages animates only when page-morph is on and motion is
+  // welcome; otherwise the browser's ordinary page swap is left alone.
+  window.addEventListener("pagereveal", function (event) {
+    if (!event.viewTransition) return;
+    if (on.indexOf("page-morph") < 0 ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      event.viewTransition.skipTransition();
+    }
   });
 })();
 </script>
@@ -68,6 +105,7 @@
 <div class="page">
   <header class="masthead">
     <a class="wordmark" href="index.html">Ben Silver</a>
+    <span class="masthead__title" aria-hidden="true">Hobbies</span>
     <div class="masthead__end">
       <nav class="masthead__links" aria-label="Elsewhere">
         <a class="is-primary" href="resume.pdf">Resume</a>
@@ -75,15 +113,17 @@
         <a href="https://www.linkedin.com/in/bhsilver">LinkedIn</a>
         <a href="mailto:silverbenh1@gmail.com">Email</a>
       </nav>
+      <button class="theme search" type="button" data-spotlight-open hidden aria-label="Search the site" title="Search the site"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg></button>
       <button class="theme" type="button" data-theme-toggle hidden aria-pressed="false">
         <span class="theme__icons"><svg class="theme__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.3" fill="currentColor" stroke="none"></circle><path d="M12 1.8v2.5M12 19.7v2.5M1.8 12h2.5M19.7 12h2.5M4.8 4.8l1.8 1.8M17.4 17.4l1.8 1.8M19.2 4.8l-1.8 1.8M6.6 17.4l-1.8 1.8"></path></svg><svg class="theme__moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 14.2A9.3 9.3 0 0 1 9.8 3a9.2 9.2 0 1 0 11.2 11.2Z"></path></svg></span>
         <span class="sr-only">Dark mode</span>
       </button>
     </div>
+    <span class="progress" aria-hidden="true"></span>
   </header>
   <main class="main" id="content">
     <div class="page-head enter">
-      <h1 class="page-title">Hobbies</h1>
+      <h1 class="page-title vt-hobbies">Hobbies</h1>
       <p class="page-lead">What I like to do on a rainy Sunday afternoon</p>
     </div>
 
@@ -203,6 +243,7 @@
       </div>
     </div>
   </section>
+</div>
   <a class="door-button" href="#glance" data-glance-open>
     At a glance
     <span class="door-button__mark" aria-hidden="true">
@@ -210,10 +251,9 @@
     </span>
   </a>
   <div id="glance-root"></div>
-</div>
-<script type="application/json" id="glance-data">{"button": "At a glance", "heading": "At a glance", "lead": "An overview of everything I've done so far. Click into the links for more detail.", "columns": [{"heading": "Studying", "accent": "", "items": [{"head": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior."}, {"head": "Dean's List, 3.9 GPA", "body": "Every semester so far."}]}, {"heading": "Research", "accent": "research", "link": {"label": "The full research page", "href": "research.html"}, "items": [{"head": "Mass General, Vaccine &amp; Immunotherapy Center", "body": "A Python pipeline that identifies immune cell populations, on datasets of over a million cells."}, {"head": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation."}]}, {"heading": "Projects", "accent": "projects", "link": {"label": "The full projects page", "href": "projects.html"}, "items": [{"head": "CraveCast", "body": "Predicts high-risk windows for people in recovery. Offline, live, open source."}, {"head": "TCP echo server", "body": "Serves many clients at once, one thread per connection. C++ on raw POSIX sockets."}, {"head": "gerp", "body": "Searches a whole directory tree for a word instantly. C++, hand-built hash index."}, {"head": "TRACE", "body": "Reads a photo of a meal for allergens and alerts you of likelihood."}]}, {"heading": "Also", "accent": "", "link": {"label": "More on the about page", "href": "about.html"}, "items": [{"head": "Tufts Technology Services", "body": "Research computing requests in one place, and a request workflow eliminating wait times for 500+ daily users and researchers."}, {"head": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew."}]}], "actions": [{"label": "Download resume", "href": "resume.pdf", "primary": true}, {"label": "Contact", "href": "contact.html", "primary": false}], "email": "silverbenh1@gmail.com", "footerNote": "Reach me at"}</script>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin defer></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin defer></script>
-<script src="src/js/app.js" defer></script>
+<script type="application/json" id="glance-data">{"button": "At a glance", "heading": "At a glance", "lead": "An overview of everything I've done so far. Click into the links for more detail.", "columns": [{"heading": "Studying", "accent": "", "items": [{"head": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior."}, {"head": "Dean's List, 3.9 GPA", "body": "Every semester so far."}]}, {"heading": "Research", "accent": "research", "link": {"label": "The full research page", "href": "research.html"}, "items": [{"head": "Mass General, Vaccine &amp; Immunotherapy Center", "body": "A Python pipeline that identifies immune cell populations, on datasets of over a million cells."}, {"head": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation."}]}, {"heading": "Projects", "accent": "projects", "link": {"label": "The full projects page", "href": "projects.html"}, "items": [{"head": "CraveCast", "body": "Predicts high-risk windows for people in recovery. Offline, live, open source."}, {"head": "TCP echo server", "body": "Serves many clients at once, one thread per connection. C++ on raw POSIX sockets."}, {"head": "gerp", "body": "Searches a whole directory tree for a word instantly. C++, hand-built hash index."}, {"head": "TRACE", "body": "Reads a photo of a meal for allergens and alerts you of likelihood."}]}, {"heading": "Also", "accent": "", "link": {"label": "More on the about page", "href": "about.html"}, "items": [{"head": "Tufts Technology Services", "body": "Research computing requests in one place, and a request workflow eliminating wait times for 500+ daily users and researchers."}, {"head": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew."}]}], "actions": [{"label": "Download resume", "href": "resume.pdf", "primary": true}, {"label": "Contact", "href": "contact.html", "primary": false}], "email": "silverbenh1@gmail.com", "footerNote": "Reach me at", "copied": "Email address copied", "searchPlaceholder": "Jump to a page, a project, a role", "search": [{"title": "Research", "body": "Mass cytometry at Mass General, and flexible electrode arrays at Sonkusale Research Labs (Tufts) before that", "href": "research.html", "kind": "page"}, {"title": "Projects", "body": "CraveCast and TRACE, two health tools built to make people's lives easier and safer, plus a multi-client TCP server and gerp, a search engine, both written in C++.", "href": "projects.html", "kind": "page"}, {"title": "About", "body": "My academic interests and how I spend my time.", "href": "about.html", "kind": "page"}, {"title": "Contact", "body": "silverbenh1@gmail.com is the fastest way to reach me.", "href": "contact.html", "kind": "page"}, {"title": "Hobbies", "body": "Leatherworking mostly, then bikes and more. Always developing new skills.", "href": "hobbies.html", "kind": "page"}, {"title": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior.", "href": "index.html", "kind": "Studying"}, {"title": "Dean's List, 3.9 GPA", "body": "Every semester so far.", "href": "index.html", "kind": "Studying"}, {"title": "Mass General, Vaccine & Immunotherapy Center", "body": "A Python pipeline that identifies immune cell populations, on datasets of over a million cells.", "href": "research.html", "kind": "Research"}, {"title": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation.", "href": "research.html", "kind": "Research"}, {"title": "CraveCast", "body": "Predicts high-risk windows for people in recovery. Offline, live, open source.", "href": "projects.html", "kind": "Projects"}, {"title": "TCP echo server", "body": "Serves many clients at once, one thread per connection. C++ on raw POSIX sockets.", "href": "projects.html", "kind": "Projects"}, {"title": "gerp", "body": "Searches a whole directory tree for a word instantly. C++, hand-built hash index.", "href": "projects.html", "kind": "Projects"}, {"title": "TRACE", "body": "Reads a photo of a meal for allergens and alerts you of likelihood.", "href": "projects.html", "kind": "Projects"}, {"title": "Tufts Technology Services", "body": "Research computing requests in one place, and a request workflow eliminating wait times for 500+ daily users and researchers.", "href": "about.html", "kind": "Also"}, {"title": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew.", "href": "about.html", "kind": "Also"}, {"title": "Resume", "body": "PDF", "href": "resume.pdf", "kind": "link"}, {"title": "GitHub", "body": "https://github.com/ben-silv", "href": "https://github.com/ben-silv", "kind": "link"}, {"title": "LinkedIn", "body": "https://www.linkedin.com/in/bhsilver", "href": "https://www.linkedin.com/in/bhsilver", "kind": "link"}, {"title": "silverbenh1@gmail.com", "body": "Email", "href": "mailto:silverbenh1@gmail.com", "kind": "link"}]}</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin defer></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin defer></script>
+<script src="src/js/app.js?v=a828a42d" defer></script>
 </body>
 </html>
