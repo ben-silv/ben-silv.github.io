@@ -16,10 +16,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/src/styles/tokens.css?v=19dca64c">
-<link rel="stylesheet" href="/src/styles/motion.css?v=38ec055a">
-<link rel="stylesheet" href="/src/styles/main.css?v=308b3ead">
-<link rel="stylesheet" href="/src/styles/fx.css?v=fb0bf99d">
+<link rel="stylesheet" href="/src/styles/tokens.css">
+<link rel="stylesheet" href="/src/styles/motion.css">
+<link rel="stylesheet" href="/src/styles/main.css">
 <script>
 (function () {
   var root = document.documentElement;
@@ -58,44 +57,8 @@
     button.addEventListener("click", function () {
       var next = theme === "dark" ? "light" : "dark";
       try { localStorage.setItem("theme", next); } catch (e) {}
-      // The new theme spreads out of the switch that was pressed, as a circle
-      // wide enough to reach the far corner. Where view transitions or motion
-      // are not on offer, the old cross-fade does the job instead.
-      var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (!document.startViewTransition || still) { apply(next, true); return; }
-      var box = button.getBoundingClientRect();
-      var x = box.left + box.width / 2, y = box.top + box.height / 2;
-      var r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-      root.classList.add("theme-flip");
-      var shift = document.startViewTransition(function () { apply(next, false); });
-      shift.finished.then(function () { root.classList.remove("theme-flip"); },
-                          function () { root.classList.remove("theme-flip"); });
-      shift.ready.then(function () {
-        root.animate({ clipPath: ["circle(0px at " + x + "px " + y + "px)",
-                                  "circle(" + r + "px at " + x + "px " + y + "px)"] },
-                     { duration: 620, easing: "cubic-bezier(0.32, 0.72, 0, 1)",
-                       pseudoElement: "::view-transition-new(root)" });
-      }).catch(function () {});
+      apply(next, true);
     });
-  });
-})();
-</script>
-<script>
-(function () {
-  var all = ["page-morph", "large-title", "scroll-progress", "scroll-reveal", "hero-scroll", "image-scrub", "tilt", "magnetic", "dock-name", "aurora", "spotlight", "island", "haptics"];
-  var off = [];
-  try { off = JSON.parse(localStorage.getItem("fx-off") || "[]"); } catch (e) {}
-  var on = all.filter(function (n) { return off.indexOf(n) < 0; });
-  document.documentElement.setAttribute("data-fx", on.join(" "));
-  window.FX = [["page-morph", "Page titles morph from page to page"], ["large-title", "Page title tucks into the header as you scroll"], ["scroll-progress", "Reading-progress line under the header"], ["scroll-reveal", "Sections come into focus as you scroll to them"], ["hero-scroll", "Home name recedes as you scroll away"], ["image-scrub", "Photos open out and drift as they scroll in"], ["tilt", "Photos tilt toward the pointer, with glare"], ["magnetic", "Buttons lean toward the pointer"], ["dock-name", "Name magnifies under the pointer, like the Dock"], ["aurora", "Slow colour drifting behind the name on Home"], ["spotlight", "Spotlight search: press / or Ctrl K"], ["island", "A Dynamic Island when the email is copied"], ["haptics", "A tap of vibration on snaps, on phones"]];
-  // Moving between pages animates only when page-morph is on and motion is
-  // welcome; otherwise the browser's ordinary page swap is left alone.
-  window.addEventListener("pagereveal", function (event) {
-    if (!event.viewTransition) return;
-    if (on.indexOf("page-morph") < 0 ||
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      event.viewTransition.skipTransition();
-    }
   });
 })();
 </script>
@@ -112,32 +75,30 @@
         <a href="https://www.linkedin.com/in/bhsilver">LinkedIn</a>
         <a href="mailto:silverbenh1@gmail.com">Email</a>
       </nav>
-      <button class="theme search" type="button" data-spotlight-open hidden aria-label="Search the site" title="Search the site"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg></button>
       <button class="theme" type="button" data-theme-toggle hidden aria-pressed="false">
         <span class="theme__icons"><svg class="theme__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.3" fill="currentColor" stroke="none"></circle><path d="M12 1.8v2.5M12 19.7v2.5M1.8 12h2.5M19.7 12h2.5M4.8 4.8l1.8 1.8M17.4 17.4l1.8 1.8M19.2 4.8l-1.8 1.8M6.6 17.4l-1.8 1.8"></path></svg><svg class="theme__moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 14.2A9.3 9.3 0 0 1 9.8 3a9.2 9.2 0 1 0 11.2 11.2Z"></path></svg></span>
         <span class="sr-only">Dark mode</span>
       </button>
     </div>
-    <span class="progress" aria-hidden="true"></span>
   </header>
   <main class="main" id="content">
     <h1 class="page-title">That page doesn't exist.</h1>
     <p class="summary">Which is on me, not you. Everything lives behind one of these.</p>
     <nav class="doors" aria-label="Sections">
       <a class="door" href="/research.html">
-        <span class="door__label"><span class="door__word vt-research">Research</span></span>
+        <span class="door__label"><span class="door__word">Research</span></span>
       </a>
       <a class="door" href="/projects.html">
-        <span class="door__label"><span class="door__word vt-projects">Projects</span></span>
+        <span class="door__label"><span class="door__word">Projects</span></span>
       </a>
       <a class="door" href="/about.html">
-        <span class="door__label"><span class="door__word vt-about">About</span></span>
+        <span class="door__label"><span class="door__word">About</span></span>
       </a>
       <a class="door" href="/contact.html">
-        <span class="door__label"><span class="door__word vt-contact">Contact</span></span>
+        <span class="door__label"><span class="door__word">Contact</span></span>
       </a>
       <a class="door" href="/hobbies.html">
-        <span class="door__label"><span class="door__word vt-hobbies">Hobbies</span></span>
+        <span class="door__label"><span class="door__word">Hobbies</span></span>
       </a>
     </nav>
   </main>

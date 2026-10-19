@@ -13,7 +13,6 @@ GitHub Actions runner.
 """
 
 import json
-import re
 import os
 import struct
 import sys
@@ -69,69 +68,11 @@ THEME_SCRIPT = """<script>
     button.addEventListener("click", function () {
       var next = theme === "dark" ? "light" : "dark";
       try { localStorage.setItem("theme", next); } catch (e) {}
-      // The new theme spreads out of the switch that was pressed, as a circle
-      // wide enough to reach the far corner. Where view transitions or motion
-      // are not on offer, the old cross-fade does the job instead.
-      var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (!document.startViewTransition || still) { apply(next, true); return; }
-      var box = button.getBoundingClientRect();
-      var x = box.left + box.width / 2, y = box.top + box.height / 2;
-      var r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-      root.classList.add("theme-flip");
-      var shift = document.startViewTransition(function () { apply(next, false); });
-      shift.finished.then(function () { root.classList.remove("theme-flip"); },
-                          function () { root.classList.remove("theme-flip"); });
-      shift.ready.then(function () {
-        root.animate({ clipPath: ["circle(0px at " + x + "px " + y + "px)",
-                                  "circle(" + r + "px at " + x + "px " + y + "px)"] },
-                     { duration: 620, easing: "cubic-bezier(0.32, 0.72, 0, 1)",
-                       pseudoElement: "::view-transition-new(root)" });
-      }).catch(function () {});
+      apply(next, true);
     });
   });
 })();
 </script>"""
-
-# Every optional effect on the site, by name. Each one is switched on by its
-# name appearing in <html data-fx="...">, which the script below writes before
-# the first paint; CSS and app.js both read that attribute and nothing else.
-# Delete a line here and the effect is gone from every page. Visiting any page
-# with ?fx on the end opens a panel to try them on and off without editing.
-FX = [
-    ("page-morph", "Page titles morph from page to page"),
-    ("large-title", "Page title tucks into the header as you scroll"),
-    ("scroll-progress", "Reading-progress line under the header"),
-    ("scroll-reveal", "Sections come into focus as you scroll to them"),
-    ("hero-scroll", "Home name recedes as you scroll away"),
-    ("image-scrub", "Photos open out and drift as they scroll in"),
-    ("tilt", "Photos tilt toward the pointer, with glare"),
-    ("magnetic", "Buttons lean toward the pointer"),
-    ("dock-name", "Name magnifies under the pointer, like the Dock"),
-    ("aurora", "Slow colour drifting behind the name on Home"),
-    ("spotlight", "Spotlight search: press / or Ctrl K"),
-    ("island", "A Dynamic Island when the email is copied"),
-    ("haptics", "A tap of vibration on snaps, on phones"),
-]
-
-FX_SCRIPT = """<script>
-(function () {
-  var all = %s;
-  var off = [];
-  try { off = JSON.parse(localStorage.getItem("fx-off") || "[]"); } catch (e) {}
-  var on = all.filter(function (n) { return off.indexOf(n) < 0; });
-  document.documentElement.setAttribute("data-fx", on.join(" "));
-  window.FX = %s;
-  // Moving between pages animates only when page-morph is on and motion is
-  // welcome; otherwise the browser's ordinary page swap is left alone.
-  window.addEventListener("pagereveal", function (event) {
-    if (!event.viewTransition) return;
-    if (on.indexOf("page-morph") < 0 ||
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      event.viewTransition.skipTransition();
-    }
-  });
-})();
-</script>""" % (json.dumps([n for n, _ in FX]), json.dumps(FX, ensure_ascii=False))
 
 # Two paths, drawn at the size they are used. The sun keeps its rays as
 # strokes so it stays legible at 17px; the moon is a single filled crescent.
@@ -144,15 +85,6 @@ SUN = ('<svg class="theme__sun" viewBox="0 0 24 24" fill="none" '
 MOON = ('<svg class="theme__moon" viewBox="0 0 24 24" fill="currentColor" '
         'aria-hidden="true"><path d="M21 14.2A9.3 9.3 0 0 1 9.8 3a9.2 9.2 0 1 0 '
         '11.2 11.2Z"></path></svg>')
-
-
-def stamp(path):
-    """path?v=<content hash>. A browser that cached an older copy of a
-    stylesheet or script fetches the new one the moment it changes, instead
-    of pairing new pages with old code for as long as its cache lasts."""
-    import hashlib
-    with open(os.path.join(ROOT, path), "rb") as fh:
-        return path + "?v=" + hashlib.sha1(fh.read()).hexdigest()[:8]
 
 
 def esc(text):
@@ -181,12 +113,10 @@ def head(c, page, canonical, body_class=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{FONTS}">
-<link rel="stylesheet" href="{stamp("src/styles/tokens.css")}">
-<link rel="stylesheet" href="{stamp("src/styles/motion.css")}">
-<link rel="stylesheet" href="{stamp("src/styles/main.css")}">
-<link rel="stylesheet" href="{stamp("src/styles/fx.css")}">
+<link rel="stylesheet" href="src/styles/tokens.css">
+<link rel="stylesheet" href="src/styles/motion.css">
+<link rel="stylesheet" href="src/styles/main.css">
 {THEME_SCRIPT}
-{FX_SCRIPT}
 </head>
 <body{(' class="' + body_class + '"') if body_class else ''}>
 <a class="skip" href="#content">Skip to content</a>
@@ -194,18 +124,12 @@ def head(c, page, canonical, body_class=""):
 """
 
 
-SEARCH = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg>'
-
-
-def masthead(c, active_home=False, title=""):
+def masthead(c, active_home=False):
     s = c["site"]
     mark = ("<span class=\"wordmark\">%s</span>" % esc(s["name"])) if active_home else \
            ("<a class=\"wordmark\" href=\"index.html\">%s</a>" % esc(s["name"]))
-    home = " masthead--home" if active_home else ""
-    small = (f"""\n    <span class="masthead__title" aria-hidden="true">{esc(title)}</span>"""
-             if title else "")
-    return f"""  <header class="masthead{home}">
-    {mark}{small}
+    return f"""  <header class="masthead">
+    {mark}
     <div class="masthead__end">
       <nav class="masthead__links" aria-label="Elsewhere">
         <a class="is-primary" href="{esc(s['resume'])}">Resume</a>
@@ -213,13 +137,11 @@ def masthead(c, active_home=False, title=""):
         <a href="{esc(s['linkedin'])}">LinkedIn</a>
         <a href="mailto:{esc(s['email'])}">Email</a>
       </nav>
-      <button class="theme search" type="button" data-spotlight-open hidden aria-label="{esc(s['searchLabel'])}" title="{esc(s['searchLabel'])}">{SEARCH}</button>
       <button class="theme" type="button" data-theme-toggle hidden aria-pressed="false">
         <span class="theme__icons">{SUN}{MOON}</span>
         <span class="sr-only">Dark mode</span>
       </button>
     </div>
-    <span class="progress" aria-hidden="true"></span>
   </header>
 """
 
@@ -281,43 +203,16 @@ def door_button(c, animated=False):
 """
 
 
-def plain(html):
-    """Text without its tags, for search results."""
-    return re.sub(r"<[^>]+>", "", html).replace("&amp;", "&")
-
-
-def search_index(c):
-    """Everything Spotlight can jump to: the pages, then what is on them."""
-    s = c["site"]
-    out = [{"title": d["label"], "body": plain(d["desc"]), "href": d["href"], "kind": "page"}
-           for d in c["home"]["doors"]]
-    for col in c["glance"]["columns"]:
-        href = col["link"]["href"] if col.get("link") else "index.html"
-        for item in col["items"]:
-            out.append({"title": plain(item["head"]), "body": plain(item["body"]),
-                        "href": href, "kind": col["heading"]})
-    out += [
-        {"title": "Resume", "body": "PDF", "href": s["resume"], "kind": "link"},
-        {"title": "GitHub", "body": s["github"], "href": s["github"], "kind": "link"},
-        {"title": "LinkedIn", "body": s["linkedin"], "href": s["linkedin"], "kind": "link"},
-        {"title": s["email"], "body": "Email", "href": "mailto:" + s["email"], "kind": "link"},
-    ]
-    return out
-
-
-def tail(c, animated=False):
+def tail(c):
     g = dict(c["glance"])
     g["email"] = c["site"]["email"]
     g["footerNote"] = c["site"]["footerNote"]
-    g["copied"] = c["site"]["copied"]
-    g["searchPlaceholder"] = c["site"]["searchPlaceholder"]
-    g["search"] = search_index(c)
     blob = json.dumps(g, ensure_ascii=False).replace("</", "<\\/")
     return f"""</div>
-{door_button(c, animated)}<script type="application/json" id="glance-data">{blob}</script>
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin defer></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin defer></script>
-<script src="{stamp("src/js/app.js")}" defer></script>
+<script type="application/json" id="glance-data">{blob}</script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin defer></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin defer></script>
+<script src="src/js/app.js" defer></script>
 </body>
 </html>
 """
@@ -337,23 +232,6 @@ def actions(items, on_dark=False):
     return "".join(out)
 
 
-def vt(href):
-    """The class that names a page's title for the page-to-page morph."""
-    return "vt-" + href.rsplit("/", 1)[-1].replace(".html", "")
-
-
-def letters(text):
-    """One span per letter, each knowing its place, for the load sequence."""
-    out, i = [], 0
-    for ch in text:
-        if ch == " ":
-            out.append(" ")
-            continue
-        out.append(f'<span class="ch" style="--i: {i}" aria-hidden="true">{esc(ch)}</span>')
-        i += 1
-    return "".join(out)
-
-
 # --- pages -----------------------------------------------------------------
 
 def render_home(c):
@@ -367,7 +245,7 @@ def render_home(c):
         for e in h["education"])
     doors = "".join(
         f"""      <a class="door" href="{esc(d['href'])}">
-        <span class="door__label"><span class="door__word {vt(d['href'])}">{esc(d['label'])}</span></span>
+        <span class="door__label"><span class="door__word">{esc(d['label'])}</span></span>
         <span class="door__desc">{d['desc']}</span>
       </a>\n"""
         for d in h["doors"])
@@ -375,8 +253,8 @@ def render_home(c):
     return (head(c, h, c["site"]["baseUrl"])
             + masthead(c, active_home=True)
             + f"""  <main class="main main--home" id="content">
-    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-    <h1 class="name lead-name" aria-label="{esc(c['site']['name'])}">{letters(c['site']['name'])}</h1>
+    <span class="rule lead-rule"></span>
+    <h1 class="name lead-name">{esc(c['site']['name'])}</h1>
     <p class="identity lead-identity">{esc(h['identity'])}</p>
     <p class="summary lead-summary">{esc(h['summary'])}</p>
 
@@ -388,7 +266,8 @@ def render_home(c):
   </main>
 """
             + glance_section(c)
-            + tail(c, animated=True))
+            + door_button(c, animated=True)
+            + tail(c))
 
 
 def render_research(c):
@@ -419,15 +298,15 @@ def render_research(c):
 """)
 
     return (head(c, r, c["site"]["baseUrl"] + "research.html")
-            + masthead(c, title=r['heading'])
+            + masthead(c)
             + f"""  <main class="main" id="content">
     <div class="page-head enter">
-      <h1 class="page-title vt-research">{esc(r['heading'])}</h1>
+      <h1 class="page-title">{esc(r['heading'])}</h1>
       <p class="page-lead">{esc(r['lead'])}</p>
     </div>
 {"".join(blocks)}  </main>
 """
-            + glance_section(c) + tail(c))
+            + glance_section(c) + door_button(c) + tail(c))
 
 
 def shelf(images):
@@ -458,15 +337,15 @@ def render_projects(c):
 """)
 
     return (head(c, p, c["site"]["baseUrl"] + "projects.html")
-            + masthead(c, title=p['heading'])
+            + masthead(c)
             + f"""  <main class="main" id="content">
     <div class="page-head enter">
-      <h1 class="page-title vt-projects">{esc(p['heading'])}</h1>
+      <h1 class="page-title">{esc(p['heading'])}</h1>
       <p class="page-lead">{esc(p['lead'])}</p>
     </div>
 {"".join(blocks)}  </main>
 """
-            + glance_section(c) + tail(c))
+            + glance_section(c) + door_button(c) + tail(c))
 
 
 def render_about(c):
@@ -482,11 +361,11 @@ def render_about(c):
     langs = "".join(f"""          <li>{esc(l)}</li>\n""" for l in a["languages"])
 
     return (head(c, a, c["site"]["baseUrl"] + "about.html")
-            + masthead(c, title=a['heading'])
+            + masthead(c)
             + f"""  <main class="main" id="content">
     <div class="split">
       <div class="split__main prose enter">
-        <h1 class="page-title vt-about">{esc(a['heading'])}</h1>
+        <h1 class="page-title">{esc(a['heading'])}</h1>
 {paras}        <section class="langs" aria-labelledby="langs-heading">
           <h2 class="langs__heading" id="langs-heading">{esc(a['languagesHeading'])}</h2>
           <ul class="langs__list">
@@ -503,7 +382,7 @@ def render_about(c):
     </div>
   </main>
 """
-            + glance_section(c) + tail(c))
+            + glance_section(c) + door_button(c) + tail(c))
 
 
 def render_contact(c):
@@ -513,11 +392,11 @@ def render_contact(c):
         for r in k["rows"])
 
     return (head(c, k, c["site"]["baseUrl"] + "contact.html")
-            + masthead(c, title=k['heading'])
+            + masthead(c)
             + f"""  <main class="main" id="content">
     <div class="split">
       <div class="split__main enter">
-        <h1 class="page-title vt-contact">{esc(k['heading'])}</h1>
+        <h1 class="page-title">{esc(k['heading'])}</h1>
         <p class="summary">{esc(k['lead'])}</p>
         <a class="email-big" href="mailto:{esc(c['site']['email'])}">{esc(c['site']['email'])}</a>
         <div class="actions">
@@ -530,7 +409,7 @@ def render_contact(c):
     </div>
   </main>
 """
-            + glance_section(c) + tail(c))
+            + glance_section(c) + door_button(c) + tail(c))
 
 
 _SIZES = {}
@@ -630,10 +509,10 @@ def render_hobbies(c):
         for r in hb["rest"])
 
     return (head(c, hb, c["site"]["baseUrl"] + "hobbies.html", body_class="hobbies")
-            + masthead(c, title=hb['heading'])
+            + masthead(c)
             + f"""  <main class="main" id="content">
     <div class="page-head enter">
-      <h1 class="page-title vt-hobbies">{esc(hb['heading'])}</h1>
+      <h1 class="page-title">{esc(hb['heading'])}</h1>
       <p class="page-lead">{esc(hb['lead'])}</p>
     </div>
 
@@ -670,14 +549,14 @@ def render_hobbies(c):
     </p>
   </main>
 """
-            + glance_section(c) + tail(c))
+            + glance_section(c) + door_button(c) + tail(c))
 
 
 def render_404(c):
     n = c["notFound"]
     doors = "".join(
         f"""      <a class="door" href="{esc(d['href'])}">
-        <span class="door__label"><span class="door__word {vt(d['href'])}">{esc(d['label'])}</span></span>
+        <span class="door__label"><span class="door__word">{esc(d['label'])}</span></span>
       </a>\n"""
         for d in c["home"]["doors"])
     page = {"title": n["title"], "description": "Page not found."}

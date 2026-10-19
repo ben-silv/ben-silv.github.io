@@ -39,18 +39,6 @@ linkedin.com/in/bhsilver
 
 Reach me at
 
-### site.searchLabel
-
-Search the site
-
-### site.searchPlaceholder
-
-Jump to a page, a project, a role
-
-### site.copied
-
-Email address copied
-
 ## Home
 
 The first page anyone lands on.

@@ -5,10 +5,6 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-/* The scrollbar's lane is kept even while a sheet locks scrolling, so the page
-   does not shift sideways the moment one opens. */
-html { scrollbar-gutter: stable; }
-
 body {
   margin: 0;
   background: var(--ground);
@@ -63,93 +59,61 @@ a:hover { color: var(--signal-deepen); }
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--ground);
 }
 
-
-/* The masthead floats, and at the top of the page it is not there at all:
-   no strip, no tint, no line — the name and links simply sit on the page.
-   Once content starts sliding underneath, frosted glass gathers behind them,
-   and its lower edge dissolves into the page instead of stopping at a rule,
-   so the header and the page never read as two separate things. */
 .masthead {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  isolation: isolate;
   flex-shrink: 0;
-  padding: 0 calc(var(--gutter) - 12px) 0 var(--gutter);
-  height: var(--masthead-h);
+  padding: 0 var(--gutter);
+  height: 68px;
+  border-bottom: 1px solid var(--hairline);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 40px;
 }
-.masthead::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 -28px;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(var(--glass) 55%, transparent);
-  -webkit-backdrop-filter: var(--blur-chrome);
-  backdrop-filter: var(--blur-chrome);
-  -webkit-mask-image: linear-gradient(#000 50%, transparent);
-  mask-image: linear-gradient(#000 50%, transparent);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-/* Without scroll timelines, app.js sets the attribute instead. */
-.masthead[data-under]::before { opacity: 1; }
-@supports (animation-timeline: scroll()) {
-  .masthead::before {
-    transition: none;
-    animation: glassIn linear both;
-    animation-timeline: scroll(root);
-    animation-range: 0 80px;
-  }
-  @keyframes glassIn { to { opacity: 1; } }
-}
 
 .wordmark {
   font-family: var(--display);
-  font-size: 1.0625rem;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: -0.01em;
 }
 
 /* The switch is a control, not a destination, so it sits beside the nav
    rather than inside it. */
-.masthead__end { display: flex; align-items: center; gap: 4px; }
+.masthead__end { display: flex; align-items: center; gap: 22px; }
 
-.masthead__links { display: flex; align-items: center; gap: 2px; }
+.masthead__links { display: flex; align-items: center; gap: 28px; }
 
-/* Links and the round icon buttons share one hover: a soft capsule of tint
-   gathers under whatever is pointed at. Nothing carries an outline at rest,
-   so the header stays as quiet as the page around it. */
-.masthead__links a,
-.theme {
-  border-radius: var(--radius-pill);
-  transition: color 0.2s ease, background-color 0.25s ease;
-}
+/* One hover behaviour for the whole masthead: the rule wipes in from the left
+   and the text darkens. Nothing carries a rule at rest, so the underline only
+   ever means "you are pointing at this". */
 .masthead__links a {
-  display: inline-flex;
-  align-items: center;
-  height: 36px;
-  padding: 0 12px;
-  font-size: 0.9375rem;
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
   color: var(--ink-muted);
+  transition: color 0.18s ease;
+}
+.masthead__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 2px;
+  background: var(--accent-line, var(--signal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .masthead__links a:hover,
-.masthead__links a:focus-visible,
-.theme:hover,
-.theme:focus-visible {
-  color: var(--ink);
-  background-color: color-mix(in srgb, var(--ink) 7%, transparent);
-}
+.masthead__links a:focus-visible { color: var(--ink); }
+.masthead__links a:hover::after,
+.masthead__links a:focus-visible::after { transform: scaleX(1); }
 
 /* Resume still leads, by weight rather than by a permanent rule. */
-.masthead__links a.is-primary { color: var(--ink); font-weight: 600; }
+.masthead__links a.is-primary { color: var(--ink); font-weight: 500; }
 
 /* --- the light switch ------------------------------------------------------
    Hidden in the markup and unhidden by the inline script in <head>, so a
@@ -157,20 +121,22 @@ a:hover { color: var(--signal-deepen); }
 .theme[hidden] { display: none; }
 
 .theme {
-  position: relative;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   padding: 0;
-  border: 0;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
   background: transparent;
   color: var(--ink-muted);
   cursor: pointer;
-  --sheen: rgba(11, 165, 236, 0.22);
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
+.theme:hover,
+.theme:focus-visible { color: var(--ink); border-color: var(--signal); }
 
 /* Sun and moon share one cell and trade places, each arriving from the side
    the other left towards. */
@@ -197,11 +163,17 @@ a:hover { color: var(--signal-deepen); }
 
 /* --- home ----------------------------------------------------------------- */
 
+.rule {
+  display: block;
+  height: 3px;
+  background: var(--signal);
+}
+
 .name {
+  margin-top: 26px;
   font-size: var(--size-display);
   line-height: 0.96;
-  letter-spacing: var(--track-display);
-  font-optical-sizing: auto;
+  letter-spacing: -0.032em;
 }
 
 .identity {
@@ -238,27 +210,9 @@ a:hover { color: var(--signal-deepen); }
 }
 .education .note { font-size: var(--size-meta); color: var(--ink-muted); }
 
-.doors { position: relative; isolation: isolate; margin-top: 40px; }
-
-/* One highlight for the whole list, not one per row. app.js moves it to
-   whichever row is under the pointer (or has focus) on a spring, so running
-   down the list it glides from row to row instead of blinking. */
-.doors__glow {
-  position: absolute;
-  left: -20px;
-  right: -20px;
-  top: 0;
-  height: 0;
-  border-radius: 16px;
-  background: color-mix(in srgb, var(--signal) 9%, transparent);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--signal) 16%, transparent);
-  opacity: 0;
-  pointer-events: none;
-  z-index: -1;
-}
+.doors { margin-top: 40px; }
 
 .door {
-  position: relative;
   display: flex;
   align-items: baseline;
   gap: 48px;
@@ -271,7 +225,7 @@ a:hover { color: var(--signal-deepen); }
   font-family: var(--display);
   font-size: var(--size-entry);
   font-weight: 800;
-  letter-spacing: var(--track-title);
+  letter-spacing: -0.024em;
 }
 
 /* The rule has to be the width of the word, not the width of the column, so
@@ -367,52 +321,39 @@ a:hover { color: var(--signal-deepen); }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
 
 /* --- buttons -------------------------------------------------------------- */
-/* Capsules. What they do when touched lives in motion.css, shared with every
-   other control on the site. */
 
 .btn {
   position: relative;
+  z-index: 0;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 48px;
-  padding: 0 24px;
+  padding: 0 22px;
   border: 1.5px solid var(--ink);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius);
   background: transparent;
   color: var(--ink);
   font-family: var(--text);
   font-size: var(--size-meta);
   font-weight: 600;
   cursor: pointer;
-  --sheen: color-mix(in srgb, var(--signal) 28%, transparent);
+  transition: transform 0.12s ease, border-color 0.2s ease;
 }
-.btn:hover, .btn:focus-visible {
-  color: var(--ink);
-  border-color: var(--signal);
-  background: color-mix(in srgb, var(--signal) 8%, transparent);
-}
+.btn:hover, .btn:focus-visible { color: var(--on-bright); border-color: var(--signal); }
 
-.btn--primary,
-.btn--primary:hover,
-.btn--primary:focus-visible {
-  border-color: var(--signal);
-  background: var(--signal);
-  color: var(--on-bright);
-  --sheen: rgba(255, 255, 255, 0.55);
-}
+.btn--primary { border-color: var(--signal); background: var(--signal); }
+.btn--primary::before { display: none; }
+.btn--primary { color: var(--on-bright); }
+.btn--primary:hover { background: var(--signal-deepen); color: var(--on-bright); }
 
 .btn--on-dark {
   border-color: rgba(251, 251, 253, 0.28);
   color: var(--on-dark);
-  --sheen: rgba(255, 255, 255, 0.2);
+  --btn-fill: var(--signal);
 }
-.btn--on-dark:hover, .btn--on-dark:focus-visible {
-  color: var(--on-dark);
-  border-color: rgba(251, 251, 253, 0.6);
-  background: rgba(251, 251, 253, 0.06);
-}
+.btn--on-dark:hover, .btn--on-dark:focus-visible { color: var(--on-bright); }
 
 /* --- the corner door ------------------------------------------------------- */
 
@@ -479,7 +420,7 @@ a:hover { color: var(--signal-deepen); }
   justify-content: space-between;
   gap: 40px;
 }
-.glance__title { font-size: 2.625rem; letter-spacing: -0.026em; }
+.glance__title { font-size: 42px; letter-spacing: -0.026em; }
 .glance__lead { margin-top: 10px; max-width: 660px; font-size: var(--size-small); line-height: 1.6; color: var(--on-dark-muted); }
 
 .glance__close {
@@ -506,14 +447,14 @@ a:hover { color: var(--signal-deepen); }
 .glance__col { padding-top: 22px; border-top: 3px solid var(--on-dark); }
 .glance__col--research { border-top-color: var(--deep); }
 .glance__col--projects { border-top-color: var(--signal); }
-.glance__col h3 { font-size: 1.375rem; letter-spacing: -0.016em; }
+.glance__col h3 { font-size: 22px; letter-spacing: -0.016em; }
 .glance__items { margin-top: 18px; display: flex; flex-direction: column; gap: 18px; }
 .glance__items strong { display: block; font-size: var(--size-meta); font-weight: 600; line-height: 1.35; }
-.glance__items span { display: block; margin-top: 6px; font-size: 0.9375rem; line-height: 1.55; color: var(--on-dark-body); }
+.glance__items span { display: block; margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--on-dark-body); }
 .glance__more {
   display: inline-block;
   margin-top: 18px;
-  font-size: 0.9375rem;
+  font-size: 15px;
   font-weight: 600;
   color: var(--signal);
   border-bottom: 1px solid rgba(11, 165, 236, 0.4);
@@ -559,52 +500,6 @@ a:hover { color: var(--signal-deepen); }
   box-shadow: 0 30px 80px rgba(11, 27, 43, 0.45);
 }
 
-/* --- the photo viewer ----------------------------------------------------- */
-/* Any photograph on the site can be opened. It grows out of the page from
-   exactly where it sat, can be flicked away in any direction, and shrinks
-   back into its place on the way out. The motion is all app.js — this is
-   just the material.                                                       */
-
-img[data-zoomable] { cursor: zoom-in; }
-img[data-zoomable]:focus-visible { outline-offset: 4px; }
-
-.zoomer {
-  position: fixed;
-  inset: 0;
-  z-index: 70;
-  touch-action: none;
-}
-.zoomer__scrim {
-  position: absolute;
-  inset: 0;
-  background: rgba(5, 9, 14, 0.8);
-  -webkit-backdrop-filter: saturate(140%) blur(24px);
-  backdrop-filter: saturate(140%) blur(24px);
-  opacity: 0;
-}
-.zoomer__img {
-  position: absolute;
-  left: 0;
-  top: 0;
-  max-width: none;
-  border-radius: 4px;
-  transform-origin: 0 0;
-  will-change: transform;
-  cursor: grab;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-user-drag: none;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
-}
-.zoomer[data-dragging] .zoomer__img { cursor: grabbing; }
-.zoomer .glance__close {
-  display: flex;
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  opacity: 0;
-}
-
 /* --- hobbies -------------------------------------------------------------- */
 /* No palette of its own. This page used to arrive in orange on warm paper,
    which made the least important page on the site the loudest thing on it.
@@ -613,7 +508,7 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
 
 .feature { margin-top: 40px; padding-top: 26px; border-top: 3px solid var(--signal); }
 .feature__head { display: flex; gap: 72px; align-items: flex-end; }
-.feature__name { flex-shrink: 0; font-size: 2.875rem; line-height: 1.0; letter-spacing: -0.026em; }
+.feature__name { flex-shrink: 0; font-size: 46px; line-height: 1.0; letter-spacing: -0.026em; }
 .feature__blurb { margin-bottom: 4px; max-width: 620px; font-size: var(--size-body); line-height: 1.6; color: var(--ink-body); }
 .feature__note { margin-top: 20px; max-width: 900px; font-size: var(--size-small); line-height: 1.65; color: var(--ink-body); }
 
@@ -724,8 +619,8 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
 .rest { margin-top: 38px; padding-top: 22px; border-top: 1px solid var(--hairline); }
 .rest__label { margin-bottom: 18px; font-size: var(--size-meta); color: var(--ink-muted); }
 .rest__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px; }
-.rest__grid h3 { font-size: 1.1875rem; letter-spacing: -0.014em; }
-.rest__grid p { margin-top: 8px; font-size: 0.9375rem; line-height: 1.55; color: var(--ink-soft); }
+.rest__grid h3 { font-size: 19px; letter-spacing: -0.014em; }
+.rest__grid p { margin-top: 8px; font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
 
 .hunting {
   margin-top: 40px;
@@ -740,7 +635,7 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
 }
 .hunting strong {
   font-family: var(--display);
-  font-size: 1.375rem;
+  font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.015em;
   color: var(--ink);
@@ -753,7 +648,7 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
 .split__side { flex-grow: 1; padding-top: 14px; }
 
 .prose p { font-size: var(--size-small); line-height: 1.75; color: var(--ink-soft); }
-.prose p:first-of-type { margin-top: 28px; font-size: 1.1875rem; line-height: 1.7; color: var(--ink); }
+.prose p:first-of-type { margin-top: 28px; font-size: 19px; line-height: 1.7; color: var(--ink); }
 .prose p + p { margin-top: 18px; }
 
 .stack { margin-top: 22px; display: flex; flex-direction: column; }
@@ -798,7 +693,7 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
 }
 .langs__list li {
   font-family: var(--display);
-  font-size: 1.75rem;
+  font-size: 28px;
   font-weight: 800;
   letter-spacing: -0.022em;
   line-height: 1.15;
@@ -817,7 +712,7 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
   display: inline-block;
   margin-top: 36px;
   font-family: var(--display);
-  font-size: 2.5rem;
+  font-size: 40px;
   font-weight: 800;
   letter-spacing: -0.026em;
   border-bottom: 4px solid var(--signal);
@@ -826,7 +721,7 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
 
 .rows { display: flex; flex-direction: column; gap: 30px; }
 .rows > div { padding-top: 18px; border-top: 1px solid var(--hairline); }
-.rows p:first-child { font-size: 0.9375rem; color: var(--ink-muted); }
+.rows p:first-child { font-size: 15px; color: var(--ink-muted); }
 .rows p:last-child { margin-top: 8px; font-size: var(--size-body); line-height: 1.5; }
 
 /* --- responsive ------------------------------------------------------------ */
@@ -837,18 +732,13 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
 }
 
 @media (max-width: 900px) {
-  /* Two rows of masthead pinned to a phone screen is too much glass for too
-     little; here it scrolls away with the page. */
-  .masthead { position: relative; height: auto; padding: 12px var(--gutter); flex-wrap: wrap; gap: 8px 20px; }
-  .masthead::before { display: none; }
-  .masthead__links { margin-left: -12px; }
+  .masthead { height: auto; padding: 14px var(--gutter); flex-wrap: wrap; gap: 10px 20px; }
   /* Narrow enough and the switch would wrap onto a row of its own with
      nothing beside it. Dissolving the wrapper lets it sit up on the name's
      row and the links take the one below. */
   .masthead__end { display: contents; }
   .masthead__links { order: 3; width: 100%; gap: 18px; flex-wrap: wrap; }
   .theme { order: 2; width: 44px; height: 44px; }
-  .masthead__links a { height: 44px; }
 
   .main { padding: 40px var(--gutter) 40px; }
   .education { grid-template-columns: 1fr; gap: 20px; }
@@ -858,7 +748,6 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
 
   .page-head, .entry, .split, .feature__head, .second__head {
     flex-direction: column;
-    align-items: flex-start;
     gap: 22px;
   }
   .entry__body, .split__main, .split__side, .entry__side { width: 100%; }
@@ -869,16 +758,15 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
   .rest__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   .glance__grid { grid-template-columns: 1fr; gap: 24px; }
   .glance__head { gap: 14px; }
-  .glance__title { font-size: 1.875rem; line-height: 1.1; }
+  .glance__title { font-size: 30px; line-height: 1.1; }
   .glance__close { width: 44px; height: 44px; }
   .glance-overlay { padding: 20px 16px; }
   .glance-sheet { padding: 28px 22px 32px; border-radius: 18px;
     max-height: calc(100vh - 40px); max-height: calc(100dvh - 40px); }
 
-  .door-button { right: 16px; bottom: 16px; height: 52px; padding: 0 10px 0 18px; font-size: 0.9375rem; }
-  .doors__glow { display: none; }
-  .email-big { font-size: 1.625rem; }
-  .feature__name { font-size: 1.875rem; }
+  .door-button { right: 16px; bottom: 16px; height: 52px; padding: 0 10px 0 18px; font-size: 15px; }
+  .email-big { font-size: 26px; }
+  .feature__name { font-size: 30px; }
 }
 
 @media (max-width: 420px) {
@@ -892,15 +780,7 @@ img[data-zoomable]:focus-visible { outline-offset: 4px; }
 
 /* --- print ------------------------------------------------------------------ */
 
-/* Higher contrast asked for: glass goes solid and gets a real edge. */
-@media (prefers-contrast: more) {
-  .masthead::before { background: var(--ground); backdrop-filter: none; -webkit-backdrop-filter: none;
-    -webkit-mask-image: none; mask-image: none; inset: 0; box-shadow: inset 0 -1px 0 var(--ink); }
-  .door-button, .glance-sheet { outline: 1px solid var(--on-dark-line); }
-}
-
 @media print {
-  .masthead { position: static; }
   .door-button, .glance { display: none; }
   .main { padding: 0; }
   body { font-size: 11pt; }

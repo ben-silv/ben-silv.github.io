@@ -1,31 +1,23 @@
 /* ===========================================================================
    motion.css — every keyframe on the site, in one file.
 
-   The rule throughout: things move like objects, not like slides. Anything a
-   visitor can touch is driven by a spring in app.js, so it can be grabbed and
-   turned round mid-flight. What is left here is the motion nobody touches —
-   the load sequence, and the press of a button — and even that runs on
-   spring curves (--spring-* in tokens.css) so the two kinds feel related.
-
-   Moments, in order of size:
-     1. The load sequence on Home. The name materialises out of a blur, one
-        letter after another, and the rest of the page comes into focus in its
-        wake. One gesture.
+   Two moments only:
+     1. The load sequence on Home. A rule sweeps the full width and the name
+        is wiped in behind it; everything else settles in its wake. One
+        gesture, not eight separate reveals.
      2. The summary sheet growing out of the corner button that opened it.
-     3. A photograph growing out of the page into the viewer (app.js).
-     4. Every press: the control gives under the pointer and springs back.
 
    Deliberately absent: fade-up-on-scroll, hover lift, parallax.
    =========================================================================== */
 
-@keyframes materialize {
-  from { opacity: 0; filter: blur(14px); transform: translateY(0.18em) scale(0.94); }
-  to   { opacity: 1; filter: none;      transform: none; }
+@keyframes sweep {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
-@keyframes focusIn {
-  from { opacity: 0; filter: blur(8px); transform: scale(0.985); }
-  to   { opacity: 1; filter: none;     transform: none; }
+@keyframes unveil {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
 }
 
 @keyframes settle {
@@ -69,28 +61,20 @@
   to   { opacity: 1; }
 }
 
-
 /* --- the load sequence ---------------------------------------------------- */
 
-/* Each letter is its own box so it can be blurred and lifted alone. */
-.lead-name .ch {
-  display: inline-block;
-  animation: materialize 0.9s var(--spring-smooth) calc(0.05s + var(--i) * 0.045s) both;
-}
-
-/* Everything under the name arrives as one layer coming into focus — not a
-   row of separate reveals. */
-.lead-identity,
-.lead-summary,
-.lead-education,
-.lead-nav { animation: focusIn 0.8s var(--spring-smooth) 0.5s both; }
-
+.lead-rule      { transform-origin: left; animation: sweep 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.lead-name      { animation: unveil 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both; }
+.lead-identity  { animation: settle 0.5s ease-out 0.55s both; }
+.lead-summary   { animation: settle 0.5s ease-out 0.68s both; }
+.lead-education { animation: settle 0.5s ease-out 0.80s both; }
+.lead-nav       { animation: settle 0.5s ease-out 0.92s both; }
 /* backwards, not both: once it has sprung in, the button goes back to being
    governed by ordinary rules, so it can transition out of the way when the
    panel opens. A filled animation would outrank them. */
 .lead-door      { animation: doorIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.10s backwards; }
 
-/* Inner pages get a plain settle, without the blur. */
+/* Inner pages get the same settle, without the sweep. */
 .enter     { animation: settle 0.5s ease-out both; }
 .enter-1   { animation: settle 0.5s ease-out 0.10s both; }
 .enter-2   { animation: settle 0.5s ease-out 0.18s both; }
@@ -112,53 +96,45 @@
 }
 .glance-overlay[data-closing="true"] .glance-sheet > * { animation: none; opacity: 1; }
 
-/* --- the press ------------------------------------------------------------
-   One idea on every control on the site: it answers the instant the pointer
-   goes down — not on release — by giving a little under it, and a soft light
-   sits wherever the pointer is. Letting go, it springs back with the faint
-   overshoot of something with give in it. The going-down is quick and
-   linear; the coming-back is the spring.                                   */
+/* --- the button ----------------------------------------------------------- */
+/* One idea, used on every button: the fill rises from the bottom edge,
+   starting under the pointer. The label never changes colour.            */
 
-/* `scale`, not `transform`: app.js owns the transform on the corner button
-   while it is being dragged, and the two must not overwrite each other. */
-:is(.btn, .theme) {
-  transition: scale var(--spring-bounce-t) var(--spring-bounce);
-  -webkit-tap-highlight-color: transparent;
-}
-:is(.btn, .theme):active,
-:is(.btn, .theme)[data-pressed] {
-  scale: 0.955;
-  transition: scale 0.09s ease-out;
-}
-
-/* The light. app.js keeps --px and --py on the control under the pointer. */
-:is(.btn, .theme)::after {
+.btn::before {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background: radial-gradient(circle at var(--px, 50%) var(--py, 50%),
-              var(--sheen, rgba(255, 255, 255, 0.34)), transparent 62%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-:is(.btn, .theme):hover::after { opacity: 1; }
-:is(.btn, .theme):active::after,
-:is(.btn, .theme)[data-pressed]::after { opacity: 1; transition-duration: 0.05s; }
-
-/* --- theme switch ---------------------------------------------------------
-   With view transitions, the new theme grows out of the switch as a circle
-   (the script is inline in <head>). Without them, the whole page crosses over
-   together for a third of a second, then the attribute is removed so nothing
-   else pays for a transition it never uses.                               */
-
-:root.theme-flip::view-transition-old(root),
-:root.theme-flip::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+  left: var(--press-x, 50%);
+  bottom: 0;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  background: var(--btn-fill, var(--signal));
+  border-radius: 50% 50% 0 0;
+  transition: width 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+              border-radius 0.34s ease;
+  z-index: -1;
 }
 
+.btn:hover::before,
+.btn:focus-visible::before {
+  width: 260%;
+  height: 260%;
+  border-radius: 0;
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+/* --- always ---------------------------------------------------------------
+   Every animation above has a static finished state, so switching them off
+   never leaves a layout half-built.                                       */
+
+/* Flipping the switch. The attribute is on for a third of a second either side
+   of the change and then removed, so the whole page crosses over together
+   instead of snapping — and so nothing else on the site pays for a transition
+   it never uses. The reduce block below removes it along with everything else. */
 :root[data-theme-shift] *,
 :root[data-theme-shift] *::before,
 :root[data-theme-shift] *::after {
@@ -166,11 +142,6 @@
   transition-duration: 0.32s !important;
   transition-timing-function: ease !important;
 }
-
-/* --- always ---------------------------------------------------------------
-   Every animation above has a static finished state, so switching them off
-   never leaves a layout half-built. Reduced motion keeps the feedback — a
-   press still changes the light — but nothing scales, slides or blurs.   */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -183,6 +154,7 @@
     scroll-behavior: auto !important;
   }
 
-  :is(.btn, .theme):active,
-  :is(.btn, .theme)[data-pressed] { scale: none; }
+  .btn::before { display: none; }
+  .btn:hover,
+  .btn:focus-visible { background: var(--btn-fill, var(--signal)); }
 }

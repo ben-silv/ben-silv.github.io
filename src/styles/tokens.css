@@ -47,61 +47,27 @@
      carry 15px text. This darker shade is for hover only. */
   --signal-deepen: #0A6C9C;
 
-  /* --- type --------------------------------------------------------------
-     In rem, so the whole scale follows a visitor's own text-size setting and
-     the layout grows with it rather than breaking. Tracking is set per size,
-     never once for all: display type tightens as it grows, fine print opens
-     up a touch to stay legible.                                            */
+  /* --- type -------------------------------------------------------------- */
   --display: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
   --text: "Instrument Sans", system-ui, -apple-system, sans-serif;
 
-  --size-display: 5.25rem;    /* 84 */
-  --size-page:    3.625rem;   /* 58 */
-  --size-entry:   2.125rem;   /* 34 */
-  --size-section: 2rem;       /* 32 */
-  --size-sub:     1.5625rem;  /* 25 */
-  --size-lead:    1.4375rem;  /* 23 */
-  --size-body:    1.125rem;   /* 18 */
-  --size-small:   1.0625rem;  /* 17 */
-  --size-meta:    1rem;       /* 16 */
-  --size-fine:    0.875rem;   /* 14 */
-
-  --track-display: -0.035em;
-  --track-title:   -0.028em;
-  --track-head:    -0.018em;
-  --track-fine:     0.01em;
+  --size-display: 84px;
+  --size-page:    58px;
+  --size-entry:   34px;
+  --size-section: 32px;
+  --size-sub:     25px;
+  --size-lead:    23px;
+  --size-body:    18px;
+  --size-small:   17px;
+  --size-meta:    16px;
+  --size-fine:    14px;
 
   /* --- space ------------------------------------------------------------- */
   --gutter: 96px;
   --measure: 62ch;
   --rhythm: 22px;
   --radius: 12px;
-  --radius-sheet: 24px;
   --radius-pill: 999px;
-  --masthead-h: 68px;
-
-  /* --- material -----------------------------------------------------------
-     Two weights of glass. The light one is chrome that floats over the page
-     (the masthead); the dark one is anything that opens over it (the corner
-     button and the sheet it grows into, the photo viewer). Same recipe at
-     two thicknesses: the bigger the surface, the heavier the blur.        */
-  --glass:        rgba(251, 251, 253, 0.72);
-  --glass-edge:   rgba(255, 255, 255, 0.55);
-  --glass-dark:   rgba(11, 27, 43, 0.82);
-  --glass-dark-edge: rgba(255, 255, 255, 0.14);
-  --blur-chrome:  saturate(180%) blur(20px);
-  --blur-sheet:   saturate(160%) blur(36px);
-  --behind:       #05090E;   /* what shows round the page when a sheet pushes it back */
-
-  /* --- motion -------------------------------------------------------------
-     Springs, sampled into CSS easing curves so the CSS-only motion moves the
-     same way as the gesture-driven motion in app.js. Named by behaviour, with
-     the damping ratio and response they were sampled from. Each needs the
-     duration beside it: that is how long the spring takes to settle.      */
-  --spring-smooth: linear(0, 0.0229, 0.0789, 0.1533, 0.2362, 0.3209, 0.4031, 0.4803, 0.5511, 0.6147, 0.6712, 0.7208, 0.7639, 0.8011, 0.833, 0.8602, 0.8833, 0.9028, 0.9192, 0.933, 0.9445, 0.9542, 0.9622, 0.9688, 0.9744, 0.9789, 0.9827, 0.9858, 0.9884, 0.9905, 0.9922, 0.9936, 0.9948, 0.9958, 0.9966, 0.9972, 0.9977, 0.9981, 0.9985, 0.9988, 1);
-  --spring-smooth-t: 0.59s;   /* damping 1.0, response 0.4 */
-  --spring-bounce: linear(0, 0.0292, 0.1045, 0.2098, 0.3312, 0.4578, 0.5811, 0.6953, 0.7963, 0.882, 0.9518, 1.0058, 1.0453, 1.0719, 1.0875, 1.0942, 1.0938, 1.0884, 1.0795, 1.0685, 1.0566, 1.0447, 1.0334, 1.0233, 1.0145, 1.0072, 1.0015, 0.9972, 0.9941, 0.9922, 0.9913, 0.991, 0.9913, 0.9921, 0.993, 0.9941, 0.9953, 0.9964, 0.9974, 0.9983, 1);
-  --spring-bounce-t: 0.57s;   /* damping 0.6, response 0.35 */
 
   color-scheme: light;
 }
@@ -139,11 +105,6 @@
 
   --signal-deepen: #7DD3FC;
 
-  --glass:        rgba(14, 26, 38, 0.7);
-  --glass-edge:   rgba(255, 255, 255, 0.08);
-  --glass-dark:   rgba(22, 38, 58, 0.84);
-  --glass-dark-edge: rgba(255, 255, 255, 0.12);
-
   color-scheme: dark;
 }
 
@@ -165,34 +126,19 @@
 
     --signal-deepen: #7DD3FC;
 
-    --glass:        rgba(14, 26, 38, 0.7);
-    --glass-edge:   rgba(255, 255, 255, 0.08);
-    --glass-dark:   rgba(22, 38, 58, 0.84);
-    --glass-dark-edge: rgba(255, 255, 255, 0.12);
-
     color-scheme: dark;
   }
 }
 
 @media (max-width: 900px) {
   :root {
-    --size-display: 3.25rem;
-    --size-page:    2.375rem;
-    --size-entry:   1.625rem;
-    --size-section: 1.625rem;
-    --size-sub:     1.375rem;
-    --size-lead:    1.1875rem;
-    --size-body:    1.0625rem;
-    --gutter: 20px;
-  }
-}
-
-/* A visitor who asked for less transparency gets the same surfaces, solid. */
-@media (prefers-reduced-transparency: reduce) {
-  :root {
-    --glass: var(--ground);
-    --glass-dark: var(--sheet);
-    --blur-chrome: none;
-    --blur-sheet: none;
+    --size-display: 46px;
+    --size-page:    38px;
+    --size-entry:   26px;
+    --size-section: 26px;
+    --size-sub:     22px;
+    --size-lead:    19px;
+    --size-body:    17px;
+    --gutter: 22px;
   }
 }
