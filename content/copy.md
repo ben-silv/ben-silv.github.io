@@ -131,9 +131,10 @@ Projects
 
 > Projects
 
-CraveCast and TRACE, two health tools built to make people's lives easier and
-safer, plus a multi-client TCP server and gerp, a search engine, both written
-in C++.
+Project Pickup, a live app where Tufts students team up on each other's
+projects. CraveCast and TRACE, two health tools built to make people's lives
+easier and safer, plus a multi-client TCP server and gerp, a search engine,
+both written in C++.
 
 ### home.doors[2].label
 
@@ -320,9 +321,10 @@ Projects — Ben Silver
 
 > Search results and link previews. Not shown on the page.
 
-CraveCast, a craving forecaster for addiction recovery, a multi-client TCP
-server and gerp, a search engine, both in C++, and TRACE, allergen detection
-for travellers and kids.
+Project Pickup, a live app where Tufts students recruit classmates for their
+projects; CraveCast, a craving forecaster for addiction recovery; a
+multi-client TCP server and gerp, a search engine, both in C++; and TRACE,
+allergen detection for travellers and kids.
 
 ### projects.heading
 
@@ -330,20 +332,132 @@ Projects
 
 ### projects.lead
 
-Two health tools that came out of my own life, a networked server in C++, and
-a search engine from my data structures class.
+A live app for Tufts students to team up on their projects, two health tools
+that came out of my own life, a networked server in C++, and a search engine
+from my data structures class.
 
 ### projects.items[0].name
 
-CraveCast
+Project Pickup
 
 ### projects.items[0].when
+
+> Project Pickup
+
+October 2026
+
+### projects.items[0].paragraphs
+
+> Project Pickup
+
+Project Pickup gives a Tufts student with an app idea a way to find the one
+classmate they need for the part they can't do themselves, asked for as a
+specific role with an hours estimate, like three onboarding screens in about
+five hours. It launched in October 2026 at projpickup.com and is open for
+sign-ups.
+
+A student posts a project with one or more roles. Classmates send offers, the
+owner picks one, and the two of them work it out in a private chat. When the
+work is done the owner marks the role filled and leaves a credit note that
+shows on both profiles. Only @tufts.edu emails can join.
+
+Who can see and do what is decided by the database, not the interface. All ten
+tables have row-level security and the app holds no service-role key, so every
+query runs as the signed-in user. Multi-step actions like accepting an offer
+or crediting a role are single SQL functions that can't stop halfway, and the
+message cap, resend limits and blocks are enforced in Postgres, not only on
+the page.
+
+It's Next.js and TypeScript on Vercel, with Supabase for Postgres, sign-in and
+live chat. 178 unit, database and end-to-end tests run in GitHub Actions. The
+database tests sign in as different users to prove the access rules hold, and
+one of them caught a function that let anyone find out who had blocked whom.
+
+### projects.items[0].facts[0].label
+
+Built with
+
+### projects.items[0].facts[0].value
+
+> Built with
+
+TypeScript, Next.js, React, PostgreSQL (Supabase), Vercel
+
+### projects.items[0].facts[1].label
+
+Tested with
+
+### projects.items[0].facts[1].value
+
+> Tested with
+
+Vitest, Playwright, GitHub Actions
+
+### projects.items[0].facts[2].label
+
+Status
+
+### projects.items[0].facts[2].value
+
+> Status
+
+Live, open to Tufts students
+
+### projects.items[0].images[0].caption
+
+The landing page, with example posts that shuffle
+
+### projects.items[0].images[0].alt
+
+> The landing page, with example posts that shuffle — Read aloud in place of the picture. Describe what is in the shot.
+
+The Project Pickup landing page. A headline reads “Your app needs a designer.
+Someone on the Hill wants in.” beside a stack of example posts, the top one
+asking for a backend developer for a CS 15 study-group matcher.
+
+### projects.items[0].images[1].caption
+
+Open roles, filtered by the kind of help they need
+
+### projects.items[0].images[1].alt
+
+> Open roles, filtered by the kind of help they need — Read aloud in place of the picture. Describe what is in the shot.
+
+The Open roles feed: a search bar, a sort menu, category filters from Design
+to Full project, and one labelled example post asking for a data science
+analysis of about four hours.
+
+### projects.items[0].images[2].caption
+
+Posting a project, with tips on asks that get answered
+
+### projects.items[0].images[2].alt
+
+> Posting a project, with tips on asks that get answered — Read aloud in place of the picture. Describe what is in the shot.
+
+The Post a project form with fields for name, pitch and stage, beside a panel
+of tips for writing a small, answerable ask and a preview of the post on the
+feed.
+
+### projects.items[0].actions[0].label
+
+Open the site
+
+### projects.items[0].actions[1].label
+
+Read the source
+
+### projects.items[1].name
+
+CraveCast
+
+### projects.items[1].when
 
 > CraveCast
 
 September 2026
 
-### projects.items[0].paragraphs
+### projects.items[1].paragraphs
 
 > CraveCast
 
@@ -365,31 +479,31 @@ dashboard, which make logging a chore. People attempting to break addiction
 don't need any more hindrances, so I made a gamified version by adding streaks
 and unlockables to encourage users to keep tracking.
 
-### projects.items[0].facts[0].label
+### projects.items[1].facts[0].label
 
 Built with
 
-### projects.items[0].facts[0].value
+### projects.items[1].facts[0].value
 
 > Built with
 
 HTML, JavaScript, Python, kernel density estimation
 
-### projects.items[0].facts[1].label
+### projects.items[1].facts[1].label
 
 Status
 
-### projects.items[0].facts[1].value
+### projects.items[1].facts[1].value
 
 > Status
 
 Live, and open source
 
-### projects.items[0].images[0].caption
+### projects.items[1].images[0].caption
 
 The dashboard: risk right now, and the next twelve hours
 
-### projects.items[0].images[0].alt
+### projects.items[1].images[0].alt
 
 > The dashboard: risk right now, and the next twelve hours — Read aloud in place of the picture. Describe what is in the shot.
 
@@ -397,11 +511,11 @@ The CraveCast dashboard. A dial reads 77% high with the note “A rough stretch,
 right now” and a warning that the usual 7am window starts in about eight
 hours, beside the day's plant, streak counters and a twelve-hour forecast.
 
-### projects.items[0].images[1].caption
+### projects.items[1].images[1].caption
 
 The garden: what the clean days add up to
 
-### projects.items[0].images[1].alt
+### projects.items[1].images[1].alt
 
 > The garden: what the clean days add up to — Read aloud in place of the picture. Describe what is in the shot.
 
@@ -409,25 +523,25 @@ The CraveCast garden. A four by four plot with a sunflower being planted,
 progress towards the next unlock, and a collection grid of the plants earned
 so far.
 
-### projects.items[0].actions[0].label
+### projects.items[1].actions[0].label
 
 Open the app
 
-### projects.items[0].actions[1].label
+### projects.items[1].actions[1].label
 
 Read the source
 
-### projects.items[1].name
+### projects.items[2].name
 
 TCP echo server
 
-### projects.items[1].when
+### projects.items[2].when
 
 > TCP echo server
 
 September 2026
 
-### projects.items[1].paragraphs
+### projects.items[2].paragraphs
 
 > TCP echo server
 
@@ -440,41 +554,41 @@ Sends loop until every byte is out, because a single send can write only part
 of a message. A small command-line client comes with it, and a plain netcat
 session works just as well.
 
-### projects.items[1].facts[0].label
+### projects.items[2].facts[0].label
 
 Built with
 
-### projects.items[1].facts[0].value
+### projects.items[2].facts[0].value
 
 > Built with
 
 C++17, POSIX sockets, threads
 
-### projects.items[1].facts[1].label
+### projects.items[2].facts[1].label
 
 Status
 
-### projects.items[1].facts[1].value
+### projects.items[2].facts[1].value
 
 > Status
 
 Open source
 
-### projects.items[1].actions[0].label
+### projects.items[2].actions[0].label
 
 Read the source
 
-### projects.items[2].name
+### projects.items[3].name
 
 gerp
 
-### projects.items[2].when
+### projects.items[3].when
 
 > gerp
 
 Spring 2026
 
-### projects.items[2].paragraphs
+### projects.items[3].paragraphs
 
 > gerp
 
@@ -495,51 +609,51 @@ semester, written with Anubhav Sinha. Recursing through the directories was
 the easy half; the assignment was really about the index, and it was the first
 thing I'd written where picking the data structure was the whole problem.
 
-### projects.items[2].facts[0].label
+### projects.items[3].facts[0].label
 
 Built with
 
-### projects.items[2].facts[0].value
+### projects.items[3].facts[0].value
 
 > Built with
 
 C++, standard library only
 
-### projects.items[2].facts[1].label
+### projects.items[3].facts[1].label
 
 Course
 
-### projects.items[2].facts[1].value
+### projects.items[3].facts[1].value
 
 > Course
 
 CS15 Data Structures, Tufts
 
-### projects.items[2].facts[2].label
+### projects.items[3].facts[2].label
 
 Status
 
-### projects.items[2].facts[2].value
+### projects.items[3].facts[2].value
 
 > Status
 
 Open source
 
-### projects.items[2].actions[0].label
+### projects.items[3].actions[0].label
 
 Read the source
 
-### projects.items[3].name
+### projects.items[4].name
 
 TRACE
 
-### projects.items[3].when
+### projects.items[4].when
 
 > TRACE
 
 May 2026
 
-### projects.items[3].paragraphs
+### projects.items[4].paragraphs
 
 > TRACE
 
@@ -560,27 +674,27 @@ encountering new foods abroad or struggling to communicate in a different
 language. TRACE helps provide one extra level of comfort by giving you
 guidance on how likely a food is to have an allergen.
 
-### projects.items[3].facts[0].label
+### projects.items[4].facts[0].label
 
 Built with
 
-### projects.items[3].facts[0].value
+### projects.items[4].facts[0].value
 
 > Built with
 
 Python, Flask, Claude Vision API
 
-### projects.items[3].facts[1].label
+### projects.items[4].facts[1].label
 
 Status
 
-### projects.items[3].facts[1].value
+### projects.items[4].facts[1].value
 
 > Status
 
 Repository private, happy to walk through it
 
-### projects.items[3].actions[0].label
+### projects.items[4].actions[0].label
 
 Ask me for a demo
 
@@ -639,6 +753,8 @@ SQL
 
 JavaScript
 
+TypeScript
+
 HTML
 
 ### about.toolsLabel
@@ -647,7 +763,8 @@ And the tools around them
 
 ### about.tools
 
-React, Flask, FastAPI, PyTorch, NumPy, pandas, Matplotlib and scikit-learn
+React, Next.js, Flask, FastAPI, PyTorch, NumPy, pandas, Matplotlib and
+scikit-learn
 
 ### about.sideHeading
 
@@ -671,7 +788,7 @@ On my own time
 
 > On my own time
 
-CraveCast and TRACE
+Project Pickup, CraveCast and TRACE
 
 ### about.current[2].where
 
@@ -907,6 +1024,17 @@ My favorite part of the hobby.
 A tool tray of bike gear: hex keys, cable cutters, screwdrivers, a brake
 rotor, bleed kit and bagged spares
 
+### hobbies.second.shots[2].caption
+
+Two seats, one bike, and a sunset over the parking lot.
+
+### hobbies.second.shots[2].alt
+
+> Two seats, one bike, and a sunset over the parking lot. — Read aloud in place of the picture. Describe what is in the shot.
+
+Two friends smiling on a green tandem bike in a parking lot at sunset, under
+an orange and purple sky
+
 ### hobbies.restLabel
 
 Also, with less to show for them
@@ -1052,41 +1180,52 @@ The full projects page
 
 ### glance.columns[2].items[0].head
 
-CraveCast
+Project Pickup
 
 ### glance.columns[2].items[0].body
+
+> Project Pickup
+
+Tufts students post projects and recruit classmates for scoped roles. Live at
+projpickup.com.
+
+### glance.columns[2].items[1].head
+
+CraveCast
+
+### glance.columns[2].items[1].body
 
 > CraveCast
 
 Predicts high-risk windows for people in recovery. Offline, live, open source.
 
-### glance.columns[2].items[1].head
+### glance.columns[2].items[2].head
 
 TCP echo server
 
-### glance.columns[2].items[1].body
+### glance.columns[2].items[2].body
 
 > TCP echo server
 
 Serves many clients at once, one thread per connection. C++ on raw POSIX
 sockets.
 
-### glance.columns[2].items[2].head
+### glance.columns[2].items[3].head
 
 gerp
 
-### glance.columns[2].items[2].body
+### glance.columns[2].items[3].body
 
 > gerp
 
 Searches a whole directory tree for a word instantly. C++, hand-built hash
 index.
 
-### glance.columns[2].items[3].head
+### glance.columns[2].items[4].head
 
 TRACE
 
-### glance.columns[2].items[3].body
+### glance.columns[2].items[4].body
 
 > TRACE
 

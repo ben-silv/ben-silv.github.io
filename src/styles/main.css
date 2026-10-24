@@ -575,14 +575,14 @@ a:hover { color: var(--signal-deepen); }
   color: var(--ink-soft);
 }
 
-/* Bikes. One landscape, one portrait — squaring both off would cut the wheels
+/* Bikes. One landscape, two portrait — squaring them off would cut the wheels
    off the first, so they share a height and keep their own shapes. Smaller than
    the wallets above them, which is the right order of importance. */
 .gallery--pair {
   display: flex;
   flex-wrap: wrap;
   gap: 22px;
-  max-width: 700px;
+  max-width: 940px;
 }
 .gallery--pair .shot { flex: 0 0 auto; }
 .gallery--pair .shot img {

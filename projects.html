@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Projects — Ben Silver</title>
-<meta name="description" content="CraveCast, a craving forecaster for addiction recovery, a multi-client TCP server and gerp, a search engine, both in C++, and TRACE, allergen detection for travellers and kids.">
+<meta name="description" content="Project Pickup, a live app where Tufts students recruit classmates for their projects; CraveCast, a craving forecaster for addiction recovery; a multi-client TCP server and gerp, a search engine, both in C++; and TRACE, allergen detection for travellers and kids.">
 <link rel="canonical" href="https://ben-silv.github.io/projects.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Projects — Ben Silver">
-<meta property="og:description" content="CraveCast, a craving forecaster for addiction recovery, a multi-client TCP server and gerp, a search engine, both in C++, and TRACE, allergen detection for travellers and kids.">
+<meta property="og:description" content="Project Pickup, a live app where Tufts students recruit classmates for their projects; CraveCast, a craving forecaster for addiction recovery; a multi-client TCP server and gerp, a search engine, both in C++; and TRACE, allergen detection for travellers and kids.">
 <meta property="og:url" content="https://ben-silv.github.io/projects.html">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#FBFBFD">
@@ -84,9 +84,42 @@
   <main class="main" id="content">
     <div class="page-head enter">
       <h1 class="page-title">Projects</h1>
-      <p class="page-lead">Two health tools that came out of my own life, a networked server in C++, and a search engine from my data structures class.</p>
+      <p class="page-lead">A live app for Tufts students to team up on their projects, two health tools that came out of my own life, a networked server in C++, and a search engine from my data structures class.</p>
     </div>
     <article class="entry entry--lead entry--project enter-1">
+      <div class="entry__body">
+        <h2 class="entry__name">Project Pickup</h2>
+        <p class="entry__org">October 2026</p>
+        <p class="entry__text">Project Pickup gives a Tufts student with an app idea a way to find the one classmate they need for the part they can't do themselves, asked for as a specific role with an hours estimate, like three onboarding screens in about five hours. It launched in October 2026 at projpickup.com and is open for sign-ups.</p>
+        <p class="entry__text">A student posts a project with one or more roles. Classmates send offers, the owner picks one, and the two of them work it out in a private chat. When the work is done the owner marks the role filled and leaves a credit note that shows on both profiles. Only @tufts.edu emails can join.</p>
+        <p class="entry__text">Who can see and do what is decided by the database, not the interface. All ten tables have row-level security and the app holds no service-role key, so every query runs as the signed-in user. Multi-step actions like accepting an offer or crediting a role are single SQL functions that can't stop halfway, and the message cap, resend limits and blocks are enforced in Postgres, not only on the page.</p>
+        <p class="entry__text">It's Next.js and TypeScript on Vercel, with Supabase for Postgres, sign-in and live chat. 178 unit, database and end-to-end tests run in GitHub Actions. The database tests sign in as different users to prove the access rules hold, and one of them caught a function that let anyone find out who had blocked whom.</p>
+        <div class="actions">
+        <a class="btn btn--primary" href="https://projpickup.com">Open the site</a>
+        <a class="btn" href="https://github.com/ben-silv/pickup">Read the source</a>
+        </div>
+      </div>
+      <div class="entry__side">
+      <div class="fact"><p>Built with</p><p>TypeScript, Next.js, React, PostgreSQL (Supabase), Vercel</p></div>
+      <div class="fact"><p>Tested with</p><p>Vitest, Playwright, GitHub Actions</p></div>
+      <div class="fact"><p>Status</p><p>Live, open to Tufts students</p></div>
+      <div class="shelf">
+      <figure class="shot shot--wide">
+        <img src="assets/pickup-landing.png" alt="The Project Pickup landing page. A headline reads “Your app needs a designer. Someone on the Hill wants in.” beside a stack of example posts, the top one asking for a backend developer for a CS 15 study-group matcher." width="900" height="509" style="--ar: 900/509" loading="lazy" decoding="async">
+        <figcaption>The landing page, with example posts that shuffle</figcaption>
+      </figure>
+      <figure class="shot shot--wide">
+        <img src="assets/pickup-roles.png" alt="The Open roles feed: a search bar, a sort menu, category filters from Design to Full project, and one labelled example post asking for a data science analysis of about four hours." width="900" height="510" style="--ar: 900/510" loading="lazy" decoding="async">
+        <figcaption>Open roles, filtered by the kind of help they need</figcaption>
+      </figure>
+      <figure class="shot shot--wide">
+        <img src="assets/pickup-post.png" alt="The Post a project form with fields for name, pitch and stage, beside a panel of tips for writing a small, answerable ask and a preview of the post on the feed." width="900" height="510" style="--ar: 900/510" loading="lazy" decoding="async">
+        <figcaption>Posting a project, with tips on asks that get answered</figcaption>
+      </figure>
+      </div>
+      </div>
+    </article>
+    <article class="entry enter-2">
       <div class="entry__body">
         <h2 class="entry__name">CraveCast</h2>
         <p class="entry__org">September 2026</p>
@@ -114,7 +147,7 @@
       </div>
       </div>
     </article>
-    <article class="entry enter-2">
+    <article class="entry enter-3">
       <div class="entry__body">
         <h2 class="entry__name">TCP echo server</h2>
         <p class="entry__org">September 2026</p>
@@ -129,7 +162,7 @@
       <div class="fact"><p>Status</p><p>Open source</p></div>
       </div>
     </article>
-    <article class="entry enter-3">
+    <article class="entry enter-4">
       <div class="entry__body">
         <h2 class="entry__name">gerp</h2>
         <p class="entry__org">Spring 2026</p>
@@ -146,7 +179,7 @@
       <div class="fact"><p>Status</p><p>Open source</p></div>
       </div>
     </article>
-    <article class="entry enter-4">
+    <article class="entry enter-5">
       <div class="entry__body">
         <h2 class="entry__name">TRACE</h2>
         <p class="entry__org">May 2026</p>
@@ -190,6 +223,7 @@
     <section class="glance__col glance__col--projects">
       <h3>Projects</h3>
       <div class="glance__items">
+        <div><strong>Project Pickup</strong><span>Tufts students post projects and recruit classmates for scoped roles. Live at projpickup.com.</span></div>
         <div><strong>CraveCast</strong><span>Predicts high-risk windows for people in recovery. Offline, live, open source.</span></div>
         <div><strong>TCP echo server</strong><span>Serves many clients at once, one thread per connection. C++ on raw POSIX sockets.</span></div>
         <div><strong>gerp</strong><span>Searches a whole directory tree for a word instantly. C++, hand-built hash index.</span></div>
@@ -222,7 +256,7 @@
   </a>
   <div id="glance-root"></div>
 </div>
-<script type="application/json" id="glance-data">{"button": "At a glance", "heading": "At a glance", "lead": "An overview of everything I've done so far. Click into the links for more detail.", "columns": [{"heading": "Studying", "accent": "", "items": [{"head": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior."}, {"head": "Dean's List, 3.9 GPA", "body": "Every semester so far."}]}, {"heading": "Research", "accent": "research", "link": {"label": "The full research page", "href": "research.html"}, "items": [{"head": "Mass General, Vaccine &amp; Immunotherapy Center", "body": "A Python pipeline that identifies immune cell populations, on datasets of over a million cells."}, {"head": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation."}]}, {"heading": "Projects", "accent": "projects", "link": {"label": "The full projects page", "href": "projects.html"}, "items": [{"head": "CraveCast", "body": "Predicts high-risk windows for people in recovery. Offline, live, open source."}, {"head": "TCP echo server", "body": "Serves many clients at once, one thread per connection. C++ on raw POSIX sockets."}, {"head": "gerp", "body": "Searches a whole directory tree for a word instantly. C++, hand-built hash index."}, {"head": "TRACE", "body": "Reads a photo of a meal for allergens and alerts you of likelihood."}]}, {"heading": "Also", "accent": "", "link": {"label": "More on the about page", "href": "about.html"}, "items": [{"head": "Tufts Technology Services", "body": "Research computing requests in one place, and a request workflow eliminating wait times for 500+ daily users and researchers."}, {"head": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew."}]}], "actions": [{"label": "Download resume", "href": "resume.pdf", "primary": true}, {"label": "Contact", "href": "contact.html", "primary": false}], "email": "silverbenh1@gmail.com", "footerNote": "Reach me at"}</script>
+<script type="application/json" id="glance-data">{"button": "At a glance", "heading": "At a glance", "lead": "An overview of everything I've done so far. Click into the links for more detail.", "columns": [{"heading": "Studying", "accent": "", "items": [{"head": "Tufts University, class of 2028", "body": "BA Computer Science, focus in Biological Sciences. Rising junior."}, {"head": "Dean's List, 3.9 GPA", "body": "Every semester so far."}]}, {"heading": "Research", "accent": "research", "link": {"label": "The full research page", "href": "research.html"}, "items": [{"head": "Mass General, Vaccine &amp; Immunotherapy Center", "body": "A Python pipeline that identifies immune cell populations, on datasets of over a million cells."}, {"head": "Sonkusale Research Labs", "body": "Fabrication protocols the group can repeat, from benchtop signal characterisation."}]}, {"heading": "Projects", "accent": "projects", "link": {"label": "The full projects page", "href": "projects.html"}, "items": [{"head": "Project Pickup", "body": "Tufts students post projects and recruit classmates for scoped roles. Live at projpickup.com."}, {"head": "CraveCast", "body": "Predicts high-risk windows for people in recovery. Offline, live, open source."}, {"head": "TCP echo server", "body": "Serves many clients at once, one thread per connection. C++ on raw POSIX sockets."}, {"head": "gerp", "body": "Searches a whole directory tree for a word instantly. C++, hand-built hash index."}, {"head": "TRACE", "body": "Reads a photo of a meal for allergens and alerts you of likelihood."}]}, {"heading": "Also", "accent": "", "link": {"label": "More on the about page", "href": "about.html"}, "items": [{"head": "Tufts Technology Services", "body": "Research computing requests in one place, and a request workflow eliminating wait times for 500+ daily users and researchers."}, {"head": "Teaching and building", "body": "Python workshops for thirty-odd students, and an L1 certification rocket that flew."}]}], "actions": [{"label": "Download resume", "href": "resume.pdf", "primary": true}, {"label": "Contact", "href": "contact.html", "primary": false}], "email": "silverbenh1@gmail.com", "footerNote": "Reach me at"}</script>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin defer></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin defer></script>
 <script src="src/js/app.js" defer></script>
