@@ -533,62 +533,15 @@ Read the source
 
 ### projects.items[2].name
 
-TCP echo server
-
-### projects.items[2].when
-
-> TCP echo server
-
-September 2026
-
-### projects.items[2].paragraphs
-
-> TCP echo server
-
-A server that holds several conversations at once: any number of clients can
-connect, and each one gets back exactly what it sent without waiting behind
-the others.
-
-It's C++ on raw POSIX sockets, with every connection handed to its own thread.
-Sends loop until every byte is out, because a single send can write only part
-of a message. A small command-line client comes with it, and a plain netcat
-session works just as well.
-
-### projects.items[2].facts[0].label
-
-Built with
-
-### projects.items[2].facts[0].value
-
-> Built with
-
-C++17, POSIX sockets, threads
-
-### projects.items[2].facts[1].label
-
-Status
-
-### projects.items[2].facts[1].value
-
-> Status
-
-Open source
-
-### projects.items[2].actions[0].label
-
-Read the source
-
-### projects.items[3].name
-
 gerp
 
-### projects.items[3].when
+### projects.items[2].when
 
 > gerp
 
 Spring 2026
 
-### projects.items[3].paragraphs
+### projects.items[2].paragraphs
 
 > gerp
 
@@ -609,51 +562,51 @@ semester, written with Anubhav Sinha. Recursing through the directories was
 the easy half; the assignment was really about the index, and it was the first
 thing I'd written where picking the data structure was the whole problem.
 
-### projects.items[3].facts[0].label
+### projects.items[2].facts[0].label
 
 Built with
 
-### projects.items[3].facts[0].value
+### projects.items[2].facts[0].value
 
 > Built with
 
 C++, standard library only
 
-### projects.items[3].facts[1].label
+### projects.items[2].facts[1].label
 
 Course
 
-### projects.items[3].facts[1].value
+### projects.items[2].facts[1].value
 
 > Course
 
 CS15 Data Structures, Tufts
 
-### projects.items[3].facts[2].label
+### projects.items[2].facts[2].label
 
 Status
 
-### projects.items[3].facts[2].value
+### projects.items[2].facts[2].value
 
 > Status
 
 Open source
 
-### projects.items[3].actions[0].label
+### projects.items[2].actions[0].label
 
 Read the source
 
-### projects.items[4].name
+### projects.items[3].name
 
 TRACE
 
-### projects.items[4].when
+### projects.items[3].when
 
 > TRACE
 
 May 2026
 
-### projects.items[4].paragraphs
+### projects.items[3].paragraphs
 
 > TRACE
 
@@ -674,6 +627,53 @@ encountering new foods abroad or struggling to communicate in a different
 language. TRACE helps provide one extra level of comfort by giving you
 guidance on how likely a food is to have an allergen.
 
+### projects.items[3].facts[0].label
+
+Built with
+
+### projects.items[3].facts[0].value
+
+> Built with
+
+Python, Flask, Claude Vision API
+
+### projects.items[3].facts[1].label
+
+Status
+
+### projects.items[3].facts[1].value
+
+> Status
+
+Repository private, happy to walk through it
+
+### projects.items[3].actions[0].label
+
+Ask me for a demo
+
+### projects.items[4].name
+
+TCP echo server
+
+### projects.items[4].when
+
+> TCP echo server
+
+September 2026
+
+### projects.items[4].paragraphs
+
+> TCP echo server
+
+A server that holds several conversations at once: any number of clients can
+connect, and each one gets back exactly what it sent without waiting behind
+the others.
+
+It's C++ on raw POSIX sockets, with every connection handed to its own thread.
+Sends loop until every byte is out, because a single send can write only part
+of a message. A small command-line client comes with it, and a plain netcat
+session works just as well.
+
 ### projects.items[4].facts[0].label
 
 Built with
@@ -682,7 +682,7 @@ Built with
 
 > Built with
 
-Python, Flask, Claude Vision API
+C++17, POSIX sockets, threads
 
 ### projects.items[4].facts[1].label
 
@@ -692,11 +692,11 @@ Status
 
 > Status
 
-Repository private, happy to walk through it
+Open source
 
 ### projects.items[4].actions[0].label
 
-Ask me for a demo
+Read the source
 
 ## About page
 
@@ -1201,35 +1201,14 @@ Predicts high-risk windows for people in recovery. Offline, live, open source.
 
 ### glance.columns[2].items[2].head
 
-TCP echo server
-
-### glance.columns[2].items[2].body
-
-> TCP echo server
-
-Serves many clients at once, one thread per connection. C++ on raw POSIX
-sockets.
-
-### glance.columns[2].items[3].head
-
 gerp
 
-### glance.columns[2].items[3].body
+### glance.columns[2].items[2].body
 
 > gerp
 
 Searches a whole directory tree for a word instantly. C++, hand-built hash
 index.
-
-### glance.columns[2].items[4].head
-
-TRACE
-
-### glance.columns[2].items[4].body
-
-> TRACE
-
-Reads a photo of a meal for allergens and alerts you of likelihood.
 
 ### glance.columns[3].heading
 

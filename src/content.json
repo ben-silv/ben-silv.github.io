@@ -227,32 +227,6 @@
         ]
       },
       {
-        "name": "TCP echo server",
-        "when": "September 2026",
-        "lead": false,
-        "paragraphs": [
-          "A server that holds several conversations at once: any number of clients can connect, and each one gets back exactly what it sent without waiting behind the others.",
-          "It's C++ on raw POSIX sockets, with every connection handed to its own thread. Sends loop until every byte is out, because a single send can write only part of a message. A small command-line client comes with it, and a plain netcat session works just as well."
-        ],
-        "facts": [
-          {
-            "label": "Built with",
-            "value": "C++17, POSIX sockets, threads"
-          },
-          {
-            "label": "Status",
-            "value": "Open source"
-          }
-        ],
-        "actions": [
-          {
-            "label": "Read the source",
-            "href": "https://github.com/ben-silv/tcp-echo-server",
-            "primary": true
-          }
-        ]
-      },
-      {
         "name": "gerp",
         "when": "Spring 2026",
         "lead": false,
@@ -307,6 +281,32 @@
           {
             "label": "Ask me for a demo",
             "href": "mailto:silverbenh1@gmail.com?subject=TRACE",
+            "primary": true
+          }
+        ]
+      },
+      {
+        "name": "TCP echo server",
+        "when": "September 2026",
+        "lead": false,
+        "paragraphs": [
+          "A server that holds several conversations at once: any number of clients can connect, and each one gets back exactly what it sent without waiting behind the others.",
+          "It's C++ on raw POSIX sockets, with every connection handed to its own thread. Sends loop until every byte is out, because a single send can write only part of a message. A small command-line client comes with it, and a plain netcat session works just as well."
+        ],
+        "facts": [
+          {
+            "label": "Built with",
+            "value": "C++17, POSIX sockets, threads"
+          },
+          {
+            "label": "Status",
+            "value": "Open source"
+          }
+        ],
+        "actions": [
+          {
+            "label": "Read the source",
+            "href": "https://github.com/ben-silv/tcp-echo-server",
             "primary": true
           }
         ]
@@ -536,16 +536,8 @@
             "body": "Predicts high-risk windows for people in recovery. Offline, live, open source."
           },
           {
-            "head": "TCP echo server",
-            "body": "Serves many clients at once, one thread per connection. C++ on raw POSIX sockets."
-          },
-          {
             "head": "gerp",
             "body": "Searches a whole directory tree for a word instantly. C++, hand-built hash index."
-          },
-          {
-            "head": "TRACE",
-            "body": "Reads a photo of a meal for allergens and alerts you of likelihood."
           }
         ]
       },
